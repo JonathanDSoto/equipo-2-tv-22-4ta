@@ -113,28 +113,29 @@
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array(
-                'name' => $name,
-                'lastname' => $lastname,
-                'email' => $email,
-                'phone_number' => $phone,
-                'created_by' => 'jonathan soto',
-                'role' => 'Administrador',
-                'password' => $password,
-                'profile_photo_file'=>  new CURLFILE(BASE_PATH.'public/images/users/user-dummy-img.jpg')),
-                //new CURLFILE($_FILES['cover']['tmp_name'])
-    			));
+			CURLOPT_POSTFIELDS => array(
+			'name' => $name,
+			'lastname' => $lastname,
+			'email' => $email,
+			'phone_number' => $phone,
+			'created_by' => 'jonathan soto',
+			'role' => 'Administrador',
+			'password' => $password,
+			'profile_photo_file'=>  new CURLFILE(BASE_PATH.'public/images/users/user-dummy-img.jpg')),
+			//new CURLFILE($_FILES['cover']['tmp_name'])
+			));
 
-				$response = curl_exec($curl);
-				curl_close($curl);
-				$response = json_decode($response);
+			$response = curl_exec($curl);
+			curl_close($curl);
+			$response = json_decode($response);
 
-				if (isset($response->code) && $response->code > 0) {
-					
-					login($email,$password);
+			if (isset($response->code) && $response->code > 0) {
 
-            }
-        }
+				header("Location:".BASE_PATH."/");
+			
+			}
+			
+       	 }
 
 		 //Funcion para recuperar la contraseña
 		public function recovery_pass($email)
