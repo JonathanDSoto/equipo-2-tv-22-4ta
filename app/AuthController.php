@@ -196,8 +196,9 @@
 				session_destroy();
 
 				header("Location:".BASE_PATH);
-        }
+       	 	}
 
+		}
 	}
 
 ?>
