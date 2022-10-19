@@ -1,4 +1,5 @@
 <script>
+// Preguntar si existe contenido en el LocalStorage (sesion guardada ahi) y direccionar a /home, si no que ignore solamente
 </script>
 
 <svelte:head>
