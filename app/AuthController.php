@@ -2,10 +2,6 @@
 	include_once "config.php";
 
 	if (isset($_POST["action"])) {
-
-		if (isset($_POST['super_token'])
-			&& $_POST['super_token'] == $_SESSION['super_token']) {
-
 			switch($_POST['action'])
 			{
 				case 'access':
@@ -48,7 +44,7 @@
 			}
 
 		}
-	}
+	
 	
 
 	Class AuthController
@@ -89,7 +85,7 @@
 				$_SESSION['role'] = $response->data->role;
 				$_SESSION['token'] = $response->data->token; 
 
-				header("Location:".BASE_PATH."views");
+				header("Location:".BASE_PATH."home");
 
 			}else{
 
