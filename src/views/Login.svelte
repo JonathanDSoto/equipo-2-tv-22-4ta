@@ -131,8 +131,11 @@
 
                                         <div class="mb-3">
                                             <div class="float-end">
-                                                <a href="../views/forgotPassword.php" class="text-muted">Forgot
-                                                    password?</a>
+                                                <a
+                                                    href="./forgotPassword"
+                                                    class="text-muted"
+                                                    >Forgot password?</a
+                                                >
                                             </div>
 
                                             <label class="form-label" for="password-input">Password
@@ -163,9 +166,10 @@
 
                         <div class="mt-4 text-center">
                             <p class="mb-0">
-                                Don't have an account ?
-                                <a href="../views/registerUser.php"
-                                    class="fw-semibold text-primary text-decoration-underline">
+                                Don't have an account ? <a
+                                    href="./registerUser"
+                                    class="fw-semibold text-primary text-decoration-underline"
+                                >
                                     Signup
                                 </a>
                             </p>
