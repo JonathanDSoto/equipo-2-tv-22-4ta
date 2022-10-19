@@ -108,7 +108,7 @@
                                     </p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form action="../views/index.php">
+                                    <form action="./home">
                                         <div class="mb-3">
                                             <label
                                                 for="useremail"
@@ -132,7 +132,7 @@
                                         <div class="mb-3">
                                             <div class="float-end">
                                                 <a
-                                                    href="../views/forgotPassword.php"
+                                                    href="./forgotPassword"
                                                     class="text-muted"
                                                     >Forgot password?</a
                                                 >
@@ -182,7 +182,7 @@
                         <div class="mt-4 text-center">
                             <p class="mb-0">
                                 Don't have an account ? <a
-                                    href="../views/registerUser.php"
+                                    href="./registerUser"
                                     class="fw-semibold text-primary text-decoration-underline"
                                 >
                                     Signup
