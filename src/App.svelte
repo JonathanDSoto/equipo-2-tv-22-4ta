@@ -3,21 +3,25 @@
     import Login from './views/Login.svelte';
     import Home from './views/Home.svelte';
     import NotFound from './views/NotFound.svelte';
-    // import Products_Detail from './views/Products_Detail.svelte';
+    import ForgotPassword from './views/ForgotPassword.svelte';
+    import Logout from './views/Logout.svelte';
+    import Profile from './views/Profile.svelte';
+    import RegisterUser from './views/RegisterUser.svelte';
+    import RessetPassword from './views/RessetPassword.svelte';
 </script>
 
 <Router>
     <div>
         <!-- Vistas direccionadas con componentes -->
         <Route path="/" component={Login} />
-        <Route path="home" component={Home} />
-
-        <!-- Ruta producto id especifico -->
-        <Route path="producto/:id" let:params>
-            <!-- <Products_Detail id="{params.id}" /> -->
-        </Route>
+        <Route path="/home" component={Home} />
+        <Route path="/forgotPassword" component={ForgotPassword} />
+        <Route path="/logout" component={Logout} /> 
+        <Route path="/profile" component={Profile} />
+        <Route path="/registerUser" component={RegisterUser} />
+        <Route path="/ressetPassword" component={RessetPassword} />
         
         <!-- 404 -->
-        <Route path="*" component={NotFound} />
+        <Route path="/notFound" component={NotFound} />
     </div>
 </Router>
