@@ -1,5 +1,26 @@
 <script>
 // Preguntar si existe contenido en el LocalStorage (sesion guardada ahi) y direccionar a /home, si no que ignore solamente
+import axios from "axios";
+let dataUsuario = {
+    email: "",
+    password: ""
+}
+function login (){
+    let bodyForm = new FormData();
+    bodyForm.append('action', 'access');
+    bodyForm.append('email', dataUsuario.email);
+    bodyForm.append('password', dataUsuario.password);
+
+    axios.post('http://localhost/app/AuthController.php', bodyForm)
+    .then(function (response) {
+        if(response.data) { 
+            location.href = '/home'
+        }else{ 
+            console.log("Nel")
+        }
+    })
+    .catch(resp => console.log(resp));
+	}
 </script>
 
 <svelte:head>
@@ -69,6 +90,7 @@
         src="http://localhost:8080/js/pages/particles.app.js"
     ></script>
     <script
+        defer
         src="http://localhost:8080/js/pages/password-addon.init.js"
     ></script>
 </svelte:head>
@@ -117,47 +139,45 @@
                                     </p>
                                 </div>
                                 <div class="p-2 mt-4">
-                                    <form method="post" action="http://localhost/app/AuthController.php">
-                                        <div class="mb-3">
-                                            <label for="useremail" class="form-label">Email
-                                                <span class="text-danger">*</span>
-                                            </label>
-                                            <input type="email" class="form-control" id="useremail"
-                                                placeholder="Enter email address" required name="email"/>
-                                            <div class="invalid-feedback">
-                                                Please enter email
-                                            </div>
+                                    <div class="mb-3">
+                                        <label for="useremail" class="form-label">Email
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="email" class="form-control" id="useremail" bind:value={dataUsuario.email}
+                                            placeholder="Enter email address" required name="email"/>
+                                        <div class="invalid-feedback">
+                                            Please enter email
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="float-end">
+                                            <a
+                                                href="./forgotPassword"
+                                                class="text-muted"
+                                                >Forgot password?</a
+                                            >
                                         </div>
 
-                                        <div class="mb-3">
-                                            <div class="float-end">
-                                                <a
-                                                    href="./forgotPassword"
-                                                    class="text-muted"
-                                                    >Forgot password?</a
-                                                >
-                                            </div>
-
-                                            <label class="form-label" for="password-input">Password
-                                                <span class="text-danger">*</span></label>
-                                            <div class="position-relative auth-pass-inputgroup mb-3">
-                                                <input type="password" class="form-control pe-5 password-input"
-                                                    placeholder="Enter password" id="password-input" name="password" required />
-                                                <button
-                                                    class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted shadow-none password-addon"
-                                                    type="button" id="password-addon">
-                                                    <i class="ri-eye-fill align-middle" />
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                        <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">
-                                                Sign In
+                                        <label class="form-label" for="password-input">Password
+                                            <span class="text-danger">*</span></label>
+                                        <div class="position-relative auth-pass-inputgroup mb-3">
+                                            <input type="password" class="form-control pe-5 password-input" bind:value={dataUsuario.password}
+                                                placeholder="Enter password" id="password-input" name="password" required />
+                                            <button
+                                                class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted shadow-none password-addon"
+                                                type="button" id="password-addon">
+                                                <i class="ri-eye-fill align-middle" />
                                             </button>
                                         </div>
-                                        <input type="hidden" name="action" value="access">
-                                    </form>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <button class="btn btn-success w-100" on:click={login}>
+                                            Sign In
+                                        </button>
+                                    </div>
+                                    <input type="hidden" name="action" value="access">
                                 </div>
                             </div>
                             <!-- end card body -->
@@ -167,7 +187,7 @@
                         <div class="mt-4 text-center">
                             <p class="mb-0">
                                 Don't have an account ? <a
-                                    href="./registerUser"
+                                    href="/registerUser"
                                     class="fw-semibold text-primary text-decoration-underline"
                                 >
                                     Signup
