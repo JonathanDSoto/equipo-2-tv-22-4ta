@@ -14,7 +14,7 @@ function login (){
     axios.post('http://localhost/app/AuthController.php', bodyForm)
     .then(function (response) {
         if(response.data) { 
-            location.href = '/home'
+            location.href = '/home' // Redireccion a home
         }else{ 
             console.log("Nel")
         }
