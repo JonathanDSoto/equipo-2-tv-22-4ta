@@ -63,7 +63,7 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: '.$_SESSION['token']
+				'Authorization: Bearer ' .$_SESSION['token']
             ),
             ));
 
@@ -90,7 +90,7 @@
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array('name' => $name ,'lastname' => $lastname,'email' => $email,'phone_number' => $phone,'created_by' => 'jonathan soto','role' => 'Administrador','password' => $password,'profile_photo_file'=> new CURLFILE(BASE_PATH.'public/images/users/user-dummy-img.jpg')),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: '.$_SESSION['token']
+				'Authorization: Bearer ' .$_SESSION['token']
             ),
             ));
 
@@ -120,7 +120,7 @@
               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
               CURLOPT_CUSTOMREQUEST => 'GET',
               CURLOPT_HTTPHEADER => array(
-                'Authorization: '.$_SESSION['token']
+				'Authorization: Bearer ' .$_SESSION['token']
               ),
             ));
             
@@ -178,8 +178,7 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'DELETE',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' .$_SESSION['token'],
-
+                'Authorization: Bearer ' .$_SESSION['token']
             ),
             ));
 
@@ -212,7 +211,7 @@
             CURLOPT_POSTFIELDS => array('id' => $id,
             'profile_photo_file'=> new CURLFILE($_FILES['cover']['tmp_name'])),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' .$_SESSION['token'],
+                'Authorization: Bearer ' .$_SESSION['token']
             ),
             ));
 

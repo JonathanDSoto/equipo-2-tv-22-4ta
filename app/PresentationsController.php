@@ -32,21 +32,19 @@
 					$presentantionsController = new PresentantionsController();
 					echo json_encode($presentantionsController->UpdatePresentation($descripcion,$code,$peso,$status,$stock,$stock_min,$stock_max,$product_id,$id));
 				break;
-                /*case 'updatePrice':
+                case 'updatePrice':
 					$id = strip_tags($_POST['id']);
+                    $amount = strip_tags($_POST['amount']);
 					
 					$presentantionsController = new PresentantionsController();
-					echo json_encode($presentantionsController->UpdateAvatar($id));
+					echo json_encode($presentantionsController->UpdatePrice($id,$amount));
 				break;
-
 				case 'delete':
 					$id = strip_tags($_POST['id']);
 					
 					$presentantionsController = new PresentantionsController();
 					echo json_encode($presentantionsController->Delete($id));
-				break;
-*/
-                
+				break;     
 			}
 
 		}
@@ -67,7 +65,7 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: '.$_SESSION['token']
+			    'Authorization: Bearer '.$_SESSION['token']
             ),
             ));
 
@@ -93,7 +91,7 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: '.$_SESSION['token']
+			    'Authorization: Bearer '.$_SESSION['token']
             ),
             ));
 
@@ -120,7 +118,7 @@
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array('description' => $descripcion,'code' => $code,'weight_in_grams' => $peso,'status' => $status,'cover'=> new CURLFILE($_FILES['cover']['tmp_name']),'stock' => $stock,'stock_min' => $stock_min,'stock_max' => $stock_max,'product_id' => $product_id),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: '.$_SESSION['token']
+			    'Authorization: Bearer '.$_SESSION['token']
             ),
             ));
 
@@ -151,7 +149,7 @@
             CURLOPT_CUSTOMREQUEST => 'PUT',
             CURLOPT_POSTFIELDS => 'description='.$descripcion.'&code='.$code.'&weight_in_grams='.$peso.'&status='.$status.'&stock='.$stock.'&stock_min='.$stock_min.'&stock_max='.$stock_max.'&product_id='.$product_id.'&id='.$id,
             CURLOPT_HTTPHEADER => array(
-                'Authorization: '.$_SESSION['token'],
+			    'Authorization: Bearer '.$_SESSION['token'],
                 'Content-Type: application/x-www-form-urlencoded'
             ),
             ));
@@ -181,9 +179,9 @@
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'PUT',
-            CURLOPT_POSTFIELDS => 'id='.$id.'&amount='.$id,
+            CURLOPT_POSTFIELDS => 'id='.$id.'&amount='.$amount,
             CURLOPT_HTTPHEADER => array(
-                'Authorization: '.$_SESSION['token'],
+			    'Authorization: Bearer '.$_SESSION['token'],
                 'Content-Type: application/x-www-form-urlencoded'
             ),
             ));
@@ -200,8 +198,33 @@
         }
 
         //Delete presentacion
-        public function Delete()
+        public function Delete($id)
         {
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://crud.jonathansoto.mx/api/presentations/'.$id,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'DELETE',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: '.$_SESSION['token']
+            ),
+            ));
+
+            $response = curl_exec($curl);
+            curl_close($curl);
+            $response = json_decode($response);
+
+            if (isset($response->code) && $response->code > 0) {
+				return true;
+        	}else{
+				return false;
+			}
 
         }
 
