@@ -12,10 +12,10 @@
 					$city = strip_tags($_POST['city']);
 					$province = strip_tags($_POST['province']);
 					$phone = strip_tags($_POST['phone_number']);
-					$userId = strip_tags($_POST['client_id']);
+					$user_id = strip_tags($_POST['client_id']);
 
 					$addressController = new AddressController();
-					echo json_encode($addressController-> create($name,$lastname,$street_number,$cp,$city,$province,$phone,$userId));
+					echo json_encode($addressController-> create($name,$lastname,$street_number,$cp,$city,$province,$phone,$user_id));
 				break;
 
 				case 'update':
@@ -26,11 +26,11 @@
 					$city = strip_tags($_POST['city']);
 					$province = strip_tags($_POST['province']);
 					$phone = strip_tags($_POST['phone_number']);
-					$userId = strip_tags($_POST['client_id']);
+					$user_id = strip_tags($_POST['client_id']);
 					$id = strip_tags($_POST['id']);
 
 					$addressController = new AddressController();
-					echo json_encode($addressController->update($name,$lastname,$street_number,$cp,$city,$province,$phone,$userId,$id));
+					echo json_encode($addressController->update($name,$lastname,$street_number,$cp,$city,$province,$phone,$user_id,$id));
 				break;
 
 				case 'delete':
@@ -73,7 +73,7 @@
         }
 
 		//Create a una dirrecion
-		public function create($name,$lastname,$street_number,$cp,$city,$province,$phone,$userId)
+		public function create($name,$lastname,$street_number,$cp,$city,$province,$phone,$user_id)
 		{
 			$curl = curl_init();
 
@@ -86,7 +86,7 @@
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => array('first_name' => $name,'last_name' => $lastname,'street_and_use_number' => $street_number,'postal_code' => $cp,'city' => $city,'province' => $province,'phone_number' => $phone,'is_billing_address' => '1','client_id' => $userId),
+			CURLOPT_POSTFIELDS => array('first_name' => $name,'last_name' => $lastname,'street_and_use_number' => $street_number,'postal_code' => $cp,'city' => $city,'province' => $province,'phone_number' => $phone,'is_billing_address' => '1','client_id' => $user_id),
 			CURLOPT_HTTPHEADER => array(
                 'Authorization: '.$_SESSION['token']
 			),
@@ -104,7 +104,7 @@
 		}
 
 		//Update a una dirrecion
-		public function update($name,$lastname,$street_number,$cp,$city,$province,$phone,$userId,$id)
+		public function update($name,$lastname,$street_number,$cp,$city,$province,$phone,$user_id,$id)
 		{
 			$curl = curl_init();
 
@@ -117,7 +117,7 @@
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'PUT',
-			CURLOPT_POSTFIELDS => 'first_name='.$name.'&last_name='.$lastname.'&street_and_use_number='.$street_number.'&postal_code='.$cp.'&city='.$city.'&province='.$province.'&phone_number='.$phone.'&is_billing_address=1&client_id='.$userId.'&id='.$id.'',
+			CURLOPT_POSTFIELDS => 'first_name='.$name.'&last_name='.$lastname.'&street_and_use_number='.$street_number.'&postal_code='.$cp.'&city='.$city.'&province='.$province.'&phone_number='.$phone.'&is_billing_address=1&client_id='.$user_id.'&id='.$id.'',
 			CURLOPT_HTTPHEADER => array(
 				'Authorization: '.$_SESSION['token'],
 				'Content-Type: application/x-www-form-urlencoded'

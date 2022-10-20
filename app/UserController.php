@@ -16,29 +16,29 @@
 				break;
 
 				case 'updateUser':
-
 					$name = strip_tags($_POST['name']);
                     $lastname = strip_tags($_POST['lastname']);
                     $email = strip_tags($_POST['email']);
+                    $phone = strip_tags($_POST['phone_number']);
+                    $password = strip_tags($_POST['password']);
+                    $id = strip_tags($_POST['id']);
 
 					$userController = new UserController();
-					$userController->UpdateUser($name,$lastname,$email);
+					echo json_encode($userController->UpdateUser($name,$lastname,$email,$phone,$password,$id));
 				break;
 
 				case 'delete':
-
 					$id = strip_tags($_POST['id']);
 					
 					$userController = new UserController();
-					$userController->DeleteUser($id);
+					echo json_encode($userController->Delete($id));
 				break;
 
                 case 'updateAvatar':
-
 					$id = strip_tags($_POST['id']);
 					
 					$userController = new UserController();
-					$userController->UpdateAvatar($id);
+					echo json_encode($userController->UpdateAvatar($id));
 				break;
 			}
 
@@ -68,6 +68,8 @@
 
             $response = curl_exec($curl);
             curl_close($curl);
+            $response = json_decode($response);
+
             //  ---pendiente
         }
 
@@ -85,14 +87,7 @@
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array('name' => $name ,
-            'lastname' => $lastname,
-            'email' => $email,
-            'phone_number' => $phone,
-            'created_by' => 'jonathan soto',
-            'role' => 'Administrador',
-            'password' => $password,
-            'profile_photo_file'=> new CURLFILE(BASE_PATH.'public/images/users/user-dummy-img.jpg')),
+            CURLOPT_POSTFIELDS => array('name' => $name ,'lastname' => $lastname,'email' => $email,'phone_number' => $phone,'created_by' => 'jonathan soto','role' => 'Administrador','password' => $password,'profile_photo_file'=> new CURLFILE(BASE_PATH.'public/images/users/user-dummy-img.jpg')),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: '.$_SESSION['token']
             ),
@@ -102,7 +97,11 @@
             curl_close($curl);
             $response = json_decode($response);
 
-            //pendiente....
+            if (isset($response->code) && $response->code > 0) {
+				return true;
+        	}else{
+				return false;
+			}
         }
 
         //Get one users
@@ -132,7 +131,7 @@
         }
 
         //Update users
-        public function UpdateUser($name,$lastname,$email)
+        public function UpdateUser($name,$lastname,$email,$phone,$password,$id)
         {
             $curl = curl_init();
 
@@ -145,14 +144,7 @@
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'PUT',
-            CURLOPT_POSTFIELDS => 'name='.$name.'
-            &lastname='.$lastname.'
-            &email='.$email.'
-            &phone_number='.$phone.'
-            &created_by=jonathan%20soto
-            &role=Administrador
-            &password='.$password.'
-            &id='.$id,
+            CURLOPT_POSTFIELDS => 'name='.$name.'&lastname='.$lastname.'&email='.$email.'&phone_number='.$phone.'&created_by=jonathan%20soto&role=Administrador&password='.$password.'&id='.$id,
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Bearer ' .$_SESSION['token'],
                 'Content-Type: application/x-www-form-urlencoded'
@@ -163,11 +155,15 @@
             curl_close($curl);
             $response = json_decode($response);
 
-            // pendinte....
+            if (isset($response->code) && $response->code > 0) {
+				return true;
+        	}else{
+				return false;
+			}
         }
 
         //delete
-        public function DeleteUser($id)
+        public function Delete($id)
         {
             $curl = curl_init();
 
@@ -190,6 +186,11 @@
             curl_close($curl);
             $response = json_decode($response);
 
+            if (isset($response->code) && $response->code > 0) {
+				return true;
+        	}else{
+				return false;
+			}
    
         }
 
@@ -217,7 +218,11 @@
             $response = curl_exec($curl);
             curl_close($curl);
             $response = json_decode($response);
-
+            if (isset($response->code) && $response->code > 0) {
+				return true;
+        	}else{
+				return false;
+			}
         }
     }
 ?>

@@ -1,5 +1,5 @@
 <?php 
-	include_once "config.php";
+	include "config.php";
 
 	if (isset($_POST["action"])) {
 			switch($_POST['action'])
