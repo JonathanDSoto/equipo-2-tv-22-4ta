@@ -1,22 +1,18 @@
 <?php 
 	include_once "config.php";
+
     if (isset($_POST["action"])) {
-
-		if (isset($_POST['super_token'])
-			&& $_POST['super_token'] == $_SESSION['super_token']) {
-
 			switch($_POST['action'])
 			{
 				case 'create':
-
 					$name = strip_tags($_POST['name']);
 					$lastname = strip_tags($_POST['lastname']);
 					$email = strip_tags($_POST['email']);
-					$phone = strip_tags($_POST['phone']);
+					$phone = strip_tags($_POST['phone_number']);
 					$password = strip_tags($_POST['password']);
 
-					$authController = new AuthController();
-					$authController-> CreateUsers($name,$lastname,$email,$phone,$password);
+					$userController = new UserController();
+					echo json_encode($userController-> CreateUsers($name,$lastname,$email,$phone,$password));
 				break;
 
 				case 'updateUser':
@@ -47,14 +43,13 @@
 			}
 
 		}
-	}
+	
     
     Class UserController{
 
         //Get all users
-        public function AllUsers()
+        public function Users()
         {
-
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
@@ -73,7 +68,6 @@
 
             $response = curl_exec($curl);
             curl_close($curl);
-
             //  ---pendiente
         }
 
@@ -106,6 +100,8 @@
 
             $response = curl_exec($curl);
             curl_close($curl);
+            $response = json_decode($response);
+
             //pendiente....
         }
 
@@ -130,6 +126,8 @@
             
             $response = curl_exec($curl);
             curl_close($curl);
+            $response = json_decode($response);
+
                 // pendiente....
         }
 
@@ -163,6 +161,8 @@
 
             $response = curl_exec($curl);
             curl_close($curl);
+            $response = json_decode($response);
+
             // pendinte....
         }
 
@@ -188,6 +188,8 @@
 
             $response = curl_exec($curl);
             curl_close($curl);
+            $response = json_decode($response);
+
    
         }
 
@@ -214,10 +216,8 @@
 
             $response = curl_exec($curl);
             curl_close($curl);
+            $response = json_decode($response);
 
         }
-
-
-
     }
 ?>

@@ -1,5 +1,6 @@
 //Code para config de sesion/destroy
 <?php  
+include "header_params.php";
 	session_start();
 	
 	if (!isset( $_SESSION['super_token'] )) {

@@ -1,6 +1,5 @@
 <?php 
 	include_once "config.php";
-	include "header_params.php";
 
 	if (isset($_POST["action"])) {
 			switch($_POST['action'])
@@ -17,7 +16,7 @@
 					$name = strip_tags($_POST['name']);
 					$lastname = strip_tags($_POST['lastname']);
 					$email = strip_tags($_POST['email']);
-					$phone = strip_tags($_POST['phone']);
+					$phone = strip_tags($_POST['phone_number']);
 					$password = strip_tags($_POST['password']);
 
 					$authController = new AuthController();
@@ -45,7 +44,6 @@
         //Funcion para inicio de sesion con el uso de E-mail y la contraseña
 		public function login($email,$pwd)
 		{
-
 			$curl = curl_init();
 
 			curl_setopt_array($curl, array(
@@ -69,7 +67,6 @@
 			}else{
 				return false;	
 			}
-
 		}
 
 
@@ -100,13 +97,12 @@
 			}else{
 				return false;
 			}
-			
-       	 }
+       	}
 
-		 //Funcion para recuperar la contraseña
+		 
+		//Funcion para recuperar la contraseña
 		public function recovery_pass($email)
 		{
-
 			$curl = curl_init();
 
 			curl_setopt_array($curl, array(
