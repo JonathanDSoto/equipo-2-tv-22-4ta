@@ -1,7 +1,8 @@
 //Code para controladores de productos
 
 <?php
-	include_once "config.php";
+	include "header_params.php";
+	include "config.php";
 
 	
 ?>
