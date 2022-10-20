@@ -1,61 +1,54 @@
 <?php 
 	include_once "config.php";
+
     if (isset($_POST["action"])) {
-
-		if (isset($_POST['super_token'])
-			&& $_POST['super_token'] == $_SESSION['super_token']) {
-
 			switch($_POST['action'])
 			{
 				case 'create':
+					$name = strip_tags($_POST['first_name']);
+					$lastname = strip_tags($_POST['last_name']);
+					$street_number = strip_tags($_POST['street_and_use_number']);
+					$cp = strip_tags($_POST['postal_code']);
+					$city = strip_tags($_POST['city']);
+					$province = strip_tags($_POST['province']);
+					$phone = strip_tags($_POST['phone_number']);
+					$userId = strip_tags($_POST['client_id']);
 
-					$name = strip_tags($_POST['name']);
-					$lastname = strip_tags($_POST['lastname']);
-					$email = strip_tags($_POST['email']);
-					$phone = strip_tags($_POST['phone']);
-					$password = strip_tags($_POST['password']);
-
-					$authController = new AuthController();
-					$authController-> CreateUsers($name,$lastname,$email,$phone,$password);
+					$addressController = new AddressController();
+					echo json_encode($addressController-> create($name,$lastname,$street_number,$cp,$city,$province,$phone,$userId));
 				break;
 
-				case 'updateUser':
+				case 'update':
+					$name = strip_tags($_POST['first_name']);
+					$lastname = strip_tags($_POST['last_name']);
+					$street_number = strip_tags($_POST['street_and_use_number']);
+					$cp = strip_tags($_POST['postal_code']);
+					$city = strip_tags($_POST['city']);
+					$province = strip_tags($_POST['province']);
+					$phone = strip_tags($_POST['phone_number']);
+					$userId = strip_tags($_POST['client_id']);
+					$id = strip_tags($_POST['id']);
 
-					$name = strip_tags($_POST['name']);
-                    $lastname = strip_tags($_POST['lastname']);
-                    $email = strip_tags($_POST['email']);
-
-					$userController = new UserController();
-					$userController->UpdateUser($name,$lastname,$email);
+					$addressController = new AddressController();
+					echo json_encode($addressController->update($name,$lastname,$street_number,$cp,$city,$province,$phone,$userId,$id));
 				break;
 
 				case 'delete':
-
 					$id = strip_tags($_POST['id']);
 					
-					$userController = new UserController();
-					$userController->DeleteUser($id);
-				break;
-
-                case 'updateAvatar':
-
-					$id = strip_tags($_POST['id']);
-					
-					$userController = new UserController();
-					$userController->UpdateAvatar($id);
+					$addressController = new AddressController();
+					echo json_encode($addressController->delete($id));
 				break;
 			}
 
 		}
-	}
+	
 
-    class AdressController{
-
+    class AddressController{
 
         // GET a una direccion
         public function getAddress($id)
 		{
-
             $curl = curl_init();
 
             curl_setopt_array($curl, array(
@@ -73,44 +66,15 @@
             ));
 
             $response = curl_exec($curl);
-
             curl_close($curl);
-            echo $response;
+			$response = json_decode($response);
+
 			//pendiente
         }
 
-		//Get direccion de clientes de una misma direccion
-		public function getAddresses($id)
-		{
-			
-			$curl = curl_init();
-
-			curl_setopt_array($curl, array(
-			CURLOPT_URL => 'http://crud.jonathansoto.mx/api/addresses/clients/'.$id,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: '.$_SESSION['token']
-			),
-			));
-
-			$response = curl_exec($curl);
-
-			curl_close($curl);
-			echo $response;	
-			//pendiente
-		}
-
-		/* 
 		//Create a una dirrecion
-		public function create($name,$lastname,$)
+		public function create($name,$lastname,$street_number,$cp,$city,$province,$phone,$userId)
 		{
-
 			$curl = curl_init();
 
 			curl_setopt_array($curl, array(
@@ -122,37 +86,82 @@
 			CURLOPT_FOLLOWLOCATION => true,
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => array(
-				'first_name' => 'juanito',
-				'last_name' => 'leon',
-				'street_and_use_number' => '16 de septiembre #123',
-				'postal_code' => '23000',
-				'city' => 'La Paz',
-				'province' => 'Baja California Sur',
-				'phone_number' => '6120000000',
-				'is_billing_address' => '1',
-				'client_id' => '1'),
+			CURLOPT_POSTFIELDS => array('first_name' => $name,'last_name' => $lastname,'street_and_use_number' => $street_number,'postal_code' => $cp,'city' => $city,'province' => $province,'phone_number' => $phone,'is_billing_address' => '1','client_id' => $userId),
 			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer 1154|t1TKiLpr1FA2T2hXx69d1BRQ3XuaNKR4AIWxRl50'
+                'Authorization: '.$_SESSION['token']
 			),
 			));
 
 			$response = curl_exec($curl);
-
 			curl_close($curl);
-			echo $response;
+			$response = json_decode($response);
 
-
-		}*/
+			if (isset($response->code) && $response->code > 0) {
+				return true;
+       	 	}else{
+				return false;
+			}
+		}
 
 		//Update a una dirrecion
-		public function update(){
-			
+		public function update($name,$lastname,$street_number,$cp,$city,$province,$phone,$userId,$id)
+		{
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://crud.jonathansoto.mx/api/addresses',
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'PUT',
+			CURLOPT_POSTFIELDS => 'first_name='.$name.'&last_name='.$lastname.'&street_and_use_number='.$street_number.'&postal_code='.$cp.'&city='.$city.'&province='.$province.'&phone_number='.$phone.'&is_billing_address=1&client_id='.$userId.'&id='.$id.'',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: '.$_SESSION['token'],
+				'Content-Type: application/x-www-form-urlencoded'
+			),
+			));
+
+			$response = curl_exec($curl);
+			curl_close($curl);
+			$response = json_decode($response);
+
+			if (isset($response->code) && $response->code > 0) {
+				return true;
+       	 	}else{
+				return false;
+			}
 		}
 
 		//Delete a una dirrecion
-		public function delete(){
-			
+		public function delete($id)
+		{
+			$curl = curl_init();
+
+			curl_setopt_array($curl, array(
+			CURLOPT_URL => 'http://crud.jonathansoto.mx/api/addresses/'.$id,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_ENCODING => '',
+			CURLOPT_MAXREDIRS => 10,
+			CURLOPT_TIMEOUT => 0,
+			CURLOPT_FOLLOWLOCATION => true,
+			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+			CURLOPT_CUSTOMREQUEST => 'DELETE',
+			CURLOPT_HTTPHEADER => array(
+				'Authorization: '.$_SESSION['token']
+			),
+			));
+
+			$response = curl_exec($curl);
+			curl_close($curl);
+			$response = json_decode($response);
+
+			if (isset($response->code) && $response->code > 0) {
+				return true;
+       	 	}else{
+				return false;
+			}
 		}
-		
     }
