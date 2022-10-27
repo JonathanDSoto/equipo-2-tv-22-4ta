@@ -3,7 +3,7 @@
 </script>
 
 <svelte>
-    <title>DevEcommerce | Profile</title>
+    <title>DevEcommerce | Editar Perfil</title>
    <!-- ============================================ -->
     <!-- Css template -->
     <!-- ============================================ -->
@@ -224,12 +224,12 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Perfil</h4>
+                            <h4 class="mb-sm-0">Editar Perfil</h4>
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="#!">Ecommerce</a></li>
-                                    <li class="breadcrumb-item active">Perfil</li>
+                                    <li class="breadcrumb-item active">Editar Perfil</li>
                                 </ol>
                             </div>
 
@@ -238,103 +238,110 @@
                 </div>
                 <!-- end page title -->
 
-            
-
-                    <div class="profile-foreground position-relative mx-n4 mt-n4">
-                        <div class="profile-wid-bg">
-                            <img src="http://localhost:8080/images/profile-bg.jpg" alt="" class="profile-wid-img" />
-                        </div>
-                    </div>
-                    <div class="pt-4 mb-4 mb-lg-3 pb-lg-4">
-                        <div class="row g-4">
-                            <div class="col-auto">
-                                <div class="avatar-lg">
-                                    <img src="http://localhost:8080/images/users/avatar-1.jpg" alt="user-img" class="img-thumbnail rounded-circle" />
+                <div class="position-relative mx-n4 mt-n4">
+                    <div class="profile-wid-bg profile-setting-img">
+                        <img src="http://localhost:8080/images/profile-bg.jpg" class="profile-wid-img" alt="">
+                        <div class="overlay-content">
+                            <div class="text-end p-3">
+                                <div class="p-0 ms-auto rounded-circle profile-photo-edit">
+                                    <input id="profile-foreground-img-file-input" type="file" class="profile-foreground-img-file-input">
+                                   
                                 </div>
                             </div>
-                            <!--end col-->
-                            <div class="col">
-                                <div class="p-2">
-                                    <h3 class="text-white mb-1">Anna Adame</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xxl-3">
+                        <div class="card mt-n5">
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
+                                        <img src="http://localhost:8080/images/users/avatar-1.jpg" class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow" alt="user-profile-image">
+                                        <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
+                                            <input id="profile-img-file-input" type="file" class="profile-img-file-input">
+                                            <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
+                                                <span class="avatar-title rounded-circle bg-light text-body shadow">
+                                                    <i class="ri-camera-fill"></i>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <h5 class="fs-16 mb-1">Anna Adame</h5>
                                     
-                                    <div class="hstack text-white-50 gap-1">
-                                        
-                                    </div>
                                 </div>
                             </div>
-                    
-
                         </div>
-                        <!--end row-->
+                        
+                        
                     </div>
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div>
-                                <div class="d-flex">
-                                    <!-- Nav tabs -->
-                                    <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
-                                                <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Vista Perfil</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                        <div class="flex-shrink-0">
-                                            <a href="pages-profile-settings.html" class="btn btn-success"><i class="ri-edit-box-line align-bottom"></i> Editar Perfil</a>
-                                        </div>
-                                       
-                                </div>
-                                <!-- Tab panes -->
-                                <div class="tab-content pt-4 text-muted">
-                                    <div class="tab-pane active" id="overview-tab" role="tabpanel">
-                                        <div class="row">
-                                            <div class="col-xxl-3">
-                                               
-
-                                                <div class="card">
-                                                    <div class="card-body">
-                                                        <h5 class="card-title mb-3">Info</h5>
-                                                        <div class="table-responsive">
-                                                            <table class="table table-borderless mb-0">
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <th class="ps-0" scope="row">Nombre :</th>
-                                                                        <td class="text-muted">Anna</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th class="ps-0" scope="row">Apellido :</th>
-                                                                        <td class="text-muted">Adame</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th class="ps-0" scope="row">Correo:</th>
-                                                                        <td class="text-muted">daveadame@velzon.com</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <th class="ps-0" scope="row">Teléfono :</th>
-                                                                        <td class="text-muted">+(1) 987 6543</td>
-                                                                    </tr>
-                                                                    
-                                                                    <tr>
-                                                                        <th class="ps-0" scope="row">Password:</th>
-                                                                        <td class="text-muted">********</td>
-                                                                    </tr>
-                                                                   
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div><!-- end card body -->
-                                                </div><!-- end card -->
-
+                    <!--end col-->
+                    <div class="col-xxl-9">
+                        <div class="card mt-xxl-n5">
+                            <div class="card-header">
+                                <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-bs-toggle="tab" href="#personalDetails" role="tab">
+                                            <i class="fas fa-home"></i>Detalles Personales
+                                        </a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                            <div class="card-body p-4">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="personalDetails" role="tabpanel">
+                                        <form action="javascript:void(0);">
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="nameInput" class="form-label">Nombre</label>
+                                                        <input type="text" class="form-control" id="nameInput" placeholder="Enter your firstname" value="Dave">
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="lastnameInput" class="form-label">Apellido</label>
+                                                        <input type="text" class="form-control" id="lastnameInput" placeholder="Enter your lastname" value="Adame">
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="emailInput" class="form-label">Correo</label>
+                                                        <input type="email" class="form-control" id="emailInput" placeholder="Enter your email" value="daveadame@velzon.com">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6">
+                                                    <div class="mb-3">
+                                                        <label for="phonenumberInput" class="form-label">Teléfono</label>
+                                                        <input type="text" class="form-control" id="phonenumberInput" placeholder="Enter your phone number" value="+(1) 987 6543">
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                <div class="col-lg-12">
+                                                    <div class="mb-3">
+                                                        <label for="passwordInput" class="form-label">Password</label>
+                                                        <input type="text" class="form-control" data-provider="flatpickr" id="passwordInput" placeholder="Password" />
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
+                                                
+                                                <div class="col-lg-12">
+                                                    <div class="hstack gap-2 justify-content-end">
+                                                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                                                        <button type="button" class="btn btn-soft-success">Cancelar</button>
+                                                    </div>
+                                                </div>
+                                                <!--end col-->
                                             </div>
-                                        </div>
+                                            <!--end row-->
+                                        </form>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-
+            
             
                 <!-- end col -->
         </div>

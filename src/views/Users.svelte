@@ -99,7 +99,7 @@
                           <img class="rounded-circle header-profile-user" src="http://localhost:8080/images/users/avatar-1.jpg" alt="Header Avatar">
                           <span class="text-start ms-xl-2">
                               <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Anna Adame</span>
-                              <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+                            
                           </span>
                       </span>
                   </button>
@@ -227,7 +227,7 @@
 
                               <div class="page-title-right">
                                   <ol class="breadcrumb m-0">
-                                      <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+                                      <li class="breadcrumb-item"><a href="#!">Ecommerce</a></li>
                                       <li class="breadcrumb-item active">Usuarios</li>
                                   </ol>
                               </div>
@@ -290,7 +290,7 @@
                                                             <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
                                                         </div>
                                                     </th>
-                                                    <td class="id" style="display:none;"><a href="javascript:void(0);" class="fw-medium link-primary">#VZ2101</a></td>
+                                                    <td class="id" style="display:none;"><a href="#!" class="fw-medium link-primary">#VZ2101</a></td>
                                                     <td class="user_name">#VZ2101</td>
                                                     <td class="user_name">Mary</td>
                                                     <td class="lastnmae">Cousar</td>
@@ -331,11 +331,11 @@
 
                                     <div class="d-flex justify-content-end">
                                         <div class="pagination-wrap hstack gap-2">
-                                            <a class="page-item pagination-prev disabled" href="#">
+                                            <a class="page-item pagination-prev disabled" href="#!">
                                                 Anterior
                                             </a>
                                             <ul class="pagination listjs-pagination mb-0"></ul>
-                                            <a class="page-item pagination-next" href="#">
+                                            <a class="page-item pagination-next" href="#!">
                                                 Siguiente
                                             </a>
                                         </div>

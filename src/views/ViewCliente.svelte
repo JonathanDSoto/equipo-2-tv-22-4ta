@@ -226,7 +226,7 @@
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="javascript: void(0);">Ecommerce</a></li>
+                                            <li class="breadcrumb-item"><a href="#!">Ecommerce</a></li>
                                             <li class="breadcrumb-item active">Vista de Detalle Cliente</li>
                                         </ol>
                                     </div>
