@@ -3,7 +3,7 @@
 </script>
 
 <svelte>
-    <title>DevEcommerce | Profile</title>
+    <title>DevEcommerce | Perfil</title>
    <!-- ============================================ -->
     <!-- Css template -->
     <!-- ============================================ -->

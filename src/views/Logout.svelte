@@ -3,7 +3,7 @@
 </script>
 
 <svelte>
-    <title>DevEcommerce | Logout</title>
+    <title>DevEcommerce | Salir </title>
    <!-- ============================================ -->
     <!-- Css template -->
     <!-- ============================================ -->
@@ -78,7 +78,7 @@
                                     <img src="http://localhost:8080/images/logo-light.png" alt="" height="20">
                                 </a>
                             </div>
-                            <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
+                            <p class="mt-3 fs-15 fw-medium">DevStore</p>
                         </div>
                     </div>
                 </div>
@@ -92,10 +92,10 @@
                                 </lord-icon>
 
                                 <div class="mt-4 pt-2">
-                                    <h5>You are Logged Out</h5>
-                                    <p class="text-muted">Thank you for using <span class="fw-semibold">velzon</span> admin template</p>
+                                    <h5>Has salido de DevStore</h5>
+                                    <p class="text-muted">Gracias por usar <span class="fw-semibold">DevStore</span></p>
                                     <div class="mt-4">
-                                        <a href="#" class="btn btn-success w-100">Sign In</a>
+                                        <a href="#!" class="btn btn-success w-100">Iniciar Sesión</a>
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                     <div class="col-lg-12">
                         <div class="text-center">
                             <p class="mb-0 text-muted">&copy;
-                                <script>document.write(new Date().getFullYear())</script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+                                <script>document.write(new Date().getFullYear())</script> Creado por <i class="mdi mdi-heart text-danger"></i> DevStore
                             </p>
                         </div>
                     </div>

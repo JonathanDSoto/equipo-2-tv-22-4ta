@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-    <title>DevEcommerce | Users</title>
+    <title>DevEcommerce | Usuarios</title>
     <!-- ============================================ -->
     <!-- Css template -->
     <!-- ============================================ -->
