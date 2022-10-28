@@ -146,14 +146,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <div class="float-end">
-                                            <a
-                                                href="./forgotPassword"
-                                                class="text-muted"
-                                                >Olvidaste tu contraseña?</a
-                                            >
-                                        </div>
-
+                                       
                                         <label
                                             class="form-label"
                                             for="password-input"
