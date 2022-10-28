@@ -1,4 +1,5 @@
 <script>
+    import { fade } from 'svelte/transition';
     import { get } from 'svelte/store';
     import { preferences } from '../store/session';
     import { dataActiveUser } from '../store/session';
@@ -95,7 +96,7 @@
 {#await getDataUserLoggin()}
     Loading..
 {:then data}
-    <main>
+    <main transition:fade>
         <!-- Begin page -->
         <div id="layout-wrapper">
             <!-- Header -->
