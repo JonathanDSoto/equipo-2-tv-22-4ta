@@ -330,14 +330,9 @@
                 </div>
                     <!-- container-fluid -->
             </div>
-                <!-- End Page-content -->
-
-                <!-- footer here-->
-                
-            <!-- end main content-->
+                <!-- End Page-content -->          
 </div>
 
-<!-- END layout-wrapper -->
-
+   <!-- end main content-->
 
 </main>

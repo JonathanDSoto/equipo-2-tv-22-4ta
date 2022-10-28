@@ -31,7 +31,7 @@ function registerUser (){
 </script>
 
 <svelte:head>
-    <title>DevEcommerce | Signup</title>
+    <title>DevEcommerce | Registrar Usuario</title>
     <!-- ============================================ -->
     <!-- Css template -->
     <!-- ============================================ -->
@@ -108,7 +108,7 @@ function registerUser (){
                                     <img src="http://localhost:8080/images/logo-light.png" alt="" height="20">
                                 </a>
                             </div>
-                            <p class="mt-3 fs-15 fw-medium">Premium Admin & Dashboard Template</p>
+                            <p class="mt-3 fs-15 fw-medium">DevStore</p>
                         </div>
                     </div>
                 </div>
@@ -120,8 +120,8 @@ function registerUser (){
 
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
-                                    <h5 class="text-primary">Create New Account</h5>
-                                    <p class="text-muted">Get your free velzon account now</p>
+                                    <h5 class="text-primary">Crear una nueva cuenta</h5>
+                                    <p class="text-muted">Obtenga su cuenta gratis ahora</p>
                                 </div>
                                 <div class="p-2 mt-4">
                                     <form enctype="multipart/form-data" method="POST" action="http://localhost/app/AuthController.php">
@@ -129,37 +129,37 @@ function registerUser (){
                                             <label for="username" class="form-label">Nombre <span class="text-danger">*</span></label>
                                             <input type="text" name="name" class="form-control" id="username" placeholder="Ingresa tu nombre" required bind:value={dataUsuario.name}>
                                             <div class="invalid-feedback">
-                                                Porfavor ingresa tu nombre
+                                                Por favor, ingresa tu nombre
                                             </div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="userlastname" class="form-label">Apellidos <span class="text-danger">*</span></label>
                                             <input type="text" name="lastname" class="form-control" id="userlastname" placeholder="Ingresa tus apellidos" required bind:value={dataUsuario.lastname}>
                                             <div class="invalid-feedback">
-                                                Porfavor ingresa tus apellidos
+                                                Por favor, ingresa tus apellidos
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="useremail" class="form-label">Email <span class="text-danger">*</span></label>
+                                            <label for="useremail" class="form-label">Correo<span class="text-danger">*</span></label>
                                             <input type="email" name="email" class="form-control" id="useremail" placeholder="Ingresa tu email" required bind:value={dataUsuario.email}>
                                             <div class="invalid-feedback">
-                                                Porfavor ingresa tu email
+                                                Por favor, ingresa tu correo
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="userphone" class="form-label">Telefono <span class="text-danger">*</span></label>
+                                            <label for="userphone" class="form-label">Teléfono <span class="text-danger">*</span></label>
                                             <input type="tel" name="phone_number" class="form-control" id="userphone" placeholder="Ingresa tu telefono" required bind:value={dataUsuario.phone}>
                                             <div class="invalid-feedback">
-                                                Porfavor ingresa tu telefono
+                                                Por favor, ingresa tu teléfono
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label class="form-label" for="password-input">Password</label>
+                                            <label class="form-label" for="password-input">Contraseña</label>
                                             <div class="position-relative auth-pass-inputgroup">
-                                                <input type="password" name="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Enter password" id="password-input" aria-describedby="passwordInput" bind:value={dataUsuario.password} required>
+                                                <input type="password" name="password" class="form-control pe-5 password-input" onpaste="return false" placeholder="Ingresa tu contraseña" id="password-input" aria-describedby="passwordInput" bind:value={dataUsuario.password} required>
                                                 <button class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted password-addon" type="button" id="password-addon"><i class="ri-eye-fill align-middle"></i></button>
                                             </div>
                                         </div>
@@ -177,7 +177,7 @@ function registerUser (){
                                         </div>
 
                                         <div class="mt-4">
-                                            <button class="btn btn-success w-100" type="submit">Sign Up</button>
+                                            <button class="btn btn-success w-100" type="submit">Registrate</button>
                                         </div>
                                         <input type="hidden" name="action" value="create">
                                     </form>
@@ -188,31 +188,30 @@ function registerUser (){
                         <!-- end card -->
 
                         <div class="mt-4 text-center">
-                            <p class="mb-0">Already have an account ? <a href="#" class="fw-semibold text-primary text-decoration-underline"> Signin </a> </p>
+                            <p class="mb-0">Ya tienes una cuenta? <a href="#!" class="fw-semibold text-primary text-decoration-underline"> Iniciar Sesión</a> </p>
                         </div>
+                        
 
                     </div>
                 </div>
                 <!-- end row -->
             </div>
             <!-- end container -->
-        </div>
-        <!-- end auth page content -->
-
-        <!-- footer -->
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="text-center">
-                            <p class="mb-0 text-muted">&copy;
-                                <script>document.write(new Date().getFullYear())</script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
-                            </p>
+            <!-- footer -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="text-center">
+                                <p class="mb-0 text-muted">&copy;
+                                    <script>document.write(new Date().getFullYear())</script> Creado por <i class="mdi mdi-heart text-danger"></i> DevStore
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
         <!-- end Footer -->
     </div>
     <!-- end auth-page-wrapper -->

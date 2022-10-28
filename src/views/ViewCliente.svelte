@@ -535,13 +535,9 @@
                     <!-- container-fluid -->
             </div>
                 <!-- End Page-content -->
-
-                <!-- footer here-->
-                
-            <!-- end main content-->
 </div>
 
-<!-- END layout-wrapper -->
+<!-- end main content-->
 
 
 </main>
