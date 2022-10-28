@@ -2,7 +2,7 @@ var productListAllData = [
         {
             id: 1,
             product: {
-                img: 'assets/images/products/img-1.png',
+                img: '/images/products/img-1.png',
                 title: 'Half Sleeve Round Neck T-Shirts',
                 category: 'Fashion',
             },
@@ -15,7 +15,7 @@ var productListAllData = [
         {
             id: 2,
             product: {
-                img: 'assets/images/products/img-2.png',
+                img: '/images/products/img-2.png',
                 title: 'Urban Ladder Pashe Chair',
                 category: 'Furniture',
             },
@@ -28,7 +28,7 @@ var productListAllData = [
         {
             id: 3,
             product: {
-                img: 'assets/images/products/img-3.png',
+                img: '/images/products/img-3.png',
                 title: '350 ml Glass Grocery Container',
                 category: 'Grocery',
             },
@@ -41,7 +41,7 @@ var productListAllData = [
         {
             id: 4,
             product: {
-                img: 'assets/images/products/img-4.png',
+                img: '/images/products/img-4.png',
                 title: 'Fabric Dual Tone Living Room Chair',
                 category: 'Furniture',
             },
@@ -54,7 +54,7 @@ var productListAllData = [
         {
             id: 5,
             product: {
-                img: 'assets/images/products/img-5.png',
+                img: '/images/products/img-5.png',
                 title: 'Crux Motorsports Helmet',
                 category: 'Automotive Accessories',
             },
@@ -67,7 +67,7 @@ var productListAllData = [
         {
             id: 6,
             product: {
-                img: 'assets/images/products/img-6.png',
+                img: '/images/products/img-6.png',
                 title: 'Half Sleeve T-Shirts (Blue)',
                 category: 'Fashion',
             },
@@ -80,7 +80,7 @@ var productListAllData = [
         {
             id: 7,
             product: {
-                img: 'assets/images/products/img-7.png',
+                img: '/images/products/img-7.png',
                 title: 'Noise Evolve Smartwatch',
                 category: 'Watches',
             },
@@ -93,7 +93,7 @@ var productListAllData = [
         {
             id: 8,
             product: {
-                img: 'assets/images/products/img-8.png',
+                img: '/images/products/img-8.png',
                 title: 'Sweatshirt for Men (Pink)',
                 category: 'Fashion',
             },
@@ -106,7 +106,7 @@ var productListAllData = [
         {
             id: 9,
             product: {
-                img: 'assets/images/products/img-9.png',
+                img: '/images/products/img-9.png',
                 title: 'Reusable Ecological Coffee Cup',
                 category: 'Grocery',
             },
@@ -119,7 +119,7 @@ var productListAllData = [
         {
             id: 10,
             product: {
-                img: 'assets/images/products/img-10.png',
+                img: '/images/products/img-10.png',
                 title: 'Travel Carrying Pouch Bag',
                 category: 'Kids',
             },
@@ -132,7 +132,7 @@ var productListAllData = [
         {
             id: 11,
             product: {
-                img: 'assets/images/products/img-1.png',
+                img: '/images/products/img-1.png',
                 title: 'Half Sleeve Round Neck T-Shirts',
                 category: 'Fashion',
             },
@@ -145,7 +145,7 @@ var productListAllData = [
         {
             id: 12,
             product: {
-                img: 'assets/images/products/img-2.png',
+                img: '/images/products/img-2.png',
                 title: 'Urban Ladder Pashe Chair',
                 category: 'Furniture',
             },
@@ -272,7 +272,7 @@ var productListAllData = [
         {
             id: 1,
             product: {
-                img: 'assets/images/products/img-2.png',
+                img: '/images/products/img-2.png',
                 title: 'Urban Ladder Pashe Chair',
                 category: 'Furniture',
             },
@@ -285,7 +285,7 @@ var productListAllData = [
         {
             id: 2,
             product: {
-                img: 'assets/images/products/img-6.png',
+                img: '/images/products/img-6.png',
                 title: 'Half Sleeve T-Shirts (Blue)',
                 category: 'Fashion',
             },
@@ -298,7 +298,7 @@ var productListAllData = [
         {
             id: 3,
             product: {
-                img: 'assets/images/products/img-4.png',
+                img: '/images/products/img-4.png',
                 title: 'Fabric Dual Tone Living Room Chair',
                 category: 'Furniture',
             },
@@ -311,7 +311,7 @@ var productListAllData = [
         {
             id: 4,
             product: {
-                img: 'assets/images/products/img-4.png',
+                img: '/images/products/img-4.png',
                 title: '350 ml Glass Grocery Container',
                 category: 'Grocery',
             },
@@ -324,7 +324,7 @@ var productListAllData = [
         {
             id: 5,
             product: {
-                img: 'assets/images/products/img-5.png',
+                img: '/images/products/img-5.png',
                 title: 'Crux Motorsports Helmet',
                 category: 'Automotive Accessories',
             },

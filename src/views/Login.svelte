@@ -1,4 +1,5 @@
 <script>
+    import { fade } from 'svelte/transition';
     import { get } from 'svelte/store';
     import { preferences } from '../store/session';
 
@@ -67,7 +68,7 @@
     />
 </svelte:head>
 
-<main>
+<main transition:fade>
     <div class="auth-page-wrapper pt-5">
         <!-- auth page bg -->
         <div class="auth-one-bg-position auth-one-bg" id="auth-particles">

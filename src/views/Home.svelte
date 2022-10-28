@@ -16,9 +16,6 @@
     // Se guarda en una variable para poder condicionar
     const number = $preferences;
 
-    // dataActiveUser.set({});
-    // const data = $dataActiveUser;
-    // console.log(data);
 
     // Si el numero es igual a 0 significa que no existe ninguna session activa y lo regresa al login
     if (number == 0) {
