@@ -64,7 +64,7 @@
 			$response = json_decode($response);
 
 			if (isset($response->code) && $response->code > 0) { 
-				return true;
+				return $response;
 			}else{
 				return false;	
 			}
@@ -166,5 +166,3 @@
 
 		}
 	}
-
-?>

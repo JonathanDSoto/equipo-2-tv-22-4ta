@@ -8,12 +8,16 @@
     import Profile from './views/Profile.svelte';
     import RegisterUser from './views/RegisterUser.svelte';
     import RessetPassword from './views/RessetPassword.svelte';
+
+
 </script>
 
 <Router>
     <div>
         <!-- Vistas direccionadas con componentes -->
-        <Route path="/" component={Login} />
+        <Route path="/">
+            <Login/>
+        </Route>
         <Route path="/home" component={Home} />
         <Route path="/forgotPassword" component={ForgotPassword} />
         <Route path="/logout" component={Logout} /> 
