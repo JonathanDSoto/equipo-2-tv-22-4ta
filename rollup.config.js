@@ -1,16 +1,19 @@
 import svelte from 'rollup-plugin-svelte';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import replace from '@rollup/plugin-replace';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
 import css from 'rollup-plugin-css-only';
 
-import dotenv from "dotenv";
-dotenv.config();
-
+import { config } from 'dotenv';
+import replace from '@rollup/plugin-replace';
 
 const production = !process.env.ROLLUP_WATCH;
+
+const configToReplace = {};
+for (const [key, v] of Object.entries(config().parsed)) {
+    configToReplace[`process.env.${key}`] = `'${v}'`;
+}
 
 function serve() {
     let server;
@@ -46,14 +49,16 @@ export default {
         file: 'public/build/bundle.js',
     },
     plugins: [
+        replace({
+            include: ['src/**/*.ts', 'src/**/*.svelte'],
+            preventAssignment: true,
+            values: configToReplace,
+        }),
         svelte({
             compilerOptions: {
                 // enable run-time checks when not in production
                 dev: !production,
             },
-            preprocess: sveltePreprocess({
-                replace: [['process.env.BEARER_KEY', process.env.BEARER_KEY]],
-            }),
         }),
         // we'll extract any component CSS out into
         // a separate file - better for performance

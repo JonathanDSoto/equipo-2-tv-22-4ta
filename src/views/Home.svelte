@@ -4,6 +4,8 @@
     import { dataActiveUser } from '../store/session';
     import { onMount } from 'svelte';
 
+    console.log(process.env.BEARER_KEY);
+
 
     // Trae los datos globales ( preference = sessionId -> store/session.js)
     get(preferences);
@@ -37,6 +39,7 @@
             .then((response) => response.json())
             .then((data) => {
                 console.log(data);
+                dataActiveUser.set(data);
             })
             .catch((error) => {
                 console.log(error);
