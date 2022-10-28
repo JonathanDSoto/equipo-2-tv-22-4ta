@@ -4,8 +4,6 @@
     import { dataActiveUser } from '../store/session';
     import { onMount } from 'svelte';
 
-    console.log(process.env.BEARER_KEY);
-
 
     // Trae los datos globales ( preference = sessionId -> store/session.js)
     get(preferences);
@@ -13,6 +11,9 @@
 
     // Se guarda en una variable para poder condicionar
     const number = $preferences;
+
+    const data = $dataActiveUser;
+
 
     // Si el numero es igual a 0 significa que no existe ninguna session activa y lo regresa al login
     if (number == 0) {
@@ -108,14 +109,14 @@
                             <a href="index.html" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img
-                                        src="http://localhost:8080/public/images/logo-sm.png"
+                                        src="http://localhost:8080/images/logo-sm.png"
                                         alt=""
                                         height="22"
                                     />
                                 </span>
                                 <span class="logo-lg">
                                     <img
-                                        src="http://localhost:8080/public/images/logo-dark.png"
+                                        src="http://localhost:8080/images/logo-dark.png"
                                         alt=""
                                         height="17"
                                     />
@@ -173,17 +174,17 @@
                                 <span class="d-flex align-items-center">
                                     <img
                                         class="rounded-circle header-profile-user"
-                                        src="http://localhost:8080/images/users/avatar-1.jpg"
+                                        src="{data.data.avatar}"
                                         alt="Header Avatar"
                                     />
                                     <span class="text-start ms-xl-2">
                                         <span
                                             class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"
-                                            >Anna Adame</span
+                                            >{data.data.name} {data.data.lastname}</span
                                         >
                                         <span
                                             class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text"
-                                            >Founder</span
+                                            >{data.data.role}</span
                                         >
                                     </span>
                                 </span>
@@ -206,7 +207,7 @@
 
                                 <a
                                     class="dropdown-item"
-                                    href="auth-logout-basic.html"
+                                    href="/"
                                     ><i
                                         class="mdi mdi-logout text-muted fs-16 align-middle me-1"
                                     />
