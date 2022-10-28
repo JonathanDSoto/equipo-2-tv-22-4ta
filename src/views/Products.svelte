@@ -343,7 +343,6 @@
       <!-- end main content-->
 
   
-  <!-- END layout-wrapper -->
 
   <!-- removeItemModal -->
   <div id="removeItemModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
@@ -392,6 +391,7 @@
           <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
       </div>
   </div>
+
 
   
 

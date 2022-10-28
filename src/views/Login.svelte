@@ -34,7 +34,7 @@
 </script>
 
 <svelte:head>
-    <title>DevEcommerce | Signup</title>
+    <title>DevEcommerce | Iniciar Sesión</title>
     <!-- ============================================ -->
     <!-- Css template -->
     <!-- ============================================ -->
@@ -106,7 +106,7 @@
                                 </a>
                             </div>
                             <p class="mt-3 fs-15 fw-medium">
-                                El Ecommerce de gente pro
+                                DevStore
                             </p>
                         </div>
                     </div>
@@ -118,9 +118,9 @@
                         <div class="card mt-4">
                             <div class="card-body p-4">
                                 <div class="text-center mt-2">
-                                    <h5 class="text-primary">Welcome Back !</h5>
+                                    <h5 class="text-primary">Bienvenido !</h5>
                                     <p class="text-muted">
-                                        Sign in to continue to Velzon.
+                                        Logueate para continuar en DevStore
                                     </p>
                                 </div>
                                 <div class="p-2 mt-4">
@@ -128,7 +128,7 @@
                                         <label
                                             for="useremail"
                                             class="form-label"
-                                            >Email
+                                            >Correo
                                             <span class="text-danger">*</span>
                                         </label>
                                         <input
@@ -136,28 +136,21 @@
                                             class="form-control"
                                             id="useremail"
                                             bind:value={dataUsuario.email}
-                                            placeholder="Enter email address"
+                                            placeholder="Ingresa tu correo"
                                             required
                                             name="email"
                                         />
                                         <div class="invalid-feedback">
-                                            Please enter email
+                                           Por favor, ingresa tu Correo.
                                         </div>
                                     </div>
 
                                     <div class="mb-3">
-                                        <div class="float-end">
-                                            <a
-                                                href="./forgotPassword"
-                                                class="text-muted"
-                                                >Forgot password?</a
-                                            >
-                                        </div>
-
+                                       
                                         <label
                                             class="form-label"
                                             for="password-input"
-                                            >Password
+                                            >Contraseña
                                             <span class="text-danger">*</span
                                             ></label
                                         >
@@ -168,7 +161,7 @@
                                                 type="password"
                                                 class="form-control pe-5 password-input"
                                                 bind:value={dataUsuario.password}
-                                                placeholder="Enter password"
+                                                placeholder="Ingresa tu contraseña"
                                                 id="password-input"
                                                 name="password"
                                                 required
@@ -190,7 +183,7 @@
                                             class="btn btn-success w-100"
                                             on:click={login}
                                         >
-                                            Sign In
+                                            Iniciar Sesión
                                         </button>
                                     </div>
                                     <input
@@ -206,11 +199,11 @@
 
                         <div class="mt-4 text-center">
                             <p class="mb-0">
-                                Don't have an account ? <a
+                                No tienes una cuenta? <a
                                     href="/registerUser"
                                     class="fw-semibold text-primary text-decoration-underline"
                                 >
-                                    Signup
+                                    Registrate
                                 </a>
                             </p>
                         </div>
@@ -233,9 +226,9 @@
                                 <script>
                                     document.write(new Date().getFullYear());
                                 </script>
-                                Crafted with
+                                Creado por
                                 <i class="mdi mdi-heart text-danger" />
-                                by Themesbrand
+                               DevStore
                             </p>
                         </div>
                     </div>

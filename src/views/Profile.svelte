@@ -345,13 +345,6 @@
 </div>
     <!-- End Page-content -->
 
-    <!-- footer here-->
 <!-- end main content-->
 
-
-<!-- END layout-wrapper -->
-
-
-
-    
 </main>
