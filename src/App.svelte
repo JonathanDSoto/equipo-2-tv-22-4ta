@@ -7,7 +7,6 @@
     import Profile from './views/Profile.svelte';
     import RegisterUser from './views/RegisterUser.svelte';
     import Test from './views/Test.svelte';
-    import RessetPassword from './views/RessetPassword.svelte';
 </script>
 
 <Router>
@@ -20,8 +19,7 @@
         <Route path="/logout" component={Logout} /> 
         <Route path="/profile" component={Profile} />
         <Route path="/registerUser" component={RegisterUser} />
-        <Route path="/ressetPassword" component={RessetPassword} />
-        
+
         <Route path="/test/:id" let:params>
             <Test id="{params.id}" />
         </Route>
