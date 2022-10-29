@@ -3,7 +3,6 @@
     import { get } from 'svelte/store';
     import { preferences } from '../store/session';
     import { dataActiveUser } from '../store/session';
-    import { onMount } from 'svelte';
 
     // Components
     import HeaderApp from '../components/HeaderApp.svelte';

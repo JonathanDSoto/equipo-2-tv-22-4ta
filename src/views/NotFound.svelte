@@ -82,7 +82,7 @@
                                 <h1 class="display-1 fw-medium">Error 404</h1>
                                 <h3 class="text-uppercase">Lo sentimos, página no encontrada😭</h3>
                                 <p class="text-muted mb-4">¡La página que buscas no está disponible!</p>
-                                <a href="#!" class="btn btn-success" style="color: #fff !important"><i class="mdi mdi-home me-1"></i>Regresar a Home</a>
+                                <a href="/home" class="btn btn-success" style="color: #fff !important"><i class="mdi mdi-home me-1"></i>Regresar a Home</a>
                             </div>
                         </div>
                     </div>
