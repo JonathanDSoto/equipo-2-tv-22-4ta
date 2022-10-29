@@ -1,5 +1,7 @@
 <script>
 import axios from "axios";
+import { fade } from 'svelte/transition';
+
 let dataUsuario = {
     name: "",
     lastname: "",
@@ -84,7 +86,7 @@ function registerUser (){
 
 </svelte:head>
 
-<main>
+<main transition:fade>
     <div class="auth-page-wrapper pt-5">
         <!-- auth page bg -->
         <div class="auth-one-bg-position auth-one-bg" id="auth-particles">
@@ -188,7 +190,7 @@ function registerUser (){
                         <!-- end card -->
 
                         <div class="mt-4 text-center">
-                            <p class="mb-0">Ya tienes una cuenta? <a href="#!" class="fw-semibold text-primary text-decoration-underline"> Iniciar Sesión</a> </p>
+                            <p class="mb-0">Ya tienes una cuenta? <a href="/" class="fw-semibold text-primary text-decoration-underline"> Iniciar Sesión</a> </p>
                         </div>
                         
 

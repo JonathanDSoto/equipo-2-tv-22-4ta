@@ -93,7 +93,7 @@
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <h6 class="dropdown-header">Bienvenido Anna!</h6>
+                        <h6 class="dropdown-header">Bienvenido {data.name}!</h6>
                         <a class="dropdown-item" href="/profile"
                             ><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"

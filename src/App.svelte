@@ -5,6 +5,7 @@
     import NotFound from './views/NotFound.svelte';
     import Logout from './views/Logout.svelte';
     import Profile from './views/Profile.svelte';
+    import ProfileSettings from './views/ProfileSettings.svelte';
     import RegisterUser from './views/RegisterUser.svelte';
     import Test from './views/Test.svelte';
 </script>
@@ -19,6 +20,7 @@
         <Route path="/logout" component={Logout} /> 
         <Route path="/profile" component={Profile} />
         <Route path="/registerUser" component={RegisterUser} />
+        <Route path="/profileSettings" component={ProfileSettings} />
 
         <Route path="/test/:id" let:params>
             <Test id="{params.id}" />

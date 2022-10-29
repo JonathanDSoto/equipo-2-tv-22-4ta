@@ -1,5 +1,8 @@
 <script>
+    // transitions
     import { fade } from 'svelte/transition';
+    import { fly } from 'svelte/transition';
+
     import { get } from 'svelte/store';
     import { preferences } from '../store/session';
     import { dataActiveUser } from '../store/session';
@@ -151,7 +154,7 @@
                         {#await getAllProducts()}
                             Loading Table...
                         {:then data}
-                            <div class="table-container">
+                            <div class="table-container" transition:fly="{{y:200, duration: 2000}}">
                                 <table class="table table-striped table-products" style="background-color: #fff !important;">
                                     <thead>
                                         <tr>
