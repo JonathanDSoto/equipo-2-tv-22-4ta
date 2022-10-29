@@ -1,10 +1,4 @@
 <script>
-    // Datatable
-    import initDt from 'datatables.net-dt';
-    initDt();
-
-    import DataTableHTML from '../data_table/DataTableHTML.svelte';
-
     import { fade } from 'svelte/transition';
     import { get } from 'svelte/store';
     import { preferences } from '../store/session';
@@ -42,7 +36,19 @@
             requestOptions
         );
         const dataUser = await response.json();
+        // Se guarda la info del usuario en la variable global correspondiente
         dataActiveUser.set(dataUser.data);
+        return dataUser.data;
+    }
+
+    async function getAllProducts() {
+        const response = await fetch(
+            `https://crud.jonathansoto.mx/api/products`,
+            requestOptions
+        );
+        const dataUser = await response.json();
+        console.log(dataUser.data);
+        // Se guarda la info del usuario en la variable global correspondiente
         return dataUser.data;
     }
 </script>
@@ -142,9 +148,48 @@
                         </div>
                         <!-- end page title -->
 
-                        <DataTableHTML />
+                        <!-- Tabla de productos -->
+                        {#await getAllProducts()}
+                            Loading Table...
+                        {:then data}
+                            <div class="table-container">
+                                <table class="table table-striped table-products" style="background-color: #fff !important;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" style="display: none;"
+                                                >id
+                                            </th>
+                                            <th scope="col" />
+                                            <th scope="col">Nombre</th>
+                                            <th scope="col">Slug</th>
+                                            <th scope="col">Descripcion</th>
+                                            <th scope="col">Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {#each data as datas}
+                                            <tr>
+                                                <td>Image</td>
+                                                <td>{datas.name}</td>
+                                                <td>{datas.slug}</td>
+                                                <td>{datas.description}</td>
+                                                <td>
+                                                    <div class="btn-table" style="display: flex;">
+                                                        <a href="/" type="button" class="btn btn-primary">Ver detalles</a>
+                                                        <a href="/" type="button" class="btn btn-warning">Editar</a>
+                                                        <a href="/" type="button" class="btn btn-danger">Borrar</a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {/each}
+                                    </tbody>
+                                </table>
+                            </div>
+                        {:catch error}
+                            Error al cargar la tabla
+                        {/await}
+                        <!-- Termina la tabla de productos -->
 
-                        
                         <!-- end col -->
                     </div>
                     <!-- end row -->
@@ -179,18 +224,6 @@
                 ></script>
                 <script
                     src="http://localhost:8080/libs/wnumb/wNumb.min.js"
-                ></script>
-
-                <!-- gridjs js -->
-                <script
-                    src="http://localhost:8080/libs/gridjs/gridjs.umd.js"
-                ></script>
-                <script
-                    src="https://unpkg.com/gridjs/dist/gridjs.umd.js"
-                ></script>
-                <!-- ecommerce product list -->
-                <script
-                    src="http://localhost:8080/js/pages/ecommerce-product-list.init.js"
                 ></script>
 
                 <!-- App js -->
