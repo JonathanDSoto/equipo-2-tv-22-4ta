@@ -72,6 +72,15 @@ button:focus {
 	overflow: scroll;
 }
 
+.img-container{
+	width: 13%;
+}
+
+.img-cover{
+	width: 100% !important;
+	height: 160px !important
+}
+
 .table-products{
 	height: 100%;
 }

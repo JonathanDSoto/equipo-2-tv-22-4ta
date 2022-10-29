@@ -169,7 +169,9 @@
                                     <tbody>
                                         {#each data as datas}
                                             <tr>
-                                                <td>Image</td>
+                                                <td class="img-container">
+                                                    <img class="img-cover" src={datas.cover} alt={datas.name}>
+                                                </td>
                                                 <td>{datas.name}</td>
                                                 <td>{datas.slug}</td>
                                                 <td>{datas.description}</td>
