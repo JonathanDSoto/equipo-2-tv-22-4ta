@@ -154,11 +154,19 @@
                         {#await getAllProducts()}
                             Loading Table...
                         {:then data}
-                            <div class="table-container" transition:fly="{{y:200, duration: 2000}}">
-                                <table class="table table-striped table-products" style="background-color: #fff !important;">
+                            <div
+                                class="table-container"
+                                transition:fly={{ y: 200, duration: 2000 }}
+                            >
+                                <table
+                                    class="table table-striped table-products"
+                                    style="background-color: #fff !important;"
+                                >
                                     <thead>
                                         <tr>
-                                            <th scope="col" style="display: none;"
+                                            <th
+                                                scope="col"
+                                                style="display: none;"
                                                 >id
                                             </th>
                                             <th scope="col" />
@@ -172,16 +180,47 @@
                                         {#each data as datas}
                                             <tr>
                                                 <td class="img-container">
-                                                    <img class="img-cover" src={datas.cover} alt={datas.name}>
+                                                    <!-- Pregunta si el producto tiene imagen, si no solo le pone una imagen predeterminada -->
+                                                    {#if datas.cover != 'https://crud.jonathansoto.mx/storage/products/'}
+                                                        <img
+                                                            class="img-cover"
+                                                            src={datas.cover}
+                                                            alt={datas.name}
+                                                        />
+                                                    {:else}
+                                                        <img
+                                                            class="img-cover"
+                                                            src="https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+                                                            alt=""
+                                                        />
+                                                    {/if}
                                                 </td>
                                                 <td>{datas.name}</td>
                                                 <td>{datas.slug}</td>
                                                 <td>{datas.description}</td>
                                                 <td>
-                                                    <div class="btn-table" style="display: flex;">
-                                                        <a href="/" type="button" class="btn btn-primary">Ver detalles</a>
-                                                        <a href="/" type="button" class="btn btn-warning">Editar</a>
-                                                        <a href="/" type="button" class="btn btn-danger">Borrar</a>
+                                                    <div
+                                                        class="btn-table"
+                                                        style="display: flex;"
+                                                    >
+                                                        <a
+                                                            href="/"
+                                                            type="button"
+                                                            class="btn btn-primary"
+                                                            >Ver detalles</a
+                                                        >
+                                                        <a
+                                                            href="/"
+                                                            type="button"
+                                                            class="btn btn-warning"
+                                                            >Editar</a
+                                                        >
+                                                        <a
+                                                            href="/"
+                                                            type="button"
+                                                            class="btn btn-danger"
+                                                            >Borrar</a
+                                                        >
                                                     </div>
                                                 </td>
                                             </tr>
