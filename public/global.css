@@ -67,30 +67,39 @@ button:focus {
     border-color: #666;
 }
 
-.table-container{
-	height: 100vh !important;
-	overflow: scroll;
+.table-container {
+    height: 100vh !important;
+    overflow: scroll;
 }
 
-.img-container{
-	width: 13%;
+.img-container {
+    width: 13%;
 }
 
-.btn{color: #fff !important}
-.img-cover{
-	width: 100% !important;
-	height: 160px !important
+.btn {
+    color: #fff !important;
+}
+.img-cover {
+    width: 100% !important;
+    height: 160px !important;
 }
 
-.table-products{
-	height: 100%;
+.table-products {
+    height: 100%;
 }
 
 .table-products .btn-table {
-	gap: 6px;
+    gap: 6px;
 }
 
-.table-products .btn-table a{
-	color: #fff !important;
-	width: max-content;
+.table-products .btn-table a {
+    color: #fff !important;
+    width: max-content;
+}
+
+.wrapper {
+    position: absolute;
+    z-index: 999999999999999999;
+    top: 50%;
+    left: 50%;
 }

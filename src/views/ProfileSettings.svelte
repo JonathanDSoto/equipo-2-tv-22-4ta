@@ -1,4 +1,8 @@
 <script>
+    import { Jumper } from 'svelte-loading-spinners';
+    import axios from 'axios';
+
+
     import Sidebar from '../components/Sidebar.svelte';
     import { get } from 'svelte/store';
     import { dataActiveUser } from '../store/session';
@@ -11,17 +15,44 @@
     const infoUserLogged = $dataActiveUser;
 
     const datosUsuarioToEdit = {
+        action: 'updateUser',
+        id: infoUserLogged.id,
         nombre: infoUserLogged.name,
         lastname: infoUserLogged.lastname,
         email: infoUserLogged.email,
         phone: infoUserLogged.phone_number,
-        password: 'lol'
+        password: 'lol',
     };
 
+    // Password hidden options
     let visible = false;
 
     function toggleVissible() {
         visible = !visible;
+    }
+    // ==========================
+
+    async function editUser(e) {
+        e.preventDefault();
+        let bodyForm = new FormData();
+        bodyForm.append('action', datosUsuarioToEdit.action);
+        bodyForm.append('name', datosUsuarioToEdit.nombre);
+        bodyForm.append('lastname', datosUsuarioToEdit.lastname);
+        bodyForm.append('email', datosUsuarioToEdit.email);
+        bodyForm.append('phone_number', datosUsuarioToEdit.phone_number);
+        bodyForm.append('password', datosUsuarioToEdit.password);
+        bodyForm.append('id', datosUsuarioToEdit.id);
+
+        axios
+            .post('http://localhost/app/UserController.php', bodyForm)
+            .then(function (response) {
+                if (response) {
+                    console.log(response)
+                } else {
+                    console.log('Nel');
+                }
+            })
+            .catch((resp) => console.log(resp));
     }
 </script>
 
@@ -105,6 +136,12 @@
                     </div>
                     <!-- end page title -->
 
+                    <!-- <Jumper
+                        size="300"
+                        color="#5c4cbc"
+                        unit="px"
+                        duration="1s"
+                    /> -->
                     <div class="position-relative mx-n4 mt-n4">
                         <div class="profile-wid-bg profile-setting-img">
                             <img
@@ -179,7 +216,11 @@
                                             id="personalDetails"
                                             role="tabpanel"
                                         >
-                                            <form action="javascript:void(0);">
+                                            <!-- Form -->
+                                            <form
+                                                method="POST"
+                                                action="http://localhost/app/UserController.php"
+                                            >
                                                 <div class="row">
                                                     <div class="col-lg-6">
                                                         <div class="mb-3">
@@ -192,6 +233,7 @@
                                                                 type="text"
                                                                 class="form-control"
                                                                 id="nameInput"
+                                                                name="name"
                                                                 placeholder="Enter your firstname"
                                                                 bind:value={datosUsuarioToEdit.nombre}
                                                             />
@@ -209,6 +251,7 @@
                                                                 type="text"
                                                                 class="form-control"
                                                                 id="lastnameInput"
+                                                                name="lastname"
                                                                 placeholder="Enter your lastname"
                                                                 bind:value={datosUsuarioToEdit.lastname}
                                                             />
@@ -226,6 +269,7 @@
                                                                 type="email"
                                                                 class="form-control"
                                                                 id="emailInput"
+                                                                name="email"
                                                                 placeholder="Enter your email"
                                                                 bind:value={datosUsuarioToEdit.email}
                                                             />
@@ -242,6 +286,7 @@
                                                                 type="text"
                                                                 class="form-control"
                                                                 id="phonenumberInput"
+                                                                name="phone_number"
                                                                 placeholder="Enter your phone number"
                                                                 bind:value={datosUsuarioToEdit.phone}
                                                             />
@@ -272,7 +317,10 @@
                                                     </div>
 
                                                     {#if visible}
-                                                        <div class="col-lg-12" transition:fade>
+                                                        <div
+                                                            class="col-lg-12"
+                                                            transition:fade
+                                                        >
                                                             <div class="mb-3">
                                                                 <label
                                                                     for="passwordInput"
@@ -284,6 +332,7 @@
                                                                     class="form-control"
                                                                     data-provider="flatpickr"
                                                                     id="passwordInput"
+                                                                    name="password"
                                                                     placeholder="Contraseña"
                                                                     bind:value={datosUsuarioToEdit.password}
                                                                 />
@@ -299,21 +348,21 @@
                                                             <button
                                                                 type="submit"
                                                                 class="btn btn-primary"
-                                                                >Actualizar</button
-                                                            >
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-soft-success"
-                                                                >Cancelar</button
+                                                                on:click={editUser}
+                                                                >Editar</button
                                                             >
                                                         </div>
                                                     </div>
                                                     <!--end col-->
                                                 </div>
+                                                <input
+                                                    type="hidden"
+                                                    name="id"
+                                                    value={datosUsuarioToEdit.id}
+                                                />
                                                 <!--end row-->
                                             </form>
                                         </div>
-
                                         <!-- end col -->
                                     </div>
                                     <!-- end row -->
