@@ -48,10 +48,10 @@
             `https://crud.jonathansoto.mx/api/products`,
             requestOptions
         );
-        const dataUser = await response.json();
-        console.log(dataUser.data);
+        const allProducts = await response.json();
+        console.log(allProducts.data);
         // Se guarda la info del usuario en la variable global correspondiente
-        return dataUser.data;
+        return allProducts.data;
     }
 </script>
 

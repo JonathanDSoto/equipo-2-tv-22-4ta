@@ -2,12 +2,14 @@
     import { Jumper } from 'svelte-loading-spinners';
     import axios from 'axios';
 
-
     import Sidebar from '../components/Sidebar.svelte';
     import { get } from 'svelte/store';
+
     import { dataActiveUser } from '../store/session';
     import HeaderApp from '../components/HeaderApp.svelte';
     import { fade } from 'svelte/transition';
+
+    import Swal from 'sweetalert2';
 
     get(dataActiveUser);
 
@@ -21,7 +23,7 @@
         lastname: infoUserLogged.lastname,
         email: infoUserLogged.email,
         phone: infoUserLogged.phone_number,
-        password: 'lol',
+        password: '',
     };
 
     // Password hidden options
@@ -47,7 +49,18 @@
             .post('http://localhost/app/UserController.php', bodyForm)
             .then(function (response) {
                 if (response) {
-                    console.log(response)
+                    console.log(response);
+                    Swal.fire({
+                        title: 'Regresaras al login',
+                        text: 'Inicia Sesion de nuevo para ver los cambios realizados en tu perfil',
+                        icon: 'info',
+                        showCancelButton: false,
+                        confirmButtonText: 'Aceptar',
+                    }).then((result) => {
+                        if (result.value) {
+                            location.href = '/';
+                        }
+                    });
                 } else {
                     console.log('Nel');
                 }
@@ -154,226 +167,249 @@
                                     <div
                                         class="p-0 ms-auto rounded-circle profile-photo-edit"
                                     >
-                                        <input
-                                            id="profile-foreground-img-file-input"
-                                            type="file"
-                                            class="profile-foreground-img-file-input"
-                                        />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-xxl-3">
-                            <div class="card mt-n5">
-                                <div class="card-body p-4">
-                                    <div class="text-center">
-                                        <div
-                                            class="profile-user position-relative d-inline-block mx-auto  mb-4"
-                                        >
-                                            <img
-                                                src={infoUserLogged.avatar}
-                                                class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow"
-                                                alt="user-profile"
-                                            />
+                    <form
+                    method="POST"
+                    action="http://localhost/app/UserController.php"
+                    enctype="multipart/form-data"
+                    >
+                        <div class="row">
+                            <div class="col-xxl-3">
+                                <div class="card mt-n5">
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <div
+                                                class="profile-user position-relative d-inline-block mx-auto  mb-4"
+                                            >
+                                                <img
+                                                    src={infoUserLogged.avatar}
+                                                    class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow"
+                                                    alt="user-profile"
+                                                />
+                                                <div
+                                                    class="avatar-xs p-0 rounded-circle profile-photo-edit"
+                                                >
+                                                    <input
+                                                        id="profile-img-file-input"
+                                                        type="file"
+                                                        class="profile-img-file-input"
+                                                        name="img-profile"
+                                                    />
+                                                    <label
+                                                        for="profile-img-file-input"
+                                                        class="profile-photo-edit avatar-xs"
+                                                    >
+                                                        <span
+                                                            class="avatar-title rounded-circle bg-light text-body shadow"
+                                                        >
+                                                            <i
+                                                                class="ri-camera-fill"
+                                                            />
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <h5 class="fs-16 mb-1">
+                                                {infoUserLogged.name}
+                                                {infoUserLogged.lastname}
+                                            </h5>
                                         </div>
-                                        <h5 class="fs-16 mb-1">
-                                            {infoUserLogged.name}
-                                            {infoUserLogged.lastname}
-                                        </h5>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!--end col-->
-                        <div class="col-xxl-9">
-                            <div class="card mt-xxl-n5">
-                                <div class="card-header">
-                                    <ul
-                                        class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0"
-                                        role="tablist"
-                                    >
-                                        <li class="nav-item">
-                                            <a
-                                                class="nav-link active"
-                                                data-bs-toggle="tab"
-                                                href="#personalDetails"
-                                                role="tab"
-                                            >
-                                                <i
-                                                    class="fas fa-home"
-                                                />Detalles Personales
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-body p-4">
-                                    <div class="tab-content">
-                                        <div
-                                            class="tab-pane active"
-                                            id="personalDetails"
-                                            role="tabpanel"
+                            <!--end col-->
+                            <div class="col-xxl-9">
+                                <div class="card mt-xxl-n5">
+                                    <div class="card-header">
+                                        <ul
+                                            class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0"
+                                            role="tablist"
                                         >
-                                            <!-- Form -->
-                                            <form
-                                                method="POST"
-                                                action="http://localhost/app/UserController.php"
+                                            <li class="nav-item">
+                                                <a
+                                                    class="nav-link active"
+                                                    data-bs-toggle="tab"
+                                                    href="#personalDetails"
+                                                    role="tab"
+                                                >
+                                                    <i
+                                                        class="fas fa-home"
+                                                    />Detalles Personales
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-body p-4">
+                                        <div class="tab-content">
+                                            <div
+                                                class="tab-pane active"
+                                                id="personalDetails"
+                                                role="tabpanel"
                                             >
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label
-                                                                for="nameInput"
-                                                                class="form-label"
-                                                                >Nombre</label
-                                                            >
-                                                            <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                id="nameInput"
-                                                                name="name"
-                                                                placeholder="Enter your firstname"
-                                                                bind:value={datosUsuarioToEdit.nombre}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label
-                                                                for="lastnameInput"
-                                                                class="form-label"
-                                                                >Apellido</label
-                                                            >
-                                                            <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                id="lastnameInput"
-                                                                name="lastname"
-                                                                placeholder="Enter your lastname"
-                                                                bind:value={datosUsuarioToEdit.lastname}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label
-                                                                for="emailInput"
-                                                                class="form-label"
-                                                                >Correo</label
-                                                            >
-                                                            <input
-                                                                type="email"
-                                                                class="form-control"
-                                                                id="emailInput"
-                                                                name="email"
-                                                                placeholder="Enter your email"
-                                                                bind:value={datosUsuarioToEdit.email}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="mb-3">
-                                                            <label
-                                                                for="phonenumberInput"
-                                                                class="form-label"
-                                                                >Teléfono</label
-                                                            >
-                                                            <input
-                                                                type="text"
-                                                                class="form-control"
-                                                                id="phonenumberInput"
-                                                                name="phone_number"
-                                                                placeholder="Enter your phone number"
-                                                                bind:value={datosUsuarioToEdit.phone}
-                                                            />
-                                                        </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                    <div class="col-lg-12">
-                                                        <div class="mb-3">
-                                                            <div
-                                                                class="form-check"
-                                                            >
-                                                                <input
-                                                                    class="form-check-input"
-                                                                    type="checkbox"
-                                                                    value=""
-                                                                    id="flexCheckDefault"
-                                                                    on:click={toggleVissible}
-                                                                />
-                                                                <label
-                                                                    class="form-check-label"
-                                                                    for="flexCheckDefault"
-                                                                >
-                                                                    Cambiar
-                                                                    contraseña
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    {#if visible}
-                                                        <div
-                                                            class="col-lg-12"
-                                                            transition:fade
-                                                        >
+                                                <!-- Form -->
+                                                
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
                                                             <div class="mb-3">
                                                                 <label
-                                                                    for="passwordInput"
+                                                                    for="nameInput"
                                                                     class="form-label"
-                                                                    >Contraseña</label
+                                                                    >Nombre</label
                                                                 >
                                                                 <input
                                                                     type="text"
                                                                     class="form-control"
-                                                                    data-provider="flatpickr"
-                                                                    id="passwordInput"
-                                                                    name="password"
-                                                                    placeholder="Contraseña"
-                                                                    bind:value={datosUsuarioToEdit.password}
+                                                                    id="nameInput"
+                                                                    name="name"
+                                                                    placeholder="Enter your firstname"
+                                                                    bind:value={datosUsuarioToEdit.nombre}
                                                                 />
                                                             </div>
                                                         </div>
-                                                    {/if}
-                                                    <!--end col-->
-
-                                                    <div class="col-lg-12">
-                                                        <div
-                                                            class="hstack gap-2 justify-content-end"
-                                                        >
-                                                            <button
-                                                                type="submit"
-                                                                class="btn btn-primary"
-                                                                on:click={editUser}
-                                                                >Editar</button
-                                                            >
+                                                        <!--end col-->
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="lastnameInput"
+                                                                    class="form-label"
+                                                                    >Apellido</label
+                                                                >
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="lastnameInput"
+                                                                    name="lastname"
+                                                                    placeholder="Enter your lastname"
+                                                                    bind:value={datosUsuarioToEdit.lastname}
+                                                                />
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <!--end col-->
-                                                </div>
-                                                <input
-                                                    type="hidden"
-                                                    name="id"
-                                                    value={datosUsuarioToEdit.id}
-                                                />
-                                                <!--end row-->
-                                            </form>
-                                        </div>
-                                        <!-- end col -->
-                                    </div>
-                                    <!-- end row -->
-                                </div>
-                                <!-- container-fluid -->
-                            </div>
-                            <!-- End Page-content -->
+                                                        <!--end col-->
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="emailInput"
+                                                                    class="form-label"
+                                                                    >Correo</label
+                                                                >
+                                                                <input
+                                                                    type="email"
+                                                                    class="form-control"
+                                                                    id="emailInput"
+                                                                    name="email"
+                                                                    placeholder="Enter your email"
+                                                                    bind:value={datosUsuarioToEdit.email}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6">
+                                                            <div class="mb-3">
+                                                                <label
+                                                                    for="phonenumberInput"
+                                                                    class="form-label"
+                                                                    >Teléfono</label
+                                                                >
+                                                                <input
+                                                                    type="text"
+                                                                    class="form-control"
+                                                                    id="phonenumberInput"
+                                                                    name="phone_number"
+                                                                    placeholder="Enter your phone number"
+                                                                    bind:value={datosUsuarioToEdit.phone}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                        <div class="col-lg-12">
+                                                            <div class="mb-3">
+                                                                <div
+                                                                    class="form-check"
+                                                                >
+                                                                    <input
+                                                                        class="form-check-input"
+                                                                        type="checkbox"
+                                                                        value=""
+                                                                        id="flexCheckDefault"
+                                                                        on:click={toggleVissible}
+                                                                    />
+                                                                    <label
+                                                                        class="form-check-label"
+                                                                        for="flexCheckDefault"
+                                                                    >
+                                                                        Cambiar
+                                                                        contraseña
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-                            <!-- end main content-->
+                                                        {#if visible}
+                                                            <div
+                                                                class="col-lg-12"
+                                                                transition:fade
+                                                            >
+                                                                <div class="mb-3">
+                                                                    <label
+                                                                        for="passwordInput"
+                                                                        class="form-label"
+                                                                        >Contraseña</label
+                                                                    >
+                                                                    <input
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        data-provider="flatpickr"
+                                                                        id="passwordInput"
+                                                                        name="password"
+                                                                        placeholder="Contraseña"
+                                                                        bind:value={datosUsuarioToEdit.password}
+                                                                    />
+                                                                </div>
+                                                            </div>
+                                                        {/if}
+                                                        <!--end col-->
+
+                                                        <div class="col-lg-12">
+                                                            <div
+                                                                class="hstack gap-2 justify-content-end"
+                                                            >
+                                                                <button
+                                                                    type="submit"
+                                                                    class="btn btn-primary"
+                                                                    on:click={editUser}
+                                                                    >Editar</button
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <!--end col-->
+                                                    </div>
+                                                    <input
+                                                        type="hidden"
+                                                        name="id"
+                                                        value={datosUsuarioToEdit.id}
+                                                    />
+                                                    <!--end row-->
+                                                
+                                            </div>
+                                            <!-- end col -->
+                                        </div>
+                                        <!-- end row -->
+                                        
+                                    </div>
+                                    <!-- container-fluid -->
+                                </div>
+                                <!-- End Page-content -->
+
+                                <!-- end main content-->
+                            </div>
                         </div>
-                    </div>
+                                        
+                    </form>
+
                 </div>
             </div>
         </div>
