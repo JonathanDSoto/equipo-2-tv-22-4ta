@@ -206,7 +206,7 @@ function registerUser (){
                         <div class="col-lg-12">
                             <div class="text-center">
                                 <p class="mb-0 text-muted">&copy;
-                                    <script>document.write(new Date().getFullYear())</script> Creado por <i class="mdi mdi-heart text-danger"></i> DevStore
+                                     Creado por <i class="mdi mdi-heart text-danger"></i> DevStore
                                 </p>
                             </div>
                         </div>
