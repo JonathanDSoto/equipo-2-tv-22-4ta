@@ -23,20 +23,6 @@
 					$authController = new AuthController();
 					$authController-> register_user($name,$lastname,$email,$phone,$password);
 				break;
-
-				case 'recovery':
-					$email = strip_tags($_POST['email']);
-
-					$authController = new AuthController();
-					echo json_encode($authController->recovery_pass($email));
-				break;
-
-				case 'out':
-					$email = strip_tags($_POST['email']);
-					
-					$authController = new AuthController();
-					echo json_encode($authController->logout($email));
-				break;
 			}
 		}
 
@@ -64,7 +50,10 @@
 			$response = json_decode($response);
 
 			if (isset($response->code) && $response->code > 0) { 
+
+				$key_token = $response->data->token;
 				return $response;
+				
 			}else{
 				return false;	
 			}
@@ -106,63 +95,4 @@
 				return false;
 			}
        	}
-
-		 
-		//Funcion para recuperar la contraseña
-		public function recovery_pass($email)
-		{
-			$curl = curl_init();
-
-			curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/forgot-password',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'POST',
-			CURLOPT_POSTFIELDS => array('email' => $email),
-			));
-
-			$response = curl_exec($curl);
-			curl_close($curl);
-			$response = json_decode($response);
-			
-			if (isset($response->code) && $response->code > 0) {
-				return true;
-        	}else{
-				return false;
-			}
-		}
-
-        //Funcion para realizar el LogOut solo con el e-mail.
-        public function logout($email)
-        {
-            $curl = curl_init();
-
-            curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://crud.jonathansoto.mx/api/logout',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array('email' => $email),
-            CURLOPT_HTTPHEADER => array('Authorization: Bearer '.$_SESSION['token']),
-            ));
-
-            $response = curl_exec($curl);
-            curl_close($curl);
-            $response = json_decode($response);
-
-			if (isset($response->code) && $response->code > 0) {
-				return true;
-       	 	}else{
-				return false;
-			}
-
-		}
 	}

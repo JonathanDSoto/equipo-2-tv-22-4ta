@@ -63,7 +63,7 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' .$_SESSION['token']
+				'Authorization: Bearer ' .$key_token
             ),
             ));
 
@@ -90,7 +90,7 @@
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array('name' => $name ,'lastname' => $lastname,'email' => $email,'phone_number' => $phone,'created_by' => 'jonathan soto','role' => 'Administrador','password' => $password,'profile_photo_file'=> new CURLFILE(BASE_PATH.'public/images/users/user-dummy-img.jpg')),
             CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' .$_SESSION['token']
+				'Authorization: Bearer ' .$key_token
             ),
             ));
 
@@ -120,7 +120,7 @@
               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
               CURLOPT_CUSTOMREQUEST => 'GET',
               CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' .$_SESSION['token']
+				'Authorization: Bearer ' .$key_token
               ),
             ));
             
@@ -147,7 +147,7 @@
             CURLOPT_CUSTOMREQUEST => 'PUT',
             CURLOPT_POSTFIELDS => 'name='.$name.'&lastname='.$lastname.'&email='.$email.'&phone_number='.$phone.'&created_by=jonathan%20soto&role=Administrador&password='.$password.'&id='.$id,
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' .$_SESSION['token'],
+                'Authorization: Bearer ' .$key_token,
                 'Content-Type: application/x-www-form-urlencoded'
             ),
             ));
@@ -178,7 +178,7 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'DELETE',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' .$_SESSION['token']
+                'Authorization: Bearer ' .$key_token
             ),
             ));
 
@@ -211,7 +211,7 @@
             CURLOPT_POSTFIELDS => array('id' => $id,
             'profile_photo_file'=> new CURLFILE($_FILES['cover']['tmp_name'])),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' .$_SESSION['token']
+                'Authorization: Bearer ' .$key_token
             ),
             ));
 
