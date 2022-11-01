@@ -227,7 +227,7 @@
 
                               <div class="page-title-right">
                                   <ol class="breadcrumb m-0">
-                                      <li class="breadcrumb-item"><a href="#!">Ecommerce</a></li>
+                                      <li class="breadcrumb-item"><a href="#!">Home</a></li>
                                       <li class="breadcrumb-item active">Clientes</li>
                                   </ol>
                               </div>
@@ -238,10 +238,11 @@
                   <!-- end page title -->
 
                   <div class="row">
+                    
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title mb-0">Clientes</h4>
+                                <h4 class="card-title mb-0">Lista Clientes</h4>
                             </div><!-- end card header -->
 
                             <div class="card-body">
@@ -250,7 +251,7 @@
                                         <div class="col-sm-auto">
                                             <div>
                                                 <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModalAñadirCliente"><i class="ri-add-line align-bottom me-1"></i> Añadir Cliente</button>
-                                                <button class="btn btn-soft-danger" onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i></button>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-sm">
@@ -267,41 +268,32 @@
                                         <table class="table align-middle table-nowrap" id="customerTable">
                                             <thead class="table-light">
                                                 <tr>
-                                                    <th scope="col" style="width: 50px;">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="checkAll" value="option">
-                                                        </div>
-                                                    </th>
-                                                    <th class="sort" data-sort="id">ID</th>
+                                                    
+                                                  
                                                     <th class="sort" data-sort="name">Nombre</th>
                                                     <th class="sort" data-sort="email">Correo</th>
-                                                    <th class="sort" data-sort="phone">Teléfono</th>
-                                                
+                                                    
                                                     <th class="sort" data-sort="action">Acción</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="list form-check-all">
                                                 <tr>
-                                                    <th scope="row">
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
-                                                        </div>
-                                                    </th>
-                                                    <td class="id">#VZ2101</td>
+                                                    
+                                                    
                                                     <td class="name">Mary Cousar</td>
                                                     <td class="email">Mary@page.com</td>
-                                                    <td class="email">612-00-0-00-00</td>
+                                                    
                                                    
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">
-                                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalVer">Ver</button>
+                                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalVer">Ver Detalles</button>
                                                             </div>
                                                             <div class="edit">
                                                                 <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalEditar">Editar</button>
                                                             </div>
                                                             <div class="remove">
-                                                                <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Eliminar</button>
+                                                                <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Borrar</button>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -341,26 +333,39 @@
                                                 <form>
                                                     <div class="modal-body">
 
-                                                        <div class="mb-3">
-                                                            <label for="id-field" class="form-label">ID</label>
-                                                            <input type="text" id="name-field" class="form-control" placeholder="Enter Name" required />
-                                                        </div>
+                                                       
                 
                                                         <div class="mb-3">
-                                                            <label for="name-field" class="form-label">Nombre</label>
-                                                            <input type="text" id="name-field" class="form-control" placeholder="Enter Name" required />
+                                                            <label for="name-field" class="form-label">Nombre Completo</label>
+                                                            <input type="text" id="name-field" class="form-control" placeholder="Ingresar Nombre" required />
                                                         </div>
                 
                                                         <div class="mb-3">
                                                             <label for="email-field" class="form-label">Correo</label>
-                                                            <input type="email" id="email-field" class="form-control" placeholder="Enter Email" required />
+                                                            <input type="email" id="email-field" class="form-control" placeholder="Ingresar Correo" required />
                                                         </div>
                 
                                                         <div class="mb-3">
                                                             <label for="phone-field" class="form-label">Teléfono</label>
-                                                            <input type="text" id="phone-field" class="form-control" placeholder="Enter Phone no." required />
+                                                            <input type="text" id="phone-field" class="form-control" placeholder="Ingresar Teléfono" required />
                                                         </div>
-                
+
+                                                        <div class="mb-3">
+                                                            <label for="password-field" class="form-label">Contraseña</label>
+                                                            <input type="text" id="password-field" class="form-control" placeholder="Ingresar Contraseña" required />
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="suscribed-field" class="form-label">¿Está suscrito?</label>
+                                                            <input type="text" id="suscribed-field" class="form-control" placeholder="Cantidad de suscripción" required />
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="id-field" class="form-label">Nivel ID</label>
+                                                            <input type="text" id="id-field" class="form-control" placeholder="Cantidad de suscripción" required />
+                                                        </div>
+
+
                 
                                                         
                                                     </div>
@@ -386,25 +391,34 @@
                                                 </div>
                                                 <form>
                                                     <div class="modal-body">
-                
                                                         <div class="mb-3">
-                                                            <label for="id-field" class="form-label">ID</label>
-                                                            <input type="text" id="name-field" class="form-control" placeholder="Enter Name" required />
-                                                        </div>
-                
-                                                        <div class="mb-3">
-                                                            <label for="name-field" class="form-label">Nombre</label>
-                                                            <input type="text" id="name-field" class="form-control" placeholder="Enter Name" required />
+                                                            <label for="name-field" class="form-label">Nombre Completo</label>
+                                                            <input type="text" id="name-field" class="form-control" placeholder="Ingresar Nombre" required />
                                                         </div>
                 
                                                         <div class="mb-3">
                                                             <label for="email-field" class="form-label">Correo</label>
-                                                            <input type="email" id="email-field" class="form-control" placeholder="Enter Email" required />
+                                                            <input type="email" id="email-field" class="form-control" placeholder="Ingresar Correo" required />
                                                         </div>
                 
                                                         <div class="mb-3">
                                                             <label for="phone-field" class="form-label">Teléfono</label>
-                                                            <input type="text" id="phone-field" class="form-control" placeholder="Enter Phone no." required />
+                                                            <input type="text" id="phone-field" class="form-control" placeholder="Ingresar Teléfono" required />
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="password-field" class="form-label">Contraseña</label>
+                                                            <input type="text" id="password-field" class="form-control" placeholder="Ingresar Contraseña" required />
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="suscribed-field" class="form-label">¿Está suscrito?</label>
+                                                            <input type="text" id="suscribed-field" class="form-control" placeholder="Cantidad de suscripción" required />
+                                                        </div>
+
+                                                        <div class="mb-3">
+                                                            <label for="id-field" class="form-label">Nivel ID</label>
+                                                            <input type="text" id="id-field" class="form-control" placeholder="Cantidad de suscripción" required />
                                                         </div>
                 
                                                         

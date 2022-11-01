@@ -226,7 +226,7 @@
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="#!">Ecommerce</a></li>
+                                            <li class="breadcrumb-item"><a href="#!">Cliente</a></li>
                                             <li class="breadcrumb-item active">Vista de Detalle Cliente</li>
                                         </ol>
                                     </div>
@@ -306,18 +306,85 @@
                                                                                 <td class="text-muted">+(1) 987 6543</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="ps-0" scope="row">Nivel :</th>
-                                                                                <td class="text-muted">1</td>
+                                                                                <th class="ps-0" scope="row">Widget de Compras</th>
+                                                                                <div class="col-xl-3 col-md-6">
+                                                                                    <!-- card -->
+                                                                                    <div class="card card-animate bg-info">
+                                                                                        <div class="card-body">
+                                                                                            <div class="d-flex align-items-center">
+                                                                                                <div class="flex-grow-1">
+                                                                                                    <p class="text-uppercase fw-medium text-white-50 mb-0">Total de Compras</p>
+                                                                                                </div>
+                                                                                                <div class="flex-shrink-0">
+                                                                                                    <h5 class="text-warning fs-14 mb-0">
+                                                                                                        <i class="ri-arrow-right-down-line fs-13 align-middle"></i> -3.57 %
+                                                                                                    </h5>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="d-flex align-items-end justify-content-between mt-4">
+                                                                                                <div>
+                                                                                                    <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value" data-target="36894">0</span></h4>
+                                                                                                    <a href="#!" class="text-decoration-underline text-white-50">Ver todas las compras</a>
+                                                                                                </div>
+                                                                                                <div class="avatar-sm flex-shrink-0">
+                                                                                                    <span class="avatar-title bg-soft-light rounded fs-3 shadow">
+                                                                                                        <i class="bx bx-shopping-bag text-white"></i>
+                                                                                                    </span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div><!-- end card body -->
+                                                                                    </div><!-- end card -->
+                                                                                </div><!-- end col -->
+
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="ps-0" scope="row">Lista de ordenes :</th>
-                                                                                <td class="text-muted">1</td>
+                                                                            
+                                                                                <th class="ps-0" scope="row">Ordenes:</th>
+                                                                                <div class="col-sm-auto">
+                                                                                   
+                                                                                </div>
+                                                                                
+                                                                                <div class="table-responsive table-card mt-3 mb-1">
+                                                                                    <table class="table align-middle table-nowrap" id="customerTable">
+                                                                                        <thead class="table-light">
+                                                                                            <tr>
+                                                                                                
+                                                                                                <th data-sort="folio">Folio</th>
+                                                                                                <th data-sort="total">Total</th>
+                                                                                                <th data-sort="estado de pago">Estado de Pago</th>
+                                                                                            
+                                                                                                <th data-sort="action">Acción</th>
+                                                                                            </tr>
+                                                                                        </thead>
+                                                                                        <tbody class="list form-check-all">
+                                                                                            <tr>
+                                                                                                
+                                                                                                
+                                                                                                <td class="folio">2101</td>
+                                                                                                <td class="total">12333</td>
+                                                                                                <td class="status"><span class="badge badge-soft-warning text-uppercase">1</span>
+                                                                                                
+                                                                                                
+                                                                        
+                                                                                                <td>
+                                                                                                    <div class="d-flex gap-2">
+                                                                                                        
+                                                                                                        <div class="edit">
+                                                                                                            <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalVer">Ver Detalles</button>
+                                                                                                        </div>
+                                                                                                        
+                                                                                                    </div>
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </div> 
                                                                             </tr>
+
+                                                                           
+
                                                                             <tr>
-                                                                                <th class="ps-0" scope="row">Total de compras :</th>
-                                                                                <td class="text-muted">1</td>
-                                                                            </tr>
-                                                                            <tr>
+                                                                            
                                                                                 <th class="ps-0" scope="row">Direcciones:</th>
                                                                                 <div class="col-sm-auto">
                                                                                     <div>
@@ -335,9 +402,7 @@
                                                                                                         <input class="form-check-input" type="checkbox" id="checkAll" value="option">
                                                                                                     </div>
                                                                                                 </th>
-                                                                                                <th data-sort="id">ID</th>
-                                                                                                <th data-sort="name">Nombre</th>
-                                                                                                <th data-sort="lastname">Apellido</th>
+                                                                                                
                                                                                                 <th data-sort="street">Calle y número</th>
                                                                                                 <th data-sort="code">Código postal</th>
                                                                                                 <th data-sort="city">Ciudad</th>
@@ -354,9 +419,7 @@
                                                                                                     </div>
                                                                                                 </th>
                                                                                                 
-                                                                                                <td class="id">#VZ2101</td>
-                                                                                                <td class="name">Mary</td>
-                                                                                                <td class="lastname">Cousar</td>
+                                                                                                
                                                                                                 <td class="street">16 de Septiembre</td>
                                                                                                 <td class="code">23000</td>
                                                                                                 <td class="city">La Paz</td>
@@ -366,12 +429,15 @@
                                                                         
                                                                                                 <td>
                                                                                                     <div class="d-flex gap-2">
+                                                                                                        <div class="edit">
+                                                                                                            <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalVer">Ver Detalles</button>
+                                                                                                        </div>
                                                                                                         
                                                                                                         <div class="edit">
                                                                                                             <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalEditar">Editar</button>
                                                                                                         </div>
                                                                                                         <div class="remove" id="removeItemModal">
-                                                                                                            <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Eliminar</button>
+                                                                                                            <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Borrar</button>
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </td>
@@ -396,36 +462,38 @@
                                                                     </div>
                                                                     <form>
                                                                         <div class="modal-body">
-                    
-                                                                            <div class="mb-3">
-                                                                                <label for="id-field" class="form-label">ID</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter ID" required />
-                                                                            </div>
+                
                                     
                                                                             <div class="mb-3">
                                                                                 <label for="name-field" class="form-label">Nombre</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter Name" required />
+                                                                                <input type="text" id="name-field" class="form-control" placeholder="Ingresar Nombre" required />
                                                                             </div>
                                                                             <div class="mb-3">
                                                                                 <label for="lastname-field" class="form-label">Apellido</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter LastName" required />
+                                                                                <input type="text" id="lastname-field" class="form-control" placeholder="Ingresar Apellido" required />
                                                                             </div>
                                                                             <div class="mb-3">
                                                                                 <label for="street-field" class="form-label">Calle y número</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter Street" required />
+                                                                                <input type="text" id="street-field" class="form-control" placeholder="Ingresar Calle y número" required />
                                                                             </div>
                                                                             <div class="mb-3">
                                                                                 <label for="code-field" class="form-label">Código postal</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter Code" required />
+                                                                                <input type="text" id="code-field" class="form-control" placeholder="Ingresar Código Postal" required />
                                                                             </div>
                                                                             <div class="mb-3">
                                                                                 <label for="city-field" class="form-label">Ciudad</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter City" required />
+                                                                                <input type="text" id="city-field" class="form-control" placeholder="Ingresar Ciudad" required />
                                                                             </div>
                                                                             <div class="mb-3">
                                                                                 <label for="province-field" class="form-label">Providencia</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter Province" required />
+                                                                                <input type="text" id="province-field" class="form-control" placeholder="Ingresar Providencia" required />
                                                                             </div>
+                                                                            <div class="mb-3">
+                                                                                <label for="billing-field" class="form-label">Factura</label>
+                                                                                <input type="text" id="billing-field" class="form-control" placeholder="Cantidad de Factura" required />
+                                                                            </div>
+                                                                            
+                                                                            
                                                                             
                                     
                                                                   
@@ -454,33 +522,32 @@
                                                                         <div class="modal-body">
                                     
                                                                             <div class="mb-3">
-                                                                                <label for="id-field" class="form-label">ID</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter ID" required />
-                                                                            </div>
-                                    
-                                                                            <div class="mb-3">
                                                                                 <label for="name-field" class="form-label">Nombre</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter Name" required />
+                                                                                <input type="text" id="name-field" class="form-control" placeholder="Ingresar Nombre" required />
                                                                             </div>
                                                                             <div class="mb-3">
                                                                                 <label for="lastname-field" class="form-label">Apellido</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter LastName" required />
+                                                                                <input type="text" id="lastname-field" class="form-control" placeholder="Ingresar Apellido" required />
                                                                             </div>
                                                                             <div class="mb-3">
                                                                                 <label for="street-field" class="form-label">Calle y número</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter Street" required />
+                                                                                <input type="text" id="street-field" class="form-control" placeholder="Ingresar Calle y número" required />
                                                                             </div>
                                                                             <div class="mb-3">
-                                                                                <label for="code-field" class="form-label">Código Postal</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter Code" required />
+                                                                                <label for="code-field" class="form-label">Código postal</label>
+                                                                                <input type="text" id="code-field" class="form-control" placeholder="Ingresar Código Postal" required />
                                                                             </div>
                                                                             <div class="mb-3">
                                                                                 <label for="city-field" class="form-label">Ciudad</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter City" required />
+                                                                                <input type="text" id="city-field" class="form-control" placeholder="Ingresar Ciudad" required />
                                                                             </div>
                                                                             <div class="mb-3">
                                                                                 <label for="province-field" class="form-label">Providencia</label>
-                                                                                <input type="text" id="name-field" class="form-control" placeholder="Enter Province" required />
+                                                                                <input type="text" id="province-field" class="form-control" placeholder="Ingresar Providencia" required />
+                                                                            </div>
+                                                                            <div class="mb-3">
+                                                                                <label for="phone-field" class="form-label">Teléfono</label>
+                                                                                <input type="text" id="phone-field" class="form-control" placeholder="Ingresar Teléfono" required />
                                                                             </div>
                                     
                                                                          

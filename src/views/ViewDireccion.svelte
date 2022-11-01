@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-    <title>DevEcommerce | Vista Detalle Usuarios</title>
+    <title>DevEcommerce | Vista Detalle Ordenes</title>
     <!-- ============================================ -->
     <!-- Css template -->
     <!-- ============================================ -->
@@ -222,12 +222,12 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                                    <h4 class="mb-sm-0">Vista de Detalle Usuario</h4>
+                                    <h4 class="mb-sm-0">Vista de Detalle Direcciones</h4>
 
                                     <div class="page-title-right">
                                         <ol class="breadcrumb m-0">
-                                            <li class="breadcrumb-item"><a href="#!">Usuarios</a></li>
-                                            <li class="breadcrumb-item active">Vista de Detalle Usuario</li>
+                                            <li class="breadcrumb-item"><a href="#!">Clientes</a></li>
+                                            <li class="breadcrumb-item active">Vista de Detalle Direcciones</li>
                                         </ol>
                                     </div>
 
@@ -242,34 +242,11 @@
                                     <img src="http://localhost:8080/images/profile-bg.jpg" alt="" class="profile-wid-img" />
                                 </div>
                             </div>
-                            <div class="pt-4 mb-4 mb-lg-3 pb-lg-4">
-                                <div class="row g-4">
-                                    <div class="col-auto">
-                                        <div class="avatar-lg">
-                                            <img src="http://localhost:8080/images/users/avatar-1.jpg" alt="user-img" class="img-thumbnail rounded-circle" />
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                    <div class="col">
-                                        <div class="p-2">
-                                            <h3 class="text-white mb-1">Anna Adame</h3>
-                                            <p class="text-white-75">Owner & Founder</p>
-                                            <div class="hstack text-white-50 gap-1">
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end col-->
-                                   
-                                    <!--end col-->
-
-                                </div>
-                                <!--end row-->
-                            </div>
+                            
 
                     
                                 
-                                        <div class="d-flex">
+                                        <div class="d-flex pt-3">
                                             <!-- Nav tabs -->
                                             <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
                                                 <li class="nav-item">
@@ -293,51 +270,165 @@
                                                                     <table class="table table-borderless mb-0">
                                                                         <tbody>
                                                                             <tr>
-                                                                                <th class="ps-0" scope="row">Nombre:</th>
+                                                                                <th class="ps-0" scope="row">Nombre :</th>
                                                                                 <td class="text-muted">Anna</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="ps-0" scope="row">Apellido:</th>
-                                                                                <td class="text-muted">Adame</td>
+                                                                                <th class="ps-0" scope="row">Apellidos :</th>
+                                                                                <td class="text-muted">Cousar</td>
+                                                                            </tr>
+                                                                            
+                                                                            
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Calle y número:</th>
+                                                                                <td class="text-muted">16 de Septiembre</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="ps-0" scope="row">Correo:</th>
-                                                                                <td class="text-muted">daveadame@velzon.com</td>
+                                                                                <th class="ps-0" scope="row">Apartamento:</th>
+                                                                                <td class="text-muted">X</td>
+                                                                            </tr>
+                                                                            
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Código Postal:</th>
+                                                                                <td class="text-muted">23000</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="ps-0" scope="row">Teléfono:</th>
-                                                                                <td class="text-muted">+(1) 987 6543</td>
-                                                                                
+                                                                                <th class="ps-0" scope="row">Ciudad:</th>
+                                                                                <td class="text-muted">La Paz</td>
                                                                             </tr>
                                                                             <tr>
-                                                                                <th class="ps-0" scope="row">Creado por:</th>
-                                                                                <td class="text-muted">Team</td>
+                                                                                <th class="ps-0" scope="row">Provincia:</th>
+                                                                                <td class="text-muted">BCS</td>
                                                                             </tr>
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Número de Teléfono:</th>
+                                                                                <td class="text-muted">6121200000</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Dirección de Factura:</th>
+                                                                                <td class="text-muted">Sí</td>
+                                                                            </tr>
+                                                                            
+                                                                            
+                                                                            
 
-                                                                            <tr>
-                                                                                <th class="ps-0" scope="row">Se unió:</th>
-                                                                                <td class="text-muted">01/10/12</td>
-                                                                            </tr>
+                                                                           
+
                                                                         </tbody>
                                                                     </table>
                                                                 </div>
                                                             </div><!-- end card body -->
                                                         </div><!-- end card -->
-                                
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
                         </div>
-                        <!-- end row -->
-                    </div>
-                </div>
-                    <!-- container-fluid -->
-            </div>
-                <!-- End Page-content -->          
-</div>
 
-   <!-- end main content-->
+
+                        <div class="container-fluid">
+                            <div class="profile-foreground position-relative mx-n4 mt-n4">
+                                <div class="profile-wid-bg">
+                                    <img src="http://localhost:8080/images/profile-bg.jpg" alt="" class="profile-wid-img" />
+                                </div>
+                            </div>
+                            
+
+                    
+                                
+                                        <div class="d-flex pt-3">
+                                            <!-- Nav tabs -->
+                                            <ul class="nav nav-pills animation-nav profile-nav gap-2 gap-lg-3 flex-grow-1" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link fs-14 active" data-bs-toggle="tab" href="#overview-tab" role="tab">
+                                                        <i class="ri-airplay-fill d-inline-block d-md-none"></i> <span class="d-none d-md-inline-block">Vista de Detalle</span>
+                                                    </a>
+                                                </li>
+                                               
+                                        </div>
+                                        <!-- Tab panes -->
+                                        <div class="tab-content pt-4 text-muted">
+                                            <div class="tab-pane active" id="overview-tab" role="tabpanel">
+                                                <div class="row">
+                                                    <div class="col-xxl-3">
+                                                        
+
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <h5 class="card-title mb-3">Info</h5>
+                                                                <div class="table-responsive">
+                                                                    <table class="table table-borderless mb-0">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Nombre :</th>
+                                                                                <td class="text-muted">Anna</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Apellidos :</th>
+                                                                                <td class="text-muted">Cousar</td>
+                                                                            </tr>
+                                                                            
+                                                                            
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Calle y número:</th>
+                                                                                <td class="text-muted">16 de Septiembre</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Apartamento:</th>
+                                                                                <td class="text-muted">X</td>
+                                                                            </tr>
+                                                                            
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Código Postal:</th>
+                                                                                <td class="text-muted">23000</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Ciudad:</th>
+                                                                                <td class="text-muted">La Paz</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Provincia:</th>
+                                                                                <td class="text-muted">BCS</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Número de Teléfono:</th>
+                                                                                <td class="text-muted">6121200000</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th class="ps-0" scope="row">Dirección de Factura:</th>
+                                                                                <td class="text-muted">Sí</td>
+                                                                            </tr>
+                                                                            
+                                                                            
+                                                                            
+
+                                                                           
+
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div><!-- end card body -->
+                                                        </div><!-- end card -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                           
+                        </div>
+
+
+
+
+
+                    </div>
+                        <!-- container-fluid -->
+                </div>
+                    <!-- End Page-content -->
+    </div>
+
+    <!-- end main content-->
+
 
 </main>
