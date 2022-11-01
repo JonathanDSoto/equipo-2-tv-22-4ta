@@ -25,25 +25,6 @@
      <!-- custom Css-->
      <link href="http://localhost:8080/css/custom.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- ============================================ -->
-    <!-- JavaScript -->
-    <!-- ============================================ -->
-    <!-- JAVASCRIPT -->
-    <script src="http://localhost:8080/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="http://localhost:8080/libs/simplebar/simplebar.min.js"></script>
-    <script src="http://localhost:8080/libs/node-waves/waves.min.js"></script>
-    <script src="http://localhost:8080/libs/feather-icons/feather.min.js"></script>
-    <script src="http://localhost:8080/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="http://localhost:8080/js/plugins.js"></script>
-
-    <!--Swiper slider js-->
-    <script src="http://localhost:8080/libs/swiper/swiper-bundle.min.js"></script>
-
-    <!-- ecommerce product details init -->
-    <script src="http://localhost:8080/js/pages/ecommerce-product-details.init.js"></script>
-
-    <!-- App js -->
-    <script src="http://localhost:8080/js/app.js"></script>
 
 </svelte:head>
 
@@ -633,5 +614,28 @@
 
 <!-- end main content-->
 
+
+<div>
+    <!-- ============================================ -->
+    <!-- JavaScript -->
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT -->
+    <script src="http://localhost:8080/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="http://localhost:8080/libs/simplebar/simplebar.min.js"></script>
+    <script src="http://localhost:8080/libs/node-waves/waves.min.js"></script>
+    <script src="http://localhost:8080/libs/feather-icons/feather.min.js"></script>
+    <script src="http://localhost:8080/js/pages/plugins/lord-icon-2.1.0.js"></script>
+    <script src="http://localhost:8080/js/plugins.js"></script>
+
+    <!--Swiper slider js-->
+    <script src="http://localhost:8080/libs/swiper/swiper-bundle.min.js"></script>
+
+    <!-- ecommerce product details init -->
+    <script src="http://localhost:8080/js/pages/ecommerce-product-details.init.js"></script>
+
+    <!-- App js -->
+    <script src="http://localhost:8080/js/app.js"></script>
+    
+</div>
 
 </main>

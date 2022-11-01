@@ -29,28 +29,6 @@
     <!-- custom Css-->
     <link href="http://localhost:8080/css/custom.min.css" rel="stylesheet" type="text/css" />
 
-
-    <!-- ============================================ -->
-    <!-- Js tempalte -->
-    <!-- ============================================ -->
-     <!-- JAVASCRIPT -->
-    <script src="http://localhost:8080/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="http://localhost:8080/libs/simplebar/simplebar.min.js"></script>
-    <script src="http://localhost:8080/libs/node-waves/waves.min.js"></script>
-    <script src="http://localhost:8080/libs/feather-icons/feather.min.js"></script>
-    <script src="http://localhost:8080/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="http://localhost:8080/js/plugins.js"></script>
-
-    <!-- prismjs plugin -->
-    <script src="http://localhost:8080/libs/prismjs/prism.js"></script>
-
-    <!-- gridjs js -->
-    <script src="http://localhost:8080/libs/gridjs/gridjs.umd.js"></script>
-    <!-- gridjs init -->
-    <script src="http://localhost:8080/js/pages/gridjs.init.js"></script>
-
-    <!-- App js -->
-    <script src="http://localhost:8080/js/app.js"></script>
 </svelte:head>
 
 <main> 
@@ -533,14 +511,31 @@
 </div>
     <!-- End Page-content -->
 
-    <!-- footer here-->
     <!-- end main content-->
 
-  
-
-  
-
-
-  
+<div>
+    <!-- ============================================ -->
+    <!-- Js tempalte -->
+    <!-- ============================================ -->
+     <!-- JAVASCRIPT -->
+     <script src="http://localhost:8080/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+     <script src="http://localhost:8080/libs/simplebar/simplebar.min.js"></script>
+     <script src="http://localhost:8080/libs/node-waves/waves.min.js"></script>
+     <script src="http://localhost:8080/libs/feather-icons/feather.min.js"></script>
+     <script src="http://localhost:8080/js/pages/plugins/lord-icon-2.1.0.js"></script>
+     <script src="http://localhost:8080/js/plugins.js"></script>
+ 
+     <!-- prismjs plugin -->
+     <script src="http://localhost:8080/libs/prismjs/prism.js"></script>
+ 
+     <!-- gridjs js -->
+     <script src="http://localhost:8080/libs/gridjs/gridjs.umd.js"></script>
+     <!-- gridjs init -->
+     <script src="http://localhost:8080/js/pages/gridjs.init.js"></script>
+ 
+     <!-- App js -->
+     <script src="http://localhost:8080/js/app.js"></script>       
+        
+</div> 
 
 </main>

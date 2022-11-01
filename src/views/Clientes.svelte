@@ -24,30 +24,6 @@
     <!-- custom Css-->
     <link href="http://localhost:8080/css/custom.min.css" rel="stylesheet" type="text/css" />
 
-
-    <!-- ============================================ -->
-    <!-- Js tempalte -->
-    <!-- ============================================ -->
-    <!-- JAVASCRIPT -->
-    <script src="http://localhost:8080/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="http://localhost:8080/libs/simplebar/simplebar.min.js"></script>
-    <script src="http://localhost:8080/libs/node-waves/waves.min.js"></script>
-    <script src="http://localhost:8080/libs/feather-icons/feather.min.js"></script>
-    <script src="http://localhost:8080/js/pages/plugins/lord-icon-2.1.0.js"></script>
-    <script src="http://localhost:8080/js/plugins.js"></script>
-    <!-- prismjs plugin -->
-    <script src="http://localhost:8080/libs/prismjs/prism.js"></script>
-    <script src="http://localhost:8080/libs/list.js/list.min.js"></script>
-    <script src="http://localhost:8080/libs/list.pagination.js/list.pagination.min.js"></script>
-
-    <!-- listjs init -->
-    <script src="http://localhost:8080/js/pages/listjs.init.js"></script>
-
-    <!-- Sweet Alerts js -->
-    <script src="http://localhost:8080/libs/sweetalert2/sweetalert2.min.js"></script>
-
-    <!-- App js -->
-    <script src="http://localhost:8080/js/app.js"></script>
 </svelte:head>
 
 <main> 
@@ -541,6 +517,32 @@
 
     <!-- end main content-->
 
+<div>
+    <!-- ============================================ -->
+    <!-- Js tempalte -->
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT -->
+    <script src="http://localhost:8080/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="http://localhost:8080/libs/simplebar/simplebar.min.js"></script>
+    <script src="http://localhost:8080/libs/node-waves/waves.min.js"></script>
+    <script src="http://localhost:8080/libs/feather-icons/feather.min.js"></script>
+    <script src="http://localhost:8080/js/pages/plugins/lord-icon-2.1.0.js"></script>
+    <script src="http://localhost:8080/js/plugins.js"></script>
+    <!-- prismjs plugin -->
+    <script src="http://localhost:8080/libs/prismjs/prism.js"></script>
+    <script src="http://localhost:8080/libs/list.js/list.min.js"></script>
+    <script src="http://localhost:8080/libs/list.pagination.js/list.pagination.min.js"></script>
+
+    <!-- listjs init -->
+    <script src="http://localhost:8080/js/pages/listjs.init.js"></script>
+
+    <!-- Sweet Alerts js -->
+    <script src="http://localhost:8080/libs/sweetalert2/sweetalert2.min.js"></script>
+
+    <!-- App js -->
+    <script src="http://localhost:8080/js/app.js"></script>
+    
+</div>
 
  
 
