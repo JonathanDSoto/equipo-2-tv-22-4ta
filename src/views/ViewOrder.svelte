@@ -275,9 +275,11 @@
                                                                                         <tbody class="list form-check-all">
                                                                                             <tr>
                                                                                                 
-                                                                                                <td class="Avatar">
-                                                                                                    <img class="image avatar-xs rounded-circle shadow" alt="" src="http://localhost:8080/images/users/avatar-1.jpg">
-                                                                                                </td>
+                                                                                                <td class="foto">
+                                                                                                    <div class="flex-shrink-0 avatar-md bg-light rounded p-1">
+                                                                                                        <img src="http://localhost:8080/images/products/img-8.png" alt="" class="img-fluid d-block">
+                                                                                                    </div>
+                                                                                                </td>  
                                                                                                 <td class="descripcion">Descripcion detallada del producto</td>
                                                                                                 <td class="codigo">Código del producto</td>
                                                                                                 <td class="peso">Peso en gramos del producto</td>
@@ -289,7 +291,7 @@
                                                                                                     <div class="d-flex gap-2">
                                                                                                         
                                                                                                         <div class="ver">
-                                                                                                            <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalVer">Ver Detalles</button>
+                                                                                                            <button class="btn btn-sm btn-success edit-item-btn" href="#!">Ver Detalles</button>
                                                                                                         </div>
                                                                                                         
                                                                                                     </div>
@@ -332,7 +334,7 @@
                                                                                                     <div class="d-flex gap-2">
                                                                                                         
                                                                                                         <div class="ver">
-                                                                                                            <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalVer">Ver Detalles</button>
+                                                                                                            <button class="btn btn-sm btn-success edit-item-btn" href="#!">Ver Detalles</button>
                                                                                                         </div>
                                                                                                         
                                                                                                     </div>
@@ -418,7 +420,7 @@
                                                                                                     <p class="text-muted mb-1">cliente@App.com</p>
                                                                                                 </ul>
                                                                                                 <div class="text-end mb-4">
-                                                                                                    <a href="apps-ecommerce-checkout.html" class="btn btn-success btn-label right ms-auto"><i class="ri-arrow-right-line label-icon align-bottom fs-16 ms-2"></i>Ver perfil de Cliente</a>
+                                                                                                    <a href="apps-ecommerce-checkout.html" class="btn btn-success btn-label right ms-auto"><i class="ri-arrow-right-line label-icon align-bottom fs-16 ms-2"></i>Ver perfil de cliente</a>
                                                                                                 </div>
                                                     
                                                                                                 

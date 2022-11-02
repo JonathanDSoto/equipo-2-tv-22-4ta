@@ -269,7 +269,7 @@
                                                             <td>
                                                                 <div class="d-flex gap-2">
                                                                     <div class="edit">
-                                                                        <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalVer">Ver</button>
+                                                                        <button class="btn btn-sm btn-success edit-item-btn" href="">Ver Detalles</button>
                                                                     </div>
                                                                     <div class="edit">
                                                                         <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalEditar">Editar</button>

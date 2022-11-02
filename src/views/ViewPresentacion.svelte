@@ -259,45 +259,27 @@
                                             
                                             <div class="row mt-4">
                                                 
-                                                
-                                              
-                                                <div class="col-lg-3 col-sm-6">
-                                                    <div class="p-2 border border-dashed rounded">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar-sm me-2">
-                                                                <div class="avatar-title rounded bg-transparent text-success fs-24">
-                                                                    <i class="ri-stack-fill"></i>
+                                                    <div class="col-lg-3 col-sm-6">
+                                                        <div class="p-2 border border-dashed rounded">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar-sm me-2">
+                                                                   
                                                                 </div>
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <p class="text-muted mb-1">Stock Disponible :</p>
-                                                                <h5 class="mb-0">1,230</h5>
+                                                                <div class="flex-grow-1">
+                                                                    <p class="text-muted mb-1">Price :</p>
+                                                                    <h5 class="mb-0">$120.40</h5>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 
                                             </div>
 
-                                           
-
-                                            <div class="mt-4 text-muted">
-                                                <h5 class="fs-14">Descripción :</h5>
-                                                <p>Sudadera rosa de rayas de hombre Tommy Hilfiger. Confeccionado con algodón. La composición del material es 100% algodón orgánico. 
-                                                Esta es una de las marcas de estilo de vida de diseñadores líderes en el mundo y es reconocida internacionalmente por celebrar la 
-                                                esencia del estilo cool estadounidense clásico, presentando diseños preppy con un giro.</p>
-                                            </div>
-                                            <div class="mt-4 text-muted">
-                                                <h5 class="fs-14">Caracteristicas:</h5>
-                                                <p>Sudadera rosa de rayas de hombre Tommy Hilfiger. Confeccionado con algodón. La composición del material es 100% algodón orgánico. 
-                                                Esta es una de las marcas de estilo de vida de diseñadores líderes en el mundo y es reconocida internacionalmente por celebrar la 
-                                                esencia del estilo cool estadounidense clásico, presentando diseños preppy con un giro.</p>
-                                            </div>
                                             
 
 
                                             <div class="product-content mt-5">
-                                                <h5 class="fs-14 mb-3">Descripción del Producto:</h5>
+                                                <h5 class="fs-14 mb-3">Detalles de la Presentación:</h5>
                                                 <nav>
                                                     <ul class="nav nav-tabs nav-tabs-custom nav-success" id="nav-tab" role="tablist">
                                                         <li class="nav-item">
@@ -312,12 +294,28 @@
                                                             <table class="table mb-0">
                                                                 <tbody>
                                                                     <tr>
-                                                                        <th scope="row" style="width: 200px;">Categoría</th>
+                                                                        <th scope="row" style="width: 200px;">Código de la presentación</th>
+                                                                        <td>2101</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row" style="width: 200px;">Peso en gramos</th>
                                                                         <td>T-Shirt</td>
                                                                     </tr>
                                                                     <tr>
-                                                                        <th scope="row">Marca</th>
-                                                                        <td>Tommy Hilfiger</td>
+                                                                        <th scope="row" style="width: 200px;">Estatus</th>
+                                                                        <td>Active</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row" style="width: 200px;">Stock</th>
+                                                                        <td>750</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row" style="width: 200px;">Stock mínimo</th>
+                                                                        <td>5</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row" style="width: 200px;">Stock máximo</th>
+                                                                        <td>100</td>
                                                                     </tr>
                                                                     
                                                                 </tbody>
@@ -351,14 +349,7 @@
                                                                        
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-sm">
-                                                                    <div class="d-flex justify-content-sm-end">
-                                                                        <div class="search-box ms-2">
-                                                                            <input type="text" class="form-control search" placeholder="Buscar Presentaciones...">
-                                                                            <i class="ri-search-line search-icon"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                                 
                                                             </div>
                         
                                                             <div class="table-responsive table-card mt-3 mb-1">
@@ -379,7 +370,10 @@
                                                                         <tr>
                                                                             
                                                                             <td class="photo">
-                                                                                <img class="image avatar-xs rounded-circle shadow" alt="" src="http://localhost:8080/images/users/avatar-1.jpg">
+                                                                                <div class="flex-shrink-0 avatar-md bg-light rounded p-1">
+                                                                                    <img src="http://localhost:8080/images/products/img-8.png" alt="" class="img-fluid d-block">
+                                                                                </div>
+                                                                              
                                                                             </td>
                                                                            
                                                                             <td class="name">Escurridor</td>
@@ -391,13 +385,13 @@
                                                                             <td>
                                                                                 <div class="d-flex gap-2">
                                                                                     <div class="edit">
-                                                                                        <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalVer">Ver</button>
+                                                                                        <button class="btn btn-sm btn-success edit-item-btn" href="">Ver Detalles</button>
                                                                                     </div>
                                                                                     <div class="edit">
                                                                                         <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalEditar">Editar</button>
                                                                                     </div>
                                                                                     <div class="remove" id="removeItemModal">
-                                                                                        <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Eliminar</button>
+                                                                                        <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Borrar</button>
                                                                                     </div>
                                                                                 </div>
                                                                             </td>

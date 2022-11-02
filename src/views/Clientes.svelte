@@ -263,7 +263,7 @@
                                                     <td>
                                                         <div class="d-flex gap-2">
                                                             <div class="edit">
-                                                                <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalVer">Ver Detalles</button>
+                                                                <button class="btn btn-sm btn-success edit-item-btn" href="#!">Ver Detalles</button>
                                                             </div>
                                                             <div class="edit">
                                                                 <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalEditar">Editar</button>
@@ -439,57 +439,7 @@
                                     
 
 
-                                        <!-- removeItemModal -->
-                                    <div id="removeItemModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="mt-2 text-center">
-                                                        <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
-                                                        <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                                            <h4>Estás seguro?</h4>
-                                                            <p class="text-muted mx-4 mb-0">Estás seguro de querer eliminar este cliente ?</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                                                        <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Cerrar</button>
-                                                    <button type="button" class="btn w-sm btn-danger " id="delete-product">Sí, borralo!</button>
-                                                    </div>
-                                                </div>
-
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
-
-
-
-                                    <!--start back-to-top-->
-                                    <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
-                                        <i class="ri-arrow-up-line"></i>
-                                    </button>
-                                    <!--end back-to-top-->
-
-                                    <!--preloader-->
-                                    <div id="preloader">
-                                        <div id="status">
-                                            <div class="spinner-border text-primary avatar-sm" role="status">
-                                                <span class="visually-hidden">Cargando...</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="customizer-setting d-none d-md-block">
-                                        <div class="btn-info btn-rounded shadow-lg btn btn-icon btn-lg p-2" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
-                                            <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
-                                        </div>
-                                    </div>
-
-
-
-
+                                      
                                     
 
                                 </div>

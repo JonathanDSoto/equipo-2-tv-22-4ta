@@ -276,21 +276,7 @@
                                                     </div>
                                                 </div>
                                               
-                                                <div class="col-lg-3 col-sm-6">
-                                                    <div class="p-2 border border-dashed rounded">
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="avatar-sm me-2">
-                                                                <div class="avatar-title rounded bg-transparent text-success fs-24">
-                                                                    <i class="ri-stack-fill"></i>
-                                                                </div>
-                                                            </div>
-                                                            <div class="flex-grow-1">
-                                                                <p class="text-muted mb-1">Stock Disponible :</p>
-                                                                <h5 class="mb-0">1,230</h5>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                               
                                                 
                                             </div>
 
@@ -406,7 +392,7 @@
                                                                             <td>
                                                                                 <div class="d-flex gap-2">
                                                                                     <div class="edit">
-                                                                                        <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalVer">Ver</button>
+                                                                                        <button class="btn btn-sm btn-success edit-item-btn" href="">Ver Detalles</button>
                                                                                     </div>
                                                                                     <div class="edit">
                                                                                         <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalEditar">Editar</button>

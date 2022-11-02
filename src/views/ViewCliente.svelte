@@ -224,16 +224,12 @@
                             </div>
                             <div class="pt-4 mb-4 mb-lg-3 pb-lg-4">
                                 <div class="row g-4">
-                                    <div class="col-auto">
-                                        <div class="avatar-lg">
-                                            <img src="http://localhost:8080/images/users/avatar-1.jpg" alt="user-img" class="img-thumbnail rounded-circle" />
-                                        </div>
-                                    </div>
+                                    
                                     <!--end col-->
                                     <div class="col">
                                         <div class="p-2">
                                             <h3 class="text-white mb-1">Anna Adame</h3>
-                                            <p class="text-white-75">Owner & Founder</p>
+                                            <p class="text-white-75">Cliente Nivel:</p>
                                             <div class="hstack text-white-50 gap-1">
                                                 
                                             </div>
@@ -295,11 +291,7 @@
                                                                                                 <div class="flex-grow-1">
                                                                                                     <p class="text-uppercase fw-medium text-white-50 mb-0">Total de Compras</p>
                                                                                                 </div>
-                                                                                                <div class="flex-shrink-0">
-                                                                                                    <h5 class="text-warning fs-14 mb-0">
-                                                                                                        <i class="ri-arrow-right-down-line fs-13 align-middle"></i> -3.57 %
-                                                                                                    </h5>
-                                                                                                </div>
+                                                                                                
                                                                                             </div>
                                                                                             <div class="d-flex align-items-end justify-content-between mt-4">
                                                                                                 <div>
@@ -377,11 +369,7 @@
                                                                                     <table class="table align-middle table-nowrap" id="customerTable">
                                                                                         <thead class="table-light">
                                                                                             <tr>
-                                                                                                <th scope="col" style="width: 50px;">
-                                                                                                    <div class="form-check">
-                                                                                                        <input class="form-check-input" type="checkbox" id="checkAll" value="option">
-                                                                                                    </div>
-                                                                                                </th>
+                                                                                                
                                                                                                 
                                                                                                 <th data-sort="street">Calle y número</th>
                                                                                                 <th data-sort="code">Código postal</th>
@@ -393,11 +381,7 @@
                                                                                         </thead>
                                                                                         <tbody class="list form-check-all">
                                                                                             <tr>
-                                                                                                <th scope="row">
-                                                                                                    <div class="form-check">
-                                                                                                        <input class="form-check-input" type="checkbox" name="chk_child" value="option1">
-                                                                                                    </div>
-                                                                                                </th>
+                                                                                                
                                                                                                 
                                                                                                 
                                                                                                 <td class="street">16 de Septiembre</td>
