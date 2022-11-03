@@ -51,7 +51,7 @@
                 <span data-key="t-menu">Menu</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link menu-link" href="#sidebarDashboards">
+                <a class="nav-link menu-link" href="/users">
                     <i class="mdi mdi-speedometer" />
                     <span data-key="t-dashboards">Usuarios</span>
                 </a>

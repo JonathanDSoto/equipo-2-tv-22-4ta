@@ -10,6 +10,8 @@
     import Test from './views/Test.svelte';
 
     import Users from './views/Users.svelte';
+    import UsersView from './views/UserDetails.svelte';
+
     import Clientes from './views/Clientes.svelte';
     import Products from './views/Products.svelte';
     import ViewUser from './views/ViewUser.svelte';
@@ -34,6 +36,11 @@
         <Route path="/profileSettings" component={ProfileSettings} />
 
         <Route path="/users" component={Users} />
+
+        <Route path="/users/:id" let:params>
+            <UsersView id="{params.id}" />
+        </Route>
+
         <Route path="/clientes" component={Clientes} />
         <Route path="/products" component={Products} />
         <Route path="/viewUser" component={ViewUser} />
@@ -47,6 +54,7 @@
         <Route path="/test/:id" let:params>
             <Test id="{params.id}" />
         </Route>
+        
         <!-- 404 -->
         <Route path="/*" component={NotFound} />
     </div>
