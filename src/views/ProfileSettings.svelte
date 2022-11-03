@@ -76,8 +76,7 @@
     }
 
     async function sendToLogin(e) {
-        e.preventDefault();
-
+        // e.preventDefault();
         Swal.fire({
             title: 'Regresaras al login',
             text: 'Inicia Sesion de nuevo para ver los cambios realizados en tu perfil',
@@ -86,7 +85,8 @@
             confirmButtonText: 'Aceptar',
         }).then((result) => {
             if (result.value) {
-                location.href = '/';
+                // location.href = '/';
+                console.log("Hola")
             }
         });
     }
@@ -200,7 +200,7 @@
                             <div class="card mt-n5">
                                 <div class="card-body p-4">
                                     <form
-                                        method="post"
+                                        method="POST"
                                         action="http://localhost/app/UserController.php"
                                         enctype="multipart/form-data"
                                     >
@@ -221,7 +221,7 @@
                                                         type="file"
                                                         class="profile-img-file-input"
                                                         name="cover"
-                                                        on:click|once={btnSendImage}
+                                                        on:click={btnSendImage}
                                                     />
                                                     <label
                                                         for="profile-img-file-input"
@@ -248,7 +248,7 @@
                                                         <button
                                                             type="submit"
                                                             class="btn btn-success btn-profile"
-                                                            on:click|once={sendToLogin}
+                                                            on:click={sendToLogin}
                                                             >Aceptar</button
                                                         >
                                                     </div>

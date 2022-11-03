@@ -211,7 +211,7 @@
             CURLOPT_POSTFIELDS => array('id' => $id,
             'profile_photo_file'=> new CURLFILE($_FILES['cover']['tmp_name'])),
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' .$key_token
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
             ),
             ));
 
@@ -219,7 +219,7 @@
             curl_close($curl);
             $response = json_decode($response);
             if (isset($response->code) && $response->code > 0) {
-				return true;
+				header("Location:".BASE_PATH);
         	}else{
 				return false;
 			}
