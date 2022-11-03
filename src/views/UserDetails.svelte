@@ -15,6 +15,11 @@
     // Se guarda en una variable para poder usar la variable global
     const number = $preferences;
 
+    // Si el numero es igual a 0 significa que no existe ninguna session activa y lo regresa al login
+    if (number == 0) {
+        location.href = '/';
+    }
+
     var requestOptions = {
         method: 'GET',
         headers: myHeaders,
@@ -109,7 +114,7 @@
                                     <div
                                         class="page-title-box d-sm-flex align-items-center justify-content-between"
                                     >
-                                        <h4 class="mb-sm-0">Perfil</h4>
+                                        <h4 class="mb-sm-0">Detalle de usuario</h4>
 
                                         <div class="page-title-right">
                                             <ol class="breadcrumb m-0">
@@ -142,11 +147,16 @@
                             <div class="pt-5 mb-4 mb-lg-3 pb-lg-4">
                                 <div class="row g-4">
                                     <div class="col">
-                                        <div class="avatar-lg" style="margin: 0 auto;">
+                                        <div
+                                            class="avatar-lg"
+                                            style="margin: 0 auto;"
+                                        >
                                             <img
                                                 src={data.avatar}
                                                 alt={data.name & data.lastname}
                                                 class="img-thumbnail rounded-circle"
+                                                style="width: 112px;
+                                                height: 100%;"
                                             />
                                         </div>
                                     </div>
@@ -155,7 +165,10 @@
                                     <!--end col-->
                                     <div class="col">
                                         <div class="p-2">
-                                            <h3 class="text-white mb-1" style="text-align: center;">
+                                            <h3
+                                                class="text-white mb-1"
+                                                style="text-align: center;"
+                                            >
                                                 {data.name}
                                                 {data.lastname}
                                             </h3>

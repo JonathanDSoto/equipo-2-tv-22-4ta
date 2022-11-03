@@ -147,7 +147,7 @@
             CURLOPT_CUSTOMREQUEST => 'PUT',
             CURLOPT_POSTFIELDS => 'name='.$name.'&lastname='.$lastname.'&email='.$email.'&phone_number='.$phone.'&created_by=jonathan%20soto&role=Administrador&password='.$password.'&id='.$id,
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' .$key_token,
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf',
                 'Content-Type: application/x-www-form-urlencoded'
             ),
             ));

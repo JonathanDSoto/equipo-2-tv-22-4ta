@@ -15,6 +15,11 @@
     // Se guarda en una variable para poder usar la variable global
     const number = $preferences;
 
+    // Si el numero es igual a 0 significa que no existe ninguna session activa y lo regresa al login
+    if (number == 0) {
+        location.href = '/';
+    }
+
     var myHeaders = new Headers();
     myHeaders.append('Authorization', `${process.env.BEARER_KEY}`);
 
@@ -247,8 +252,7 @@
                                                                             >
                                                                                 <a
                                                                                     class="btn btn-sm btn-success edit-item-btn"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#showModalEditar"
+                                                                                    href="/users/settings/{dataUsers.id}"
                                                                                     >Editar</a
                                                                                 >
                                                                             </div>

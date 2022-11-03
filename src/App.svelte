@@ -11,6 +11,7 @@
 
     import Users from './views/Users.svelte';
     import UsersView from './views/UserDetails.svelte';
+    import UserSettings from './views/UserSettings.svelte';
 
     import Clientes from './views/Clientes.svelte';
     import Products from './views/Products.svelte';
@@ -40,6 +41,12 @@
         <Route path="/users/:id" let:params>
             <UsersView id="{params.id}" />
         </Route>
+
+        <Route path="/users/settings/:id" let:params>
+            <UserSettings id="{params.id}" />
+        </Route>
+
+        
 
         <Route path="/clientes" component={Clientes} />
         <Route path="/products" component={Products} />
