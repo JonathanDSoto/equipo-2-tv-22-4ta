@@ -65,7 +65,8 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-			    'Authorization: Bearer '.$_SESSION['token']
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
             ),
             ));
 
@@ -91,7 +92,8 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-			    'Authorization: Bearer '.$_SESSION['token']
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
             ),
             ));
 
@@ -118,7 +120,8 @@
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array('description' => $descripcion,'code' => $code,'weight_in_grams' => $peso,'status' => $status,'cover'=> new CURLFILE($_FILES['cover']['tmp_name']),'stock' => $stock,'stock_min' => $stock_min,'stock_max' => $stock_max,'product_id' => $product_id),
             CURLOPT_HTTPHEADER => array(
-			    'Authorization: Bearer '.$_SESSION['token']
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
             ),
             ));
 
@@ -149,7 +152,8 @@
             CURLOPT_CUSTOMREQUEST => 'PUT',
             CURLOPT_POSTFIELDS => 'description='.$descripcion.'&code='.$code.'&weight_in_grams='.$peso.'&status='.$status.'&stock='.$stock.'&stock_min='.$stock_min.'&stock_max='.$stock_max.'&product_id='.$product_id.'&id='.$id,
             CURLOPT_HTTPHEADER => array(
-			    'Authorization: Bearer '.$_SESSION['token'],
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+                ,
                 'Content-Type: application/x-www-form-urlencoded'
             ),
             ));
@@ -181,7 +185,8 @@
             CURLOPT_CUSTOMREQUEST => 'PUT',
             CURLOPT_POSTFIELDS => 'id='.$id.'&amount='.$amount,
             CURLOPT_HTTPHEADER => array(
-			    'Authorization: Bearer '.$_SESSION['token'],
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+                ,
                 'Content-Type: application/x-www-form-urlencoded'
             ),
             ));
@@ -212,7 +217,8 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'DELETE',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: '.$_SESSION['token']
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
             ),
             ));
 

@@ -39,8 +39,9 @@
 					$id = strip_tags($_POST['id']);
 					
 					$userController = new UserController();
-					echo json_encode($userController->UpdateAvatar($id));
+					$userController->UpdateAvatar($id);
 				break;
+
 			}
 
 		}
@@ -63,7 +64,8 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'GET',
             CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' .$key_token
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
             ),
             ));
 
@@ -90,7 +92,8 @@
             CURLOPT_CUSTOMREQUEST => 'POST',
             CURLOPT_POSTFIELDS => array('name' => $name ,'lastname' => $lastname,'email' => $email,'phone_number' => $phone,'created_by' => 'jonathan soto','role' => 'Administrador','password' => $password,'profile_photo_file'=> new CURLFILE(BASE_PATH.'public/images/users/user-dummy-img.jpg')),
             CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' .$key_token
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
             ),
             ));
 
@@ -120,7 +123,8 @@
               CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
               CURLOPT_CUSTOMREQUEST => 'GET',
               CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer ' .$key_token
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
               ),
             ));
             
@@ -130,6 +134,7 @@
 
                 // pendiente....
         }
+
 
         //Update users
         public function UpdateUser($name,$lastname,$email,$phone,$password,$id)
@@ -147,7 +152,8 @@
             CURLOPT_CUSTOMREQUEST => 'PUT',
             CURLOPT_POSTFIELDS => 'name='.$name.'&lastname='.$lastname.'&email='.$email.'&phone_number='.$phone.'&created_by=jonathan%20soto&role=Administrador&password='.$password.'&id='.$id,
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf',
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+                ,
                 'Content-Type: application/x-www-form-urlencoded'
             ),
             ));
@@ -178,7 +184,8 @@
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'DELETE',
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' .$key_token
+                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
             ),
             ));
 
@@ -219,8 +226,8 @@
             curl_close($curl);
             $response = json_decode($response);
             if (isset($response->code) && $response->code > 0) {
-				header("Location:".BASE_PATH);
-        	}else{
+				// header("Location:".BASE_PATH."profileSettings");
+			}else{
 				return false;
 			}
         }

@@ -64,7 +64,8 @@
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'GET',
 			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer '.$_SESSION['token'],
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
 			),
 			));
 
@@ -116,7 +117,8 @@
 			CURLOPT_CUSTOMREQUEST => 'POST',
 			CURLOPT_POSTFIELDS => array('name' => $name,'code' => $code,'percentage_discount' => $porcentage,'min_amount_required' => $min_amount,'min_product_required' => $min_product,'start_date' => $start_date,'end_date' => $end_date,'max_uses' => $max_uses,'count_uses' => $count_uses,'valid_only_first_purchase' => $valid_only_first,'status' => $status),
 			CURLOPT_HTTPHEADER => array(
-			    'Authorization: Bearer '.$_SESSION['token']
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
 			),
 			));
 
@@ -149,7 +151,8 @@
 			CURLOPT_CUSTOMREQUEST => 'PUT',
 			CURLOPT_POSTFIELDS => 'name='.$name.'&code='.$name.'&percentage_discount='.$name.'&min_amount_required='.$name.'&min_product_required='.$name.'&start_date='.$name.'&end_date='.$name.'&max_uses='.$name.'&count_uses='.$name.'&valid_only_first_purchase='.$name.'&status='.$name.'&id='.$name,
 			CURLOPT_HTTPHEADER => array(
-			    'Authorization: Bearer '.$_SESSION['token'],
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+				,
 				'Content-Type: application/x-www-form-urlencoded'
 			),
 			));
@@ -181,7 +184,8 @@
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'DELETE',
 			CURLOPT_HTTPHEADER => array(
-			    'Authorization: Bearer '.$_SESSION['token']
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
 			),
 			));
 

@@ -61,7 +61,8 @@
 			CURLOPT_CUSTOMREQUEST => 'POST',
 			CURLOPT_POSTFIELDS => array('name' => $name,'slug' => $slug,'description' => $description,'features' => $features,'brand_id' => $brand_id,'cover'=> new CURLFILE($_FILES['cover']['tmp_name']),'categories[0]' => $categories_id_0,'categories[1]' => $categories_id_0,'tags[0]' => $tags_id_0,'tags[1]' => $tags_id_1),
 			CURLOPT_HTTPHEADER => array(
-			    'Authorization: Bearer '.$_SESSION['token']
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
 			),
 			));
 
@@ -93,7 +94,8 @@
 			CURLOPT_CUSTOMREQUEST => 'PUT',
 			CURLOPT_POSTFIELDS => 'name='.$name.'&slug='.$slug.'&description='.$description.'&features='.$features.'&brand_id='.$brand_id.'&id='.$id.'&categories%5B0%5D='.$categories_id_0.'&categories%5B1%5D='.$categories_id_1.'&tags%5B0%5D='.$tags_id_0.'&tags%5B1%5D='.$tags_id_1,
 			CURLOPT_HTTPHEADER => array(
-			    'Authorization: Bearer '.$_SESSION['token'],
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+				,
 				'Content-Type: application/x-www-form-urlencoded'
 			),
 			));
@@ -125,7 +127,8 @@
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'DELETE',
 			CURLOPT_HTTPHEADER => array(
-			    'Authorization: Bearer '.$_SESSION['token']
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
 			),
 			));
 

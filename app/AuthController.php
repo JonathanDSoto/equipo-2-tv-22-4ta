@@ -1,7 +1,9 @@
 <?php 
 	include "header_params.php";
 	include "config.php";
+	global $key_token;
 
+	
 	if (isset($_POST["action"])) {
 			switch($_POST['action'])
 			{
@@ -50,7 +52,7 @@
 			$response = json_decode($response);
 
 			if (isset($response->code) && $response->code > 0) { 
-
+				global $key_token;
 				$key_token = $response->data->token;
 				return $response;
 				

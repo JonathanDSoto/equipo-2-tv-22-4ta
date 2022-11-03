@@ -57,7 +57,8 @@
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'GET',
 			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer '.$_SESSION['token']
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
 			),
 			));
 
@@ -82,7 +83,8 @@
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'GET',
 			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer '.$_SESSION['token']
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
 			),
 			));
 
@@ -107,7 +109,8 @@
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'GET',
 			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer '.$_SESSION['token']
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
 			),
 			));
 
@@ -136,7 +139,8 @@
 			'presentations[0][id]' => $presentations1_id,'presentations[0][quantity]' => $presentations1_prices,
 			'presentations[1][id]' => $presentations2_id,'presentations[1][quantity]' => $presentations2_prices),
 			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer '.$_SESSION['token']
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
 			),
 			));
 
@@ -168,7 +172,8 @@
 			CURLOPT_CUSTOMREQUEST => 'PUT',
 			CURLOPT_POSTFIELDS => 'id='.$id.'&order_status_id='.$order_status_id,
 			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer '.$_SESSION['token'],
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+				,
 				'Content-Type: application/x-www-form-urlencoded'
 			),
 			));
@@ -200,7 +205,8 @@
 			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 			CURLOPT_CUSTOMREQUEST => 'DELETE',
 			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer '.$_SESSION['token']
+				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
+
 			),
 			));
 
