@@ -96,16 +96,15 @@
             .post('http://localhost/app/UserController.php', bodyForm)
             .then(function (response) {
                 if (response) {
-                    console.log(response);
                     Swal.fire({
-                        title: 'Regresaras al login',
-                        text: 'Inicia Sesion de nuevo para ver los cambios realizados en el usuario modificado',
+                        title: 'Recargara ventana',
+                        text: 'Se recargara la pagina para ver tu nuevos cambios :)',
                         icon: 'info',
                         showCancelButton: false,
                         confirmButtonText: 'Aceptar',
                     }).then((result) => {
                         if (result.value) {
-                            location.href = '/';
+                            location.reload();
                         }
                     });
                 } else {
@@ -119,14 +118,14 @@
         e.preventDefault();
 
         Swal.fire({
-            title: 'Regresaras al login',
-            text: 'Inicia Sesion de nuevo para ver los cambios realizados en el usuario',
+            title: 'Recargara ventana',
+            text: 'Se recargara la pagina para ver tu nueva foto de perfil :)',
             icon: 'info',
             showCancelButton: false,
             confirmButtonText: 'Aceptar',
         }).then((result) => {
             if (result.value) {
-                location.href = '/';
+                location.reload();
             }
         });
     }

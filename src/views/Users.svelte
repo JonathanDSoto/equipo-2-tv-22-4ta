@@ -3,6 +3,8 @@
     import HeaderApp from '../components/HeaderApp.svelte';
     import Sidebar from '../components/Sidebar.svelte';
 
+    import Swal from 'sweetalert2';
+
     // Transiciones
     import { fly } from 'svelte/transition';
     import { fade } from 'svelte/transition';
@@ -45,6 +47,71 @@
         );
         const dataUsers = await res.json();
         return dataUsers.data;
+    }
+
+    function newUserReload() {
+        setTimeout(() => {
+            Swal.fire({
+                title: 'Recargara ventana',
+                text: 'Se recargara la pagina para ver tu nuevos cambios :)',
+                icon: 'info',
+                showCancelButton: false,
+                confirmButtonText: 'Aceptar',
+            }).then((result) => {
+                if (result.value) {
+                    location.reload();
+                }
+            });
+        }, 2000);
+    }
+
+    async function deleteUser(idUser) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger',
+            },
+            buttonsStyling: false,
+        });
+        let requestOptionsDelete = {
+            method: 'DELETE',
+            headers: myHeaders,
+            redirect: 'follow',
+        };
+
+        swalWithBootstrapButtons
+            .fire({
+                title: 'Seguro que quieres eliminar el usuario?',
+                text: 'No podras revertir los cambios',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Si, eliminalo!',
+                cancelButtonText: 'No, cancelar!',
+                reverseButtons: true,
+            })
+            .then(async (result) => {
+                if (result.isConfirmed) {
+                    const res = await fetch(
+                        `https://crud.jonathansoto.mx/api/users/${idUser}`,
+                        requestOptionsDelete
+                    );
+                    const data = await res.json();
+                    if (data.code > 0) {
+                        location.reload();
+                        swalWithBootstrapButtons.fire(
+                            'Eliminado!',
+                            'El usuario ha sido eliminado.',
+                            'success'
+                        );
+                    }
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'Tu usuario esta a salvo :)',
+                        'error'
+                    );
+                }
+            });
     }
 </script>
 
@@ -260,11 +327,13 @@
                                                                                 class="remove"
                                                                                 id="removeItemModal"
                                                                             >
-                                                                                <a
+                                                                                <button
                                                                                     class="btn btn-sm btn-danger remove-item-btn"
-                                                                                    data-bs-toggle="modal"
-                                                                                    data-bs-target="#deleteRecordModal"
-                                                                                    >Borrar</a
+                                                                                    on:click|preventDefault={() =>
+                                                                                        deleteUser(
+                                                                                            dataUsers.id
+                                                                                        )}
+                                                                                    >Borrar</button
                                                                                 >
                                                                             </div>
                                                                         </div>
@@ -299,570 +368,6 @@
                                                     </p>
                                                 </div>
                                             </div>
-                                            <div
-                                                class="modal fade"
-                                                id="showModalEditar"
-                                                tabindex="-1"
-                                                aria-labelledby="exampleModalLabel"
-                                                aria-hidden="true"
-                                            >
-                                                <div
-                                                    class="modal-dialog modal-dialog-centered"
-                                                >
-                                                    <div class="modal-content">
-                                                        <div
-                                                            class="modal-header bg-light p-3"
-                                                        >
-                                                            <h5
-                                                                class="modal-title"
-                                                                id="exampleModalLabel"
-                                                            >
-                                                                Editar Usuario
-                                                            </h5>
-                                                            <button
-                                                                type="button"
-                                                                class="btn-close"
-                                                                data-bs-dismiss="modal"
-                                                                aria-label="Close"
-                                                                id="close-modal"
-                                                            />
-                                                        </div>
-                                                        <form>
-                                                            <div
-                                                                class="modal-body"
-                                                            >
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="foto-field"
-                                                                        class="form-label"
-                                                                        >Foto</label
-                                                                    >
-
-                                                                    <div
-                                                                        class="card-body p-4"
-                                                                    >
-                                                                        <div
-                                                                            class="text-center"
-                                                                        >
-                                                                            <div
-                                                                                class="profile-user position-relative d-inline-block mx-auto  mb-4"
-                                                                            >
-                                                                                <img
-                                                                                    src="http://localhost:8080/images/users/avatar-1.jpg"
-                                                                                    class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow"
-                                                                                    alt="user-profile-image"
-                                                                                />
-                                                                                <div
-                                                                                    class="avatar-xs p-0 rounded-circle profile-photo-edit"
-                                                                                >
-                                                                                    <input
-                                                                                        id="profile-img-file-input"
-                                                                                        type="file"
-                                                                                        class="profile-img-file-input"
-                                                                                    />
-                                                                                    <label
-                                                                                        for="profile-img-file-input"
-                                                                                        class="profile-photo-edit avatar-xs"
-                                                                                    >
-                                                                                        <span
-                                                                                            class="avatar-title rounded-circle bg-light text-body shadow"
-                                                                                        >
-                                                                                            <i
-                                                                                                class="ri-camera-fill"
-                                                                                            />
-                                                                                        </span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="name-field"
-                                                                        class="form-label"
-                                                                        >Nombre</label
-                                                                    >
-                                                                    <input
-                                                                        type="text"
-                                                                        id="name-field"
-                                                                        class="form-control"
-                                                                        placeholder="Nombre"
-                                                                        required
-                                                                    />
-                                                                </div>
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="lastname-field"
-                                                                        class="form-label"
-                                                                        >Apellido</label
-                                                                    >
-                                                                    <input
-                                                                        type="text"
-                                                                        id="lastname-field"
-                                                                        class="form-control"
-                                                                        placeholder="Apellido"
-                                                                        required
-                                                                    />
-                                                                </div>
-
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="email-field"
-                                                                        class="form-label"
-                                                                        >Correo</label
-                                                                    >
-                                                                    <input
-                                                                        type="email"
-                                                                        id="email-field"
-                                                                        class="form-control"
-                                                                        placeholder="Correo"
-                                                                        required
-                                                                    />
-                                                                </div>
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="phone-field"
-                                                                        class="form-label"
-                                                                        >Teléfono</label
-                                                                    >
-                                                                    <input
-                                                                        type="text"
-                                                                        id="phone-field"
-                                                                        class="form-control"
-                                                                        placeholder="Número de Teléfono"
-                                                                        required
-                                                                    />
-                                                                </div>
-
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="password-field"
-                                                                        class="form-label"
-                                                                        >Contraseña</label
-                                                                    >
-                                                                    <input
-                                                                        type="text"
-                                                                        id="password-field"
-                                                                        class="form-control"
-                                                                        placeholder="Contraseña"
-                                                                        required
-                                                                    />
-                                                                </div>
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="role-field"
-                                                                        class="form-label"
-                                                                        >Rol</label
-                                                                    >
-                                                                    <input
-                                                                        type="text"
-                                                                        id="role-field"
-                                                                        class="form-control"
-                                                                        placeholder="Número de Teléfono"
-                                                                        required
-                                                                    />
-                                                                </div>
-
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="createdby-field"
-                                                                        class="form-label"
-                                                                        >Creado
-                                                                        por</label
-                                                                    >
-                                                                    <input
-                                                                        type="text"
-                                                                        id="createdby-field"
-                                                                        class="form-control"
-                                                                        placeholder="Contraseña"
-                                                                        required
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="modal-footer"
-                                                            >
-                                                                <div
-                                                                    class="hstack gap-2 justify-content-end"
-                                                                >
-                                                                    <button
-                                                                        type="button"
-                                                                        class="btn btn-light"
-                                                                        data-bs-dismiss="modal"
-                                                                        >Cerrar</button
-                                                                    >
-                                                                    <button
-                                                                        type="submit"
-                                                                        class="btn btn-success"
-                                                                        id="add-btn"
-                                                                        >Guardar
-                                                                        cambios</button
-                                                                    >
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div
-                                                class="modal fade"
-                                                id="showModalAñadir"
-                                                tabindex="-1"
-                                                aria-labelledby="exampleModalLabel"
-                                                aria-hidden="true"
-                                            >
-                                                <div
-                                                    class="modal-dialog modal-dialog-centered"
-                                                >
-                                                    <div class="modal-content">
-                                                        <div
-                                                            class="modal-header bg-light p-3"
-                                                        >
-                                                            <h5
-                                                                class="modal-title"
-                                                                id="exampleModalLabel"
-                                                            >
-                                                                Añadir Nuevo
-                                                                Usuario
-                                                            </h5>
-                                                            <button
-                                                                type="button"
-                                                                class="btn-close"
-                                                                data-bs-dismiss="modal"
-                                                                aria-label="Close"
-                                                                id="close-modal"
-                                                            />
-                                                        </div>
-                                                        <form>
-                                                            <div
-                                                                class="modal-body"
-                                                            >
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="foto-field"
-                                                                        class="form-label"
-                                                                        >Foto</label
-                                                                    >
-
-                                                                    <div
-                                                                        class="card-body p-4"
-                                                                    >
-                                                                        <div
-                                                                            class="text-center"
-                                                                        >
-                                                                            <div
-                                                                                class="profile-user position-relative d-inline-block mx-auto  mb-4"
-                                                                            >
-                                                                                <img
-                                                                                    src="http://localhost:8080/images/users/avatar-1.jpg"
-                                                                                    class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow"
-                                                                                    alt="user-profile-image"
-                                                                                />
-                                                                                <div
-                                                                                    class="avatar-xs p-0 rounded-circle profile-photo-edit"
-                                                                                >
-                                                                                    <input
-                                                                                        id="profile-img-file-input"
-                                                                                        type="file"
-                                                                                        class="profile-img-file-input"
-                                                                                    />
-                                                                                    <label
-                                                                                        for="profile-img-file-input"
-                                                                                        class="profile-photo-edit avatar-xs"
-                                                                                    >
-                                                                                        <span
-                                                                                            class="avatar-title rounded-circle bg-light text-body shadow"
-                                                                                        >
-                                                                                            <i
-                                                                                                class="ri-camera-fill"
-                                                                                            />
-                                                                                        </span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="name-field"
-                                                                        class="form-label"
-                                                                        >Nombre</label
-                                                                    >
-                                                                    <input
-                                                                        type="text"
-                                                                        id="name-field"
-                                                                        class="form-control"
-                                                                        placeholder="Ingresar Nombre"
-                                                                        required
-                                                                    />
-                                                                </div>
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="lastname-field"
-                                                                        class="form-label"
-                                                                        >Apellido</label
-                                                                    >
-                                                                    <input
-                                                                        type="text"
-                                                                        id="lastname-field"
-                                                                        class="form-control"
-                                                                        placeholder="Ingresar Apellido"
-                                                                        required
-                                                                    />
-                                                                </div>
-
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="email-field"
-                                                                        class="form-label"
-                                                                        >Correo</label
-                                                                    >
-                                                                    <input
-                                                                        type="email"
-                                                                        id="email-field"
-                                                                        class="form-control"
-                                                                        placeholder="Ingresar Correo"
-                                                                        required
-                                                                    />
-                                                                </div>
-
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="phone-field"
-                                                                        class="form-label"
-                                                                        >Teléfono</label
-                                                                    >
-                                                                    <input
-                                                                        type="text"
-                                                                        id="phone-field"
-                                                                        class="form-control"
-                                                                        placeholder="Ingresar Número de Teléfono"
-                                                                        required
-                                                                    />
-                                                                </div>
-
-                                                                <div
-                                                                    class="mb-3"
-                                                                >
-                                                                    <label
-                                                                        for="password-field"
-                                                                        class="form-label"
-                                                                        >Contraseña</label
-                                                                    >
-                                                                    <input
-                                                                        type="text"
-                                                                        id="password-field"
-                                                                        class="form-control"
-                                                                        placeholder="Ingresar Contraseña"
-                                                                        required
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="modal-footer"
-                                                            >
-                                                                <div
-                                                                    class="hstack gap-2 justify-content-end"
-                                                                >
-                                                                    <button
-                                                                        type="button"
-                                                                        class="btn btn-light"
-                                                                        data-bs-dismiss="modal"
-                                                                        >Cerrar</button
-                                                                    >
-                                                                    <button
-                                                                        type="button"
-                                                                        class="btn btn-success"
-                                                                        id="edit-btn"
-                                                                        >Añadir
-                                                                        Usuario</button
-                                                                    >
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <!-- Modal -->
-                                            <div
-                                                class="modal fade zoomIn"
-                                                id="deleteRecordModal"
-                                                tabindex="-1"
-                                                aria-hidden="true"
-                                            >
-                                                <div
-                                                    class="modal-dialog modal-dialog-centered"
-                                                >
-                                                    <div class="modal-content">
-                                                        <div
-                                                            class="modal-header"
-                                                        >
-                                                            <button
-                                                                type="button"
-                                                                class="btn-close"
-                                                                data-bs-dismiss="modal"
-                                                                aria-label="Close"
-                                                                id="btn-close"
-                                                            />
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div
-                                                                class="mt-2 text-center"
-                                                            >
-                                                                <lord-icon
-                                                                    src="https://cdn.lordicon.com/gsqxdxog.json"
-                                                                    trigger="loop"
-                                                                    colors="primary:#f7b84b,secondary:#f06548"
-                                                                    style="width:100px;height:100px"
-                                                                />
-                                                                <div
-                                                                    class="mt-4 pt-2 fs-15 mx-4 mx-sm-5"
-                                                                >
-                                                                    <h4>
-                                                                        Estás
-                                                                        seguro ?
-                                                                    </h4>
-                                                                    <p
-                                                                        class="text-muted mx-4 mb-0"
-                                                                    >
-                                                                        ¿Estás
-                                                                        seguro
-                                                                        de
-                                                                        eliminar
-                                                                        el
-                                                                        usuario?
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="d-flex gap-2 justify-content-center mt-4 mb-2"
-                                                            >
-                                                                <button
-                                                                    type="button"
-                                                                    class="btn w-sm btn-light"
-                                                                    data-bs-dismiss="modal"
-                                                                    >Cerrar</button
-                                                                >
-                                                                <button
-                                                                    type="button"
-                                                                    class="btn w-sm btn-danger "
-                                                                    id="delete-record"
-                                                                    >Sí, borrar
-                                                                    usuario!</button
-                                                                >
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--end modal -->
-
-                                            <!-- removeItemModal -->
-                                            <div
-                                                id="removeItemNodal"
-                                                class="modal fade zoomIn"
-                                                tabindex="-1"
-                                                aria-hidden="true"
-                                            >
-                                                <div
-                                                    class="modal-dialog modal-dialog-centered"
-                                                >
-                                                    <div class="modal-content">
-                                                        <div
-                                                            class="modal-header"
-                                                        >
-                                                            <button
-                                                                type="button"
-                                                                class="btn-close"
-                                                                data-bs-dismiss="modal"
-                                                                aria-label="Close"
-                                                                id="btn-close"
-                                                            />
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div
-                                                                class="mt-2 text-center"
-                                                            >
-                                                                <lord-icon
-                                                                    src="https://cdn.lordicon.com/gsqxdxog.json"
-                                                                    trigger="loop"
-                                                                    colors="primary:#f7b84b,secondary:#f06548"
-                                                                    style="width:100px;height:100px"
-                                                                />
-                                                                <div
-                                                                    class="mt-4 pt-2 fs-15 mx-4 mx-sm-5"
-                                                                >
-                                                                    <h4>
-                                                                        ¿Estás
-                                                                        seguro?
-                                                                    </h4>
-                                                                    <p
-                                                                        class="text-muted mx-4 mb-0"
-                                                                    >
-                                                                        Estás
-                                                                        seguro
-                                                                        que
-                                                                        quieres
-                                                                        eliminar
-                                                                        este
-                                                                        usuario
-                                                                    </p>
-                                                                </div>
-                                                            </div>
-                                                            <div
-                                                                class="d-flex gap-2 justify-content-center mt-4 mb-2"
-                                                            >
-                                                                <button
-                                                                    type="button"
-                                                                    class="btn w-sm btn-light"
-                                                                    data-bs-dismiss="modal"
-                                                                    >Cerrar</button
-                                                                >
-                                                                <button
-                                                                    type="button"
-                                                                    class="btn w-sm btn-danger "
-                                                                    id="delete-product"
-                                                                    >Sí, borrar
-                                                                    usuario!</button
-                                                                >
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- /.modal-content -->
-                                                </div>
-                                                <!-- /.modal-dialog -->
-                                            </div>
-                                            <!-- /.modal -->
 
                                             <!--start back-to-top-->
                                             <button
@@ -888,6 +393,167 @@
                 <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
+
+            <!-- Modal agregar usuario -->
+            <div
+                class="modal fade"
+                id="showModalAñadir"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+            >
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header bg-light p-3">
+                            <h5 class="modal-title" id="exampleModalLabel">
+                                Añadir Nuevo Usuario
+                            </h5>
+                            <button
+                                type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"
+                                id="close-modal"
+                            />
+                        </div>
+                        <form
+                            enctype="multipart/form-data"
+                            method="POST"
+                            action="http://localhost/app/AuthController.php"
+                        >
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <label for="foto-field" class="form-label"
+                                        >Foto</label
+                                    >
+
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <div
+                                                class="profile-user position-relative d-inline-block mx-auto  mb-4"
+                                            >
+                                                <img
+                                                    src="http://localhost:8080/images/users/avatar-1.jpg"
+                                                    class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow"
+                                                    alt="user-profile"
+                                                />
+                                                <div
+                                                    class="avatar-xs p-0 rounded-circle profile-photo-edit"
+                                                >
+                                                    <input
+                                                        id="profile-img-file-input"
+                                                        type="file"
+                                                        name="cover"
+                                                        class="profile-img-file-input"
+                                                    />
+                                                    <label
+                                                        for="profile-img-file-input"
+                                                        class="profile-photo-edit avatar-xs"
+                                                    >
+                                                        <span
+                                                            class="avatar-title rounded-circle bg-light text-body shadow"
+                                                        >
+                                                            <i
+                                                                class="ri-camera-fill"
+                                                            />
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="name-field" class="form-label"
+                                        >Nombre</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="name-field"
+                                        class="form-control"
+                                        placeholder="Ingresar Nombre"
+                                        required
+                                        name="name"
+                                    />
+                                </div>
+                                <div class="mb-3">
+                                    <label
+                                        for="lastname-field"
+                                        class="form-label">Apellido</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="lastname-field"
+                                        class="form-control"
+                                        placeholder="Ingresar Apellido"
+                                        required
+                                        name="lastname"
+                                    />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="email-field" class="form-label"
+                                        >Correo</label
+                                    >
+                                    <input
+                                        type="email"
+                                        id="email-field"
+                                        class="form-control"
+                                        placeholder="Ingresar Correo"
+                                        required
+                                        name="email"
+                                    />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="phone-field" class="form-label"
+                                        >Teléfono</label
+                                    >
+                                    <input
+                                        type="text"
+                                        id="phone-field"
+                                        class="form-control"
+                                        placeholder="Ingresar Número de Teléfono"
+                                        required
+                                        name="phone_number"
+                                    />
+                                </div>
+
+                                <div class="mb-3">
+                                    <label
+                                        for="password-field"
+                                        class="form-label">Contraseña</label
+                                    >
+                                    <input
+                                        type="password"
+                                        id="password-field"
+                                        class="form-control"
+                                        placeholder="Ingresar Contraseña"
+                                        required
+                                        name="password"
+                                    />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="hstack gap-2 justify-content-end">
+                                    <button
+                                        type="button"
+                                        class="btn btn-light"
+                                        data-bs-dismiss="modal">Cerrar</button
+                                    >
+                                    <button
+                                        type="sumbit"
+                                        class="btn btn-success"
+                                        on:click={newUserReload}
+                                        id="edit-btn">Añadir Usuario</button
+                                    >
+                                </div>
+                            </div>
+                            <input type="hidden" name="action" value="create">
+                        </form>
+                    </div>
+                </div>
+            </div>
 
             <!-- end main content-->
 
