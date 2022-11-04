@@ -265,21 +265,39 @@
                                                         <div class="d-flex align-items-center">
                                                             <div class="avatar-sm me-2">
                                                                 <div class="avatar-title rounded bg-transparent text-success fs-24">
+                                                                    <i class="ri-money-dollar-circle-fill"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-grow-1">
+                                                                <p class="text-muted mb-1">Precio:</p>
+                                                                <h5 class="mb-0">$120.40</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end col -->
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <div class="p-2 border border-dashed rounded">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="avatar-sm me-2">
+                                                                <div class="avatar-title rounded bg-transparent text-success fs-24">
                                                                     <i class="ri-file-copy-2-fill"></i>
                                                                 </div>
                                                             </div>
                                                             <div class="flex-grow-1">
-                                                                <p class="text-muted mb-1">Número de Ordenes:</p>
+                                                                <p class="text-muted mb-1">No. de Ordenes :</p>
                                                                 <h5 class="mb-0">2,234</h5>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <!-- end col -->
                                               
-                                               
-                                                
                                             </div>
-
+                                            <div class="mt-4 text-muted">
+                                                <h5 class="fs-14">Slug:</h5>
+                                                <p>Sudadera-de-Manga-Completa-para-Hombre-(Rosa)</p>
+                                            </div>
                                            
 
                                             <div class="mt-4 text-muted">
@@ -289,10 +307,17 @@
                                                 esencia del estilo cool estadounidense clásico, presentando diseños preppy con un giro.</p>
                                             </div>
                                             <div class="mt-4 text-muted">
-                                                <h5 class="fs-14">Caracteristicas:</h5>
-                                                <p>Sudadera rosa de rayas de hombre Tommy Hilfiger. Confeccionado con algodón. La composición del material es 100% algodón orgánico. 
-                                                Esta es una de las marcas de estilo de vida de diseñadores líderes en el mundo y es reconocida internacionalmente por celebrar la 
-                                                esencia del estilo cool estadounidense clásico, presentando diseños preppy con un giro.</p>
+                                                <div class="col-sm-6">
+                                                    <div class="mt-3">
+                                                        <h5 class="fs-14">Características :</h5>
+                                                        <ul class="list-unstyled">
+                                                            <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> Full Sleeve</li>
+                                                            <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> Cotton</li>
+                                                            <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> All Sizes available</li>
+                                                            <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> 4 Different Color</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </div>
                                             
 
@@ -319,6 +344,10 @@
                                                                     <tr>
                                                                         <th scope="row">Marca</th>
                                                                         <td>Tommy Hilfiger</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <th scope="row">Etiquetas</th>
+                                                                        <td>Tommy</td>
                                                                     </tr>
                                                                     
                                                                 </tbody>
@@ -371,7 +400,7 @@
                                                                            
                                                                             <th class="sort" data-sort="name">Nombre</th>
                                                                             <th class="sort" data-sort="lastname">Status</th>
-                                                                            <th class="sort" data-sort="email">Monto</th>
+                                                                            <th class="sort" data-sort="monto">Monto</th>
                                                                             
                                                                             <th class="sort" data-sort="action">Acción</th>
                                                                         </tr>
@@ -384,8 +413,8 @@
                                                                             </td>
                                                                            
                                                                             <td class="name">Escurridor</td>
-                                                                            <td class="lastnmae">Active</td>
-                                                                            <td class="email">$5</td>
+                                                                            <td class="lastname">Active</td>
+                                                                            <td class="monto">$5</td>
                                                                             
                                                                             
                                                                            

@@ -196,8 +196,8 @@
         <div class="page-content">
             <div class="container-fluid">
 
-                <!-- start page title -->
-                <div class="row">
+                 <!-- start page title -->
+                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                             <h4 class="mb-sm-0">Vista de Detalle Presentaciones</h4>
@@ -213,7 +213,6 @@
                     </div>
                 </div>
                 <!-- end page title -->
-
 
                 <div class="row">
                     <div class="col-lg-12">
@@ -237,11 +236,35 @@
                                                         <img src="http://localhost:8080/images/products/img-8.png" alt="" class="img-fluid d-block" />
                                                     </div>
                                                 </div>
-                                               
+                                                <div class="swiper-button-next bg-white shadow"></div>
+                                                <div class="swiper-button-prev bg-white shadow"></div>
                                             </div>
                                             <!-- end swiper thumbnail slide -->
-                                            
-                                        
+                                            <div class="swiper product-nav-slider mt-2">
+                                                <div class="swiper-wrapper">
+                                                    <div class="swiper-slide">
+                                                        <div class="nav-slide-item">
+                                                            <img src="http://localhost:8080/images/products/img-8.png" alt="" class="img-fluid d-block" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="nav-slide-item">
+                                                            <img src="http://localhost:8080/images/products/img-6.png" alt="" class="img-fluid d-block" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="nav-slide-item">
+                                                            <img src="http://localhost:8080/images/products/img-1.png" alt="" class="img-fluid d-block" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="swiper-slide">
+                                                        <div class="nav-slide-item">
+                                                            <img src="http://localhost:8080/images/products/img-8.png" alt="" class="img-fluid d-block" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- end swiper nav slide -->
                                         </div>
                                     </div>
                                     <!-- end col -->
@@ -251,35 +274,76 @@
                                             <div class="d-flex">
                                                 <div class="flex-grow-1">
                                                     <h4>Sudadera de Manga Completa para Hombre (Rosa)</h4>
-                                                   
+                                                    
                                                 </div>
                                                 
                                             </div>
 
-                                            
+
                                             <div class="row mt-4">
-                                                
-                                                    <div class="col-lg-3 col-sm-6">
-                                                        <div class="p-2 border border-dashed rounded">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="avatar-sm me-2">
-                                                                   
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <div class="p-2 border border-dashed rounded">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="avatar-sm me-2">
+                                                                <div class="avatar-title rounded bg-transparent text-success fs-24">
+                                                                    <i class="ri-money-dollar-circle-fill"></i>
                                                                 </div>
-                                                                <div class="flex-grow-1">
-                                                                    <p class="text-muted mb-1">Price :</p>
-                                                                    <h5 class="mb-0">$120.40</h5>
-                                                                </div>
+                                                            </div>
+                                                            <div class="flex-grow-1">
+                                                                <p class="text-muted mb-1">Precio:</p>
+                                                                <h5 class="mb-0">$120.40</h5>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                
+                                                </div>
+                                                <!-- end col -->
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <div class="p-2 border border-dashed rounded">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="avatar-sm me-2">
+                                                                <div class="avatar-title rounded bg-transparent text-success fs-24">
+                                                                    <i class="ri-file-copy-2-fill"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-grow-1">
+                                                                <p class="text-muted mb-1">No. de Ordenes :</p>
+                                                                <h5 class="mb-0">2,234</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- end col -->
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <div class="p-2 border border-dashed rounded">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="avatar-sm me-2">
+                                                                <div class="avatar-title rounded bg-transparent text-success fs-24">
+                                                                    <i class="ri-stack-fill"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="flex-grow-1">
+                                                                <p class="text-muted mb-1">Stock Disponible :</p>
+                                                                <h5 class="mb-0">1,230</h5>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                 <!-- end col -->
                                             </div>
 
-                                            
+                                        
+                                            <div class="mt-4 text-muted">
+                                                <h5 class="fs-14">Descripción :</h5>
+                                                <p>Sudadera rosa de rayas de hombre Tommy Hilfiger. Confeccionado con algodón. La composición del material es 100%
+                                                algodón orgánico. Esta es una de las marcas de estilo de vida de diseñadores líderes en el mundo y es reconocida
+                                                internacionalmente por celebrar la esencia del estilo cool estadounidense clásico, presentando diseños preppy con un giro.</p>
+                                            </div>
+
+                                           
 
 
                                             <div class="product-content mt-5">
-                                                <h5 class="fs-14 mb-3">Detalles de la Presentación:</h5>
+                                                <h5 class="fs-14 mb-3">Descripción del Producto en su Presentación</h5>
                                                 <nav>
                                                     <ul class="nav nav-tabs nav-tabs-custom nav-success" id="nav-tab" role="tablist">
                                                         <li class="nav-item">
@@ -317,7 +381,6 @@
                                                                         <th scope="row" style="width: 200px;">Stock máximo</th>
                                                                         <td>100</td>
                                                                     </tr>
-                                                                    
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -328,245 +391,18 @@
                                             <!-- product-content -->
 
                                             
-                                            <!-- end card body -->
+
+
+
+
+
+
+
+
+
+
+
                                         </div>
-                                    </div>
-
-                                    <div class="col-xl-12">
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <div class="card">
-                                                    <div class="card-header">
-                                                    </div><!-- end card header -->
-                                                    
-                                                    <div class="card-body">
-                                                        <div id="customerList">
-                                                            <div class="row g-4 mb-3">
-                                                                <div class="col-sm-auto">
-                                                                    <div>
-                                                                        <h5 class="fs-14 mb-3">Presentaciones</h5>
-                                                                        <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModalAñadir"><i class="ri-add-line align-bottom me-1"></i> Añadir Presentación</button>
-                                                                       
-                                                                    </div>
-                                                                </div>
-                                                                 
-                                                            </div>
-                        
-                                                            <div class="table-responsive table-card mt-3 mb-1">
-                                                                <table class="table align-middle table-nowrap" id="customerTable">
-                                                                    <thead class="table-light">
-                                                                        <tr>
-                                                                            
-                                                                            <th class="sort" data-sort="photo">Foto</th>
-                                                                           
-                                                                            <th class="sort" data-sort="name">Nombre</th>
-                                                                            <th class="sort" data-sort="lastname">Status</th>
-                                                                            <th class="sort" data-sort="email">Monto</th>
-                                                                            
-                                                                            <th class="sort" data-sort="action">Acción</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody class="list form-check-all">
-                                                                        <tr>
-                                                                            
-                                                                            <td class="photo">
-                                                                                <div class="flex-shrink-0 avatar-md bg-light rounded p-1">
-                                                                                    <img src="http://localhost:8080/images/products/img-8.png" alt="" class="img-fluid d-block">
-                                                                                </div>
-                                                                              
-                                                                            </td>
-                                                                           
-                                                                            <td class="name">Escurridor</td>
-                                                                            <td class="lastnmae">Active</td>
-                                                                            <td class="email">$5</td>
-                                                                            
-                                                                            
-                                                                           
-                                                                            <td>
-                                                                                <div class="d-flex gap-2">
-                                                                                    <div class="edit">
-                                                                                        <button class="btn btn-sm btn-success edit-item-btn" href="">Ver Detalles</button>
-                                                                                    </div>
-                                                                                    <div class="edit">
-                                                                                        <button class="btn btn-sm btn-success edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalEditar">Editar</button>
-                                                                                    </div>
-                                                                                    <div class="remove" id="removeItemModal">
-                                                                                        <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Borrar</button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div> 
-                                                            <div class="noresult" style="display: none">
-                                                                    <div class="text-center">
-                                                                        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px">
-                                                                        </lord-icon>
-                                                                        <h5 class="mt-2">Lo sentimos! No se encontraron resultados</h5>
-                                                                        <p class="text-muted mb-0">Hemos buscado en todos los Usuarios. No encontramos ningún
-                                                                            usuario para su búsqueda.</p>
-                                                                    </div>
-                                                            </div>
-                                                            
-                        
-                                                            <div class="d-flex justify-content-end">
-                                                                <div class="pagination-wrap hstack gap-2">
-                                                                    <a class="page-item pagination-prev disabled" href="#!">
-                                                                        Anterior
-                                                                    </a>
-                                                                    <ul class="pagination listjs-pagination mb-0"></ul>
-                                                                    <a class="page-item pagination-next" href="#!">
-                                                                        Siguiente
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                            
-                                            <div class="modal fade" id="showModalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header bg-light p-3">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Editar Presentación</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
-                                                        </div>
-                                                        <form>
-                                                            <div class="modal-body">
-                                                                <div class="mb-3">
-                                                                    <label for="foto-field" class="form-label">Foto</label>
-                                                                    
-                                                                    <div class="card-body p-4">
-                                                                        <div class="text-center">
-                                                                            <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                                                                <img src="http://localhost:8080/images/users/avatar-1.jpg" class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow" alt="user-profile-image">
-                                                                                <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                                                                                    <input id="profile-img-file-input" type="file" class="profile-img-file-input">
-                                                                                    <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
-                                                                                        <span class="avatar-title rounded-circle bg-light text-body shadow">
-                                                                                            <i class="ri-camera-fill"></i>
-                                                                                        </span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                        
-                                                                <div class="mb-3">
-                                                                    <label for="name-field" class="form-label">Nombre</label>
-                                                                    <input type="text" id="name-field" class="form-control" placeholder="Enter Name" required />
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="status-field" class="form-label">Status</label>
-                                                                    <input type="text" id="status-field" class="form-control" placeholder="Enter Status" required />
-                                                                </div>
-                        
-                                                                <div class="mb-3">
-                                                                    <label for="monto-field" class="form-label">Monto</label>
-                                                                    <input type="text" id="monto-field" class="form-control" placeholder="Enter Monto" required />
-                                                                </div>
-                        
-                                                               
-                    
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <div class="hstack gap-2 justify-content-end">
-                                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
-                                                                    <button type="submit" class="btn btn-success" id="add-btn">Guardar cambios</button>
-                                                                   
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                        
-                                            <div class="modal fade" id="showModalAñadir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header bg-light p-3">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Añadir Nueva Presentación</h5>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
-                                                        </div>
-                                                        <form>
-                                                            <div class="modal-body">
-                        
-                                                                <div class="mb-3">
-                                                                    <label for="foto-field" class="form-label">Foto</label>
-                                                                    
-                                                                    <div class="card-body p-4">
-                                                                        <div class="text-center">
-                                                                            <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                                                                <img src="http://localhost:8080/images/users/avatar-1.jpg" class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow" alt="user-profile-image">
-                                                                                <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                                                                                    <input id="profile-img-file-input" type="file" class="profile-img-file-input">
-                                                                                    <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
-                                                                                        <span class="avatar-title rounded-circle bg-light text-body shadow">
-                                                                                            <i class="ri-camera-fill"></i>
-                                                                                        </span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                        
-                                                                <div class="mb-3">
-                                                                    <label for="name-field" class="form-label">Nombre</label>
-                                                                    <input type="text" id="name-field" class="form-control" placeholder="Enter Name" required />
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="status-field" class="form-label">Status</label>
-                                                                    <input type="text" id="status-field" class="form-control" placeholder="Enter Status" required />
-                                                                </div>
-                        
-                                                                <div class="mb-3">
-                                                                    <label for="monto-field" class="form-label">Monto</label>
-                                                                    <input type="text" id="monto-field" class="form-control" placeholder="Enter Monto" required />
-                                                                </div>
-                        
-                                                                
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <div class="hstack gap-2 justify-content-end">
-                                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
-                                                                    <button type="button" class="btn btn-success" id="edit-btn">Añadir Presentación</button>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Modal -->
-                                            <div class="modal fade zoomIn" id="deleteRecordModal" tabindex="-1" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="mt-2 text-center">
-                                                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
-                                                                <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                                                    <h4>Estás seguro ?</h4>
-                                                                    <p class="text-muted mx-4 mb-0">¿Estás seguro de eliminar la presentación?</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                                                                <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Cerrar</button>
-                                                                <button type="button" class="btn w-sm btn-danger " id="delete-record">Sí, borrar presentación!</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
-
-
-                        
                                     </div>
                                     <!-- end col -->
                                 </div>
@@ -583,15 +419,9 @@
             </div>
             <!-- container-fluid -->
         </div>
-
-
-                
-               
-          
         <!-- End Page-content -->
-</div>
 
-<!-- end main content-->
+               
 
 
 <div>
