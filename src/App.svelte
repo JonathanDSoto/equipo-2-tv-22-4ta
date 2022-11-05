@@ -28,10 +28,10 @@
     <div>
         <!-- Vistas direccionadas con componentes -->
         <Route path="/">
-            <Login/>
+            <Login />
         </Route>
         <Route path="/home" component={Home} />
-        <Route path="/logout" component={Logout} /> 
+        <Route path="/logout" component={Logout} />
         <Route path="/profile" component={Profile} />
         <Route path="/registerUser" component={RegisterUser} />
         <Route path="/profileSettings" component={ProfileSettings} />
@@ -39,19 +39,20 @@
         <Route path="/users" component={Users} />
 
         <Route path="/users/:id" let:params>
-            <UsersView id="{params.id}" />
+            <UsersView id={params.id} />
         </Route>
 
         <Route path="/users/settings/:id" let:params>
-            <UserSettings id="{params.id}" />
+            <UserSettings id={params.id} />
         </Route>
 
-        
-
         <Route path="/clientes" component={Clientes} />
+        
         <Route path="/products" component={Products} />
-        <Route path="/viewUser" component={ViewUser} />
-        <Route path="/viewCliente" component={ViewCliente} />
+
+        <Route path="/client_info/:id" let:params>
+            <ViewCliente id={params.id} />
+        </Route>
 
         <Route path="/viewProduct" component={ViewProduct} />
         <Route path="/viewPresentacion" component={ViewPresentacion} />
@@ -59,9 +60,9 @@
         <Route path="/viewDireccion" component={ViewDireccion} />
 
         <Route path="/test/:id" let:params>
-            <Test id="{params.id}" />
+            <Test id={params.id} />
         </Route>
-        
+
         <!-- 404 -->
         <Route path="/*" component={NotFound} />
     </div>

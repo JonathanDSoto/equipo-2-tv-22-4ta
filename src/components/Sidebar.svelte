@@ -58,14 +58,14 @@
             </li>
             <!-- end Dashboard Menu -->
             <li class="nav-item">
-                <a class="nav-link menu-link" href="#sidebarApps">
+                <a class="nav-link menu-link" href="/clientes">
                     <i class="mdi mdi-view-grid-plus-outline" />
                     <span data-key="t-apps">Clientes</span>
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-link" href="#sidebarLayouts">
+                <a class="nav-link menu-link" href="/home">
                     <i class="mdi mdi-view-carousel-outline" />
                     <span data-key="t-layouts">Productos</span>
                 </a>

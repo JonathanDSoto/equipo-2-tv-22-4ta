@@ -167,15 +167,15 @@
                                                 name="password"
                                                 required
                                             />
-                                            <button
-                                                class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted shadow-none password-addon"
-                                                type="button"
-                                                id="password-addon"
-                                            >
-                                                <i
-                                                    class="ri-eye-fill align-middle"
-                                                />
-                                            </button>
+                                                <!-- <button
+                                                    class="btn btn-link position-absolute end-0 top-0 text-decoration-none text-muted shadow-none password-addon"
+                                                    type="button"
+                                                    id="password-addon"
+                                                >
+                                                    <i
+                                                        class="ri-eye-fill align-middle"
+                                                    />
+                                                </button> -->
                                         </div>
                                     </div>
 
