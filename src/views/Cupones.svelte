@@ -12,6 +12,10 @@
 
     <!-- Sweet Alert css-->
     <link href="http://localhost:8080/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+     <!-- One of the following themes -->
+     <link rel="stylesheet" href="http://localhost:8080/libs/%40simonwep/pickr/themes/classic.min.css" /> <!-- 'classic' theme -->
+     <link rel="stylesheet" href="http://localhost:8080/libs/%40simonwep/pickr/themes/monolith.min.css" /> <!-- 'monolith' theme -->
+     <link rel="stylesheet" href="http://localhost:8080/libs/%40simonwep/pickr/themes/nano.min.css" /> <!-- 'nano' theme -->
 
     <!-- Layout config Js -->
     <script src="http://localhost:8080/js/layout.js"></script>
@@ -229,105 +233,113 @@
                                             <div class="row g-4 mb-3">
                                                 <div class="col-sm-auto">
                                                     <div>
-                                                        <button type="button" class="btn btn-success add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModalAñadir"><i class="ri-add-line align-bottom me-1"></i> Añadir Cupón</button>
+                                                        <button type="button" class="btn btn-info add-btn" data-bs-toggle="modal" id="create-btn" data-bs-target="#showModalAñadir"><i class="ri-add-line align-bottom me-1"></i> Añadir Cupón</button>
                                                         
                                                     </div>
                                                 </div>
-                                                <div class="col-sm">
-                                                    <div class="d-flex justify-content-sm-end">
-                                                        <div class="search-box ms-2">
-                                                            <input type="text" class="form-control search" placeholder="Buscar Cupón...">
-                                                            <i class="ri-search-line search-icon"></i>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                             </div>
 
-                                            <div class="col-xxl-4 col-lg-6">
-                                                <div class="card card-body bg-light text-end">
-                                                    <div class="avatar-sm ms-auto mb-3">
-                                                        <div class="avatar-title bg-soft-sucess text-success fs-17 rounded">
-                                                            <i class="ri-gift-fill"></i>
-                                                        </div>
+                                            <div class="row">
+                                                <div class="col-xxl-4 col-lg-6">
+                                                    <div class="card bg-info card-height-100">
+                                                        <div class="card-body">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="avatar-sm flex-shrink-0">
+                                                                    <div class="avatar-title bg-soft-sucess text-success fs-17 rounded">
+                                                                        <i class="ri-gift-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex-grow-1 ms-3">
+                                                                
+                                                                    <h4 class="fs-4 mb-3 text-white">Nombre del cupón</h4>
+                                                                    <p class="text-white-50 mb-0">Código del cupón</p>
+                                                                    <p class="text-white-50 mb-0">Inicio del Cupón</p>
+                                                                    <p class="text-white-50 mb-0">Caducidad del Cupón</p>
+                                                                    
+                                                                </div>
+                                                                <div class="flex-shrink-0 align-self-center">
+                                                                    <span class="badge badge-soft-primary fs-20"><i class="ri-arrow-down-s-line fs-20 align-middle me-1"></i>10.35
+                                                                        %<span>
+                                                                </div>
+                                                               
+                                                            </div>
+                                                            <div class="d-flex gap-2 pt-3">
+                                                                <div class="edit">
+                                                                    <button class="btn btn-sm btn-success edit-item-btn" href="#!">Ver Detalles</button>
+                                                                </div>
+                                                                <div class="edit">
+                                                                    <button class="btn btn-sm btn-warning edit-item-btn" data-bs-toggle="modal" data-bs-target="#showModalEditar">Editar</button>
+                                                                </div>
+                                                                <div class="remove">
+                                                                    <button class="btn btn-sm btn-danger remove-item-btn" data-bs-toggle="modal" data-bs-target="#deleteRecordModal">Borrar</button>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- end card body -->
                                                     </div>
-                                                    <h1 class="card-title">Cupón</h1>
-                                                    <ul class="list-unstyled">
-                                                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-center"></i> Full Sleeve</li>
-                                                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> Cotton</li>
-                                                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-middle"></i> All Sizes available</li>
-                                                        <li class="py-1"><i class="mdi mdi-circle-medium me-1 text-muted align-left"></i> 4 Different Color</li>
-                                                    </ul>
-                                                    <a href="#!" class="btn btn-success">Ver Detalles de Cupón</a>
-                                                </div>
-                                            </div><!-- end col -->
-
-
-
-
-                                            <div class="noresult" style="display: none">
-                                                    <div class="text-center">
-                                                        <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#121331,secondary:#08a88a" style="width:75px;height:75px">
-                                                        </lord-icon>
-                                                        <h5 class="mt-2">Lo sentimos! No se encontraron resultados</h5>
-                                                        <p class="text-muted mb-0">Hemos buscado en todas las categorías. No encontramos ningúna
-                                                            categoría para su búsqueda.</p>
-                                                    </div>
+                                                </div> <!-- end col-->
                                             </div>
+
+
                                             
-                                            <div class="d-flex justify-content-end">
-                                                <div class="pagination-wrap hstack gap-2">
-                                                    <a class="page-item pagination-prev disabled" href="#!">
-                                                        Anterior
-                                                    </a>
-                                                    <ul class="pagination listjs-pagination mb-0"></ul>
-                                                    <a class="page-item pagination-next" href="#!">
-                                                        Siguiente
-                                                    </a>
-                                                </div>
-                                            </div>
+
+
+
+
 
                                             <div class="modal fade" id="showModalEditar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header bg-light p-3">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Editar Categoría</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Editar Cupón</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                         </div>
                                                         <form>
                                                             <div class="modal-body">
 
                                                                 
-                                                              
                                                                 <div class="mb-3">
                                                                     <label for="name-field" class="form-label">Nombre</label>
-                                                                    <input type="text" id="name-field" class="form-control" placeholder="Nombre" required />
+                                                                    <input type="text" id="name-field" class="form-control" placeholder="Ingresar Nombre cupón" required />
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="lastname-field" class="form-label">Apellido</label>
-                                                                    <input type="text" id="lastname-field" class="form-control" placeholder="Apellido" required />
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label for="email-field" class="form-label">Correo</label>
-                                                                    <input type="email" id="email-field" class="form-control" placeholder="Correo" required />
-                                                                </div>
-                                                                <div class="mb-3">
-                                                                    <label for="phone-field" class="form-label">Teléfono</label>
-                                                                    <input type="text" id="phone-field" class="form-control" placeholder="Número de Teléfono" required />
+                                                                    <label for="code-field" class="form-label">Código del cupón</label>
+                                                                    <input type="text" id="code-field" class="form-control" placeholder="Ingresar Código del cupón" required />
                                                                 </div>
 
                                                                 <div class="mb-3">
-                                                                    <label for="password-field" class="form-label">Contraseña</label>
-                                                                    <input type="text" id="password-field" class="form-control" placeholder="Contraseña" required />
+                                                                    <label for="desc-field" class="form-label">Porcentaje de descuento</label>
+                                                                    <input type="email" id="desc-field" class="form-control" placeholder="Ingresar Porcentaje de descuento" required />
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="role-field" class="form-label">Rol</label>
-                                                                    <input type="text" id="role-field" class="form-control" placeholder="Número de Teléfono" required />
+                                                                    <label for="monto-field" class="form-label">Monto mínimo solicitado</label>
+                                                                    <input type="text" id="monto-field" class="form-control" placeholder="Ingresar Monto mínimo solicitado" required />
                                                                 </div>
 
                                                                 <div class="mb-3">
-                                                                    <label for="createdby-field" class="form-label">Creado por</label>
-                                                                    <input type="text" id="createdby-field" class="form-control" placeholder="Contraseña" required />
+                                                                    <label for="montoP-field" class="form-label">Monto mínimo de producto solicitado</label>
+                                                                    <input type="text" id="montoP-field" class="form-control" placeholder="Ingresar Monto mínimo de producto" required />
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="fecha-field" class="form-label">Fecha de inicio del cupón</label>
+                                                                    <input type="text" id="fecha-field" class="form-control" placeholder="Ingresar Fecha inicio del cupón" required />
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label for="fechaC-field" class="form-label">Fecha caducidad del cupón</label>
+                                                                    <input type="text" class="form-control" data-provider="flatpickr" data-date-format="d M, Y" data-disable-date="15 12,2021">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="fechaC-field" class="form-label">Fecha caducidad del cupón</label>
+                                                                    <input type="text" class="form-control" data-provider="flatpickr" data-date-format="d M, Y" data-disable-date="15 12,2021">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="fecha-field" class="form-label">Cantidad de usos</label>
+                                                                    <input type="text" id="fecha-field" class="form-control" placeholder="Ingresar Cantidad de usos" required />
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="fecha-field" class="form-label">Disponible para usar en una sola compra?</label>
+                                                                    <input type="text" id="fecha-field" class="form-control" placeholder="Ingresar Número de disponibilidad para usar en compras" required />
                                                                 </div>
                                                             
                                                             </div>
@@ -347,53 +359,54 @@
                                                 <div class="modal-dialog modal-dialog-centered">
                                                     <div class="modal-content">
                                                         <div class="modal-header bg-light p-3">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Añadir Categoría</h5>
+                                                            <h5 class="modal-title" id="exampleModalLabel">Añadir Cupón</h5>
                                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-modal"></button>
                                                         </div>
                                                         <form>
                                                             <div class="modal-body">
-                                                                <div class="mb-3">
-                                                                    <label for="foto-field" class="form-label">Foto</label>
-                                                                    
-                                                                    <div class="card-body p-4">
-                                                                        <div class="text-center">
-                                                                            <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                                                                <img src="http://localhost:8080/images/users/avatar-1.jpg" class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow" alt="user-profile-image">
-                                                                                <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                                                                                    <input id="profile-img-file-input" type="file" class="profile-img-file-input">
-                                                                                    <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
-                                                                                        <span class="avatar-title rounded-circle bg-light text-body shadow">
-                                                                                            <i class="ri-camera-fill"></i>
-                                                                                        </span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                            
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                               
                                                                 <div class="mb-3">
                                                                     <label for="name-field" class="form-label">Nombre</label>
-                                                                    <input type="text" id="name-field" class="form-control" placeholder="Ingresar Nombre" required />
+                                                                    <input type="text" id="name-field" class="form-control" placeholder="Ingresar Nombre cupón" required />
                                                                 </div>
                                                                 <div class="mb-3">
-                                                                    <label for="lastname-field" class="form-label">Apellido</label>
-                                                                    <input type="text" id="lastname-field" class="form-control" placeholder="Ingresar Apellido" required />
-                                                                </div>
-
-                                                                <div class="mb-3">
-                                                                    <label for="email-field" class="form-label">Correo</label>
-                                                                    <input type="email" id="email-field" class="form-control" placeholder="Ingresar Correo" required />
+                                                                    <label for="code-field" class="form-label">Código del cupón</label>
+                                                                    <input type="text" id="code-field" class="form-control" placeholder="Ingresar Código del cupón" required />
                                                                 </div>
 
                                                                 <div class="mb-3">
-                                                                    <label for="phone-field" class="form-label">Teléfono</label>
-                                                                    <input type="text" id="phone-field" class="form-control" placeholder="Ingresar Número de Teléfono" required />
+                                                                    <label for="desc-field" class="form-label">Porcentaje de descuento</label>
+                                                                    <input type="email" id="desc-field" class="form-control" placeholder="Ingresar Porcentaje de descuento" required />
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="monto-field" class="form-label">Monto mínimo solicitado</label>
+                                                                    <input type="text" id="monto-field" class="form-control" placeholder="Ingresar Monto mínimo solicitado" required />
                                                                 </div>
 
                                                                 <div class="mb-3">
-                                                                    <label for="password-field" class="form-label">Contraseña</label>
-                                                                    <input type="text" id="password-field" class="form-control" placeholder="Ingresar Contraseña" required />
+                                                                    <label for="montoP-field" class="form-label">Monto mínimo de producto solicitado</label>
+                                                                    <input type="text" id="montoP-field" class="form-control" placeholder="Ingresar Monto mínimo de producto" required />
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="fecha-field" class="form-label">Fecha de inicio del cupón</label>
+                                                                    <input type="text" id="fecha-field" class="form-control" placeholder="Ingresar Fecha inicio del cupón" required />
+                                                                </div>
+
+                                                                <div class="mb-3">
+                                                                    <label for="fechaC-field" class="form-label">Fecha caducidad del cupón</label>
+                                                                    <input type="text" class="form-control" data-provider="flatpickr" data-date-format="d M, Y" data-disable-date="15 12,2021">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="fechaC-field" class="form-label">Fecha caducidad del cupón</label>
+                                                                    <input type="text" class="form-control" data-provider="flatpickr" data-date-format="d M, Y" data-disable-date="15 12,2021">
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="fecha-field" class="form-label">Cantidad de usos</label>
+                                                                    <input type="text" id="fecha-field" class="form-control" placeholder="Ingresar Cantidad de usos" required />
+                                                                </div>
+                                                                <div class="mb-3">
+                                                                    <label for="fecha-field" class="form-label">Disponible para usar en una sola compra?</label>
+                                                                    <input type="text" id="fecha-field" class="form-control" placeholder="Ingresar Número de disponibilidad para usar en compras" required />
                                                                 </div>
 
                                                                 
@@ -403,7 +416,7 @@
                                                             <div class="modal-footer">
                                                                 <div class="hstack gap-2 justify-content-end">
                                                                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
-                                                                    <button type="button" class="btn btn-success" id="edit-btn">Añadir Categoría</button>
+                                                                    <button type="button" class="btn btn-success" id="edit-btn">Añadir Cupón</button>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -423,12 +436,12 @@
                                                                 <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
                                                                 <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
                                                                     <h4>Estás seguro ?</h4>
-                                                                    <p class="text-muted mx-4 mb-0">¿Estás seguro de eliminar esta categoría?</p>
+                                                                    <p class="text-muted mx-4 mb-0">¿Estás seguro de eliminar este cupón?</p>
                                                                 </div>
                                                             </div>
                                                             <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
                                                                 <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Cerrar</button>
-                                                                <button type="button" class="btn w-sm btn-danger " id="delete-record">Sí, borrar categoría!</button>
+                                                                <button type="button" class="btn w-sm btn-danger " id="delete-record">Sí, borrar cupón!</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -436,54 +449,10 @@
                                             </div>
                                             <!--end modal -->
 
-                                        <!-- removeItemModal -->
-                                            <div id="removeItemNodal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="mt-2 text-center">
-                                                                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop" colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px"></lord-icon>
-                                                                <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                                                    <h4>¿Estás seguro?</h4>
-                                                                    <p class="text-muted mx-4 mb-0">Estás seguro que quieres eliminar esta categoría</p>
-                                                                </div>
-                                                            </div>
-                                                            <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                                                                <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Cerrar</button>
-                                                                <button type="button" class="btn w-sm btn-danger " id="delete-product">Sí, borrar categoría!</button>
-                                                            </div>
-                                                        </div>
-
-                                                    </div><!-- /.modal-content -->
-                                                </div><!-- /.modal-dialog -->
-                                            </div><!-- /.modal -->
-
-
-                                            <!--start back-to-top-->
-                                            <button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
-                                                <i class="ri-arrow-up-line"></i>
-                                            </button>
-                                            <!--end back-to-top-->
-
-                                            <!--preloader-->
-                                            <div id="preloader">
-                                                <div id="status">
-                                                    <div class="spinner-border text-primary avatar-sm" role="status">
-                                                        <span class="visually-hidden">Cargando...</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="customizer-setting d-none d-md-block">
-                                                <div class="btn-info btn-rounded shadow-lg btn btn-icon btn-lg p-2" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
-                                                    <i class='mdi mdi-spin mdi-cog-outline fs-22'></i>
-                                                </div>
-                                            </div>
+                                        
 
                                         </div>
+
                                     </div><!-- end card -->
                                 </div>
                                 <!-- end col -->
@@ -523,6 +492,12 @@
 
     <!-- Sweet Alerts js -->
     <script src="http://localhost:8080/libs/sweetalert2/sweetalert2.min.js"></script>
+
+     <!-- Modern colorpicker bundle -->
+     <script src="http://localhost:8080/libs/%40simonwep/pickr/pickr.min.js"></script>
+
+     <!-- init js -->
+     <script src="http://localhost:8080/js/pages/form-pickers.init.js"></script>
 
     <!-- App js -->
     <script src="http://localhost:8080/js/app.js"></script>
