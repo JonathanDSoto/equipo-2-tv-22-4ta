@@ -46,6 +46,55 @@
         console.log(dataClientes.data);
         return dataClientes.data;
     }
+
+    async function deleteClient(idClient) {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger',
+            },
+            buttonsStyling: false,
+        });
+        let requestOptionsDelete = {
+            method: 'DELETE',
+            headers: myHeaders,
+            redirect: 'follow',
+        };
+
+        swalWithBootstrapButtons
+            .fire({
+                title: 'Seguro que quieres eliminar el usuario?',
+                text: 'No podras revertir los cambios',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Si, eliminalo!',
+                cancelButtonText: 'No, cancelar!',
+                reverseButtons: true,
+            })
+            .then(async (result) => {
+                if (result.isConfirmed) {
+                    const res = await fetch(
+                        `https://crud.jonathansoto.mx/api/clients/${idClient}`,
+                        requestOptionsDelete
+                    );
+                    const data = await res.json();
+                    if (data.code > 0) {
+                        location.reload();
+                        swalWithBootstrapButtons.fire(
+                            'Eliminado!',
+                            'El usuario ha sido eliminado.',
+                            'success'
+                        );
+                    }
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelado',
+                        'Tu usuario esta a salvo :)',
+                        'error'
+                    );
+                }
+            });
+    }
 </script>
 
 <svelte:head>
@@ -257,6 +306,10 @@
                                                                                     class="btn btn-sm btn-danger remove-item-btn"
                                                                                     data-bs-toggle="modal"
                                                                                     data-bs-target="#deleteRecordModal"
+                                                                                    on:click|preventDefault={() =>
+                                                                                        deleteClient(
+                                                                                            dataClients.id
+                                                                                        )}
                                                                                     >Borrar</button
                                                                                 >
                                                                             </div>
@@ -630,7 +683,7 @@
                                                 </div>
 
                                                 <!-- Modal -->
-                                                <div
+                                                <!-- <div
                                                     class="modal fade zoomIn"
                                                     id="deleteRecordModal"
                                                     tabindex="-1"
@@ -706,7 +759,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <!--end modal -->
                                             </div>
                                         </div>
