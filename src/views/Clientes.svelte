@@ -19,10 +19,10 @@
         location.href = '/';
     }
 
-    var myHeaders = new Headers();
+    let myHeaders = new Headers();
     myHeaders.append('Authorization', `${process.env.BEARER_KEY}`);
 
-    var requestOptions = {
+    let requestOptions = {
         method: 'GET',
         headers: myHeaders,
         redirect: 'follow',
@@ -43,7 +43,6 @@
             requestOptions
         );
         const dataClientes = await response.json();
-        console.log(dataClientes.data);
         return dataClientes.data;
     }
 
@@ -94,6 +93,31 @@
                     );
                 }
             });
+    }
+
+    // Funcion para obtener los datos del cliente seleccionado
+
+    const dataClientSelected = {
+        name: '',
+        lastname: '',
+        email: '',
+        password: '',
+        subscribe: 0,
+    };
+
+    async function getDataClientSelected(id) {
+        const resp = await fetch("https://crud.jonathansoto.mx/api/clients/"+id, requestOptions);
+        const data = resp.json();
+        console.log(data);
+    }
+
+    async function getLevels() {
+        const resp = await fetch(
+            'https://crud.jonathansoto.mx/api/levels',
+            requestOptions
+        );
+        const data = await resp.json();
+        return data.data;
     }
 </script>
 
@@ -350,171 +374,179 @@
                                                         </p>
                                                     </div>
                                                 </div>
-                                                <div
-                                                    class="modal fade"
-                                                    id="showModalEditar"
-                                                    tabindex="-1"
-                                                    aria-labelledby="exampleModalLabel"
-                                                    aria-hidden="true"
-                                                >
+
+                                                {#await getLevels()}
+                                                    Loading...
+                                                {:then data}
                                                     <div
-                                                        class="modal-dialog modal-dialog-centered"
+                                                        class="modal fade"
+                                                        id="showModalEditar"
+                                                        tabindex="-1"
+                                                        aria-labelledby="exampleModalLabel"
+                                                        aria-hidden="true"
                                                     >
                                                         <div
-                                                            class="modal-content"
+                                                            class="modal-dialog modal-dialog-centered"
                                                         >
                                                             <div
-                                                                class="modal-header bg-light p-3"
+                                                                class="modal-content"
                                                             >
-                                                                <h5
-                                                                    class="modal-title"
-                                                                    id="exampleModalLabel"
+                                                                <div
+                                                                    class="modal-header bg-light p-3"
                                                                 >
-                                                                    Editar
-                                                                    Cliente
-                                                                </h5>
-                                                                <button
-                                                                    type="button"
-                                                                    class="btn-close"
-                                                                    data-bs-dismiss="modal"
-                                                                    aria-label="Close"
-                                                                    id="close-modal"
-                                                                />
+                                                                    <h5
+                                                                        class="modal-title"
+                                                                        id="exampleModalLabel"
+                                                                    >
+                                                                        Editar
+                                                                        Cliente
+                                                                    </h5>
+                                                                    <button
+                                                                        type="button"
+                                                                        class="btn-close"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"
+                                                                        id="close-modal"
+                                                                    />
+                                                                </div>
+                                                                <form>
+                                                                    <div
+                                                                        class="modal-body"
+                                                                    >
+                                                                        <div
+                                                                            class="mb-3"
+                                                                        >
+                                                                            <label
+                                                                                for="name-field"
+                                                                                class="form-label"
+                                                                                >Nombre
+                                                                                Completo</label
+                                                                            >
+                                                                            <input
+                                                                                type="text"
+                                                                                id="name-field"
+                                                                                class="form-control"
+                                                                                placeholder="Ingresar Nombre"
+                                                                                bind:value={dataClientSelected.name}
+                                                                                required
+                                                                            />
+                                                                        </div>
+
+                                                                        <div
+                                                                            class="mb-3"
+                                                                        >
+                                                                            <label
+                                                                                for="email-field"
+                                                                                class="form-label"
+                                                                                >Correo</label
+                                                                            >
+                                                                            <input
+                                                                                type="email"
+                                                                                id="email-field"
+                                                                                class="form-control"
+                                                                                placeholder="Ingresar Correo"
+                                                                                bind:value={dataClientSelected.email}
+                                                                                required
+                                                                            />
+                                                                        </div>
+
+                                                                        <div
+                                                                            class="mb-3"
+                                                                        >
+                                                                            <label
+                                                                                for="phone-field"
+                                                                                class="form-label"
+                                                                                >Teléfono</label
+                                                                            >
+                                                                            <input
+                                                                                type="text"
+                                                                                id="phone-field"
+                                                                                class="form-control"
+                                                                                bind:value={dataClientSelected.phone_number}
+                                                                                placeholder="Ingresar Teléfono"
+                                                                                required
+                                                                            />
+                                                                        </div>
+
+                                                                        <div
+                                                                            class="mb-3"
+                                                                        >
+                                                                            <label
+                                                                                for="password-field"
+                                                                                class="form-label"
+                                                                                >Contraseña</label
+                                                                            >
+                                                                            <input
+                                                                                type="text"
+                                                                                id="password-field"
+                                                                                class="form-control"
+                                                                                bind:value={dataClientSelected.password}
+                                                                                placeholder="Ingresar Contraseña"
+                                                                                required
+                                                                            />
+                                                                        </div>
+
+                                                                        <div
+                                                                            class="mb-3"
+                                                                        >
+                                                                            <label
+                                                                                for="suscribed-field"
+                                                                                class="form-label"
+                                                                                >¿Está
+                                                                                suscrito?</label
+                                                                            >
+                                                                            <input
+                                                                                type="text"
+                                                                                id="suscribed-field"
+                                                                                class="form-control"
+                                                                                placeholder="Cantidad de suscripción"
+                                                                                required
+                                                                            />
+                                                                        </div>
+
+                                                                        <div
+                                                                            class="mb-3"
+                                                                        >
+                                                                            <label
+                                                                                for="id-field"
+                                                                                class="form-label"
+                                                                                >Nivel</label
+                                                                            >
+                                                                            <select name="">
+                                                                                {#each data as dataLevel}
+                                                                                     <option value={dataLevel.id}>{dataLevel.id} ( {dataLevel.name} )</option>
+                                                                                {/each}
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="modal-footer"
+                                                                    >
+                                                                        <div
+                                                                            class="hstack gap-2 justify-content-end"
+                                                                        >
+                                                                            <button
+                                                                                type="button"
+                                                                                class="btn btn-light"
+                                                                                data-bs-dismiss="modal"
+                                                                                >Cerrar</button
+                                                                            >
+                                                                            <button
+                                                                                type="submit"
+                                                                                class="btn btn-success"
+                                                                                id="add-btn"
+                                                                                >Guardar
+                                                                                cambios</button
+                                                                            >
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
                                                             </div>
-                                                            <form>
-                                                                <div
-                                                                    class="modal-body"
-                                                                >
-                                                                    <div
-                                                                        class="mb-3"
-                                                                    >
-                                                                        <label
-                                                                            for="name-field"
-                                                                            class="form-label"
-                                                                            >Nombre
-                                                                            Completo</label
-                                                                        >
-                                                                        <input
-                                                                            type="text"
-                                                                            id="name-field"
-                                                                            class="form-control"
-                                                                            placeholder="Ingresar Nombre"
-                                                                            required
-                                                                        />
-                                                                    </div>
-
-                                                                    <div
-                                                                        class="mb-3"
-                                                                    >
-                                                                        <label
-                                                                            for="email-field"
-                                                                            class="form-label"
-                                                                            >Correo</label
-                                                                        >
-                                                                        <input
-                                                                            type="email"
-                                                                            id="email-field"
-                                                                            class="form-control"
-                                                                            placeholder="Ingresar Correo"
-                                                                            required
-                                                                        />
-                                                                    </div>
-
-                                                                    <div
-                                                                        class="mb-3"
-                                                                    >
-                                                                        <label
-                                                                            for="phone-field"
-                                                                            class="form-label"
-                                                                            >Teléfono</label
-                                                                        >
-                                                                        <input
-                                                                            type="text"
-                                                                            id="phone-field"
-                                                                            class="form-control"
-                                                                            placeholder="Ingresar Teléfono"
-                                                                            required
-                                                                        />
-                                                                    </div>
-
-                                                                    <div
-                                                                        class="mb-3"
-                                                                    >
-                                                                        <label
-                                                                            for="password-field"
-                                                                            class="form-label"
-                                                                            >Contraseña</label
-                                                                        >
-                                                                        <input
-                                                                            type="text"
-                                                                            id="password-field"
-                                                                            class="form-control"
-                                                                            placeholder="Ingresar Contraseña"
-                                                                            required
-                                                                        />
-                                                                    </div>
-
-                                                                    <div
-                                                                        class="mb-3"
-                                                                    >
-                                                                        <label
-                                                                            for="suscribed-field"
-                                                                            class="form-label"
-                                                                            >¿Está
-                                                                            suscrito?</label
-                                                                        >
-                                                                        <input
-                                                                            type="text"
-                                                                            id="suscribed-field"
-                                                                            class="form-control"
-                                                                            placeholder="Cantidad de suscripción"
-                                                                            required
-                                                                        />
-                                                                    </div>
-
-                                                                    <div
-                                                                        class="mb-3"
-                                                                    >
-                                                                        <label
-                                                                            for="id-field"
-                                                                            class="form-label"
-                                                                            >Nivel
-                                                                            ID</label
-                                                                        >
-                                                                        <input
-                                                                            type="text"
-                                                                            id="id-field"
-                                                                            class="form-control"
-                                                                            placeholder="Cantidad de suscripción"
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="modal-footer"
-                                                                >
-                                                                    <div
-                                                                        class="hstack gap-2 justify-content-end"
-                                                                    >
-                                                                        <button
-                                                                            type="button"
-                                                                            class="btn btn-light"
-                                                                            data-bs-dismiss="modal"
-                                                                            >Cerrar</button
-                                                                        >
-                                                                        <button
-                                                                            type="submit"
-                                                                            class="btn btn-success"
-                                                                            id="add-btn"
-                                                                            >Guardar
-                                                                            cambios</button
-                                                                        >
-                                                                    </div>
-                                                                </div>
-                                                            </form>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                {:catch error}
+                                                    <!-- getLevels() was rejected -->
+                                                {/await}
 
                                                 <div
                                                     class="modal fade"
@@ -664,7 +696,7 @@
                                                                     >
                                                                         <button
                                                                             type="button"
-                                                                            class="btn btn-light"
+                                                                            class="btn btn-danger"
                                                                             data-bs-dismiss="modal"
                                                                             >Cerrar</button
                                                                         >
@@ -681,86 +713,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <!-- Modal -->
-                                                <!-- <div
-                                                    class="modal fade zoomIn"
-                                                    id="deleteRecordModal"
-                                                    tabindex="-1"
-                                                    aria-hidden="true"
-                                                >
-                                                    <div
-                                                        class="modal-dialog modal-dialog-centered"
-                                                    >
-                                                        <div
-                                                            class="modal-content"
-                                                        >
-                                                            <div
-                                                                class="modal-header"
-                                                            >
-                                                                <button
-                                                                    type="button"
-                                                                    class="btn-close"
-                                                                    data-bs-dismiss="modal"
-                                                                    aria-label="Close"
-                                                                    id="btn-close"
-                                                                />
-                                                            </div>
-                                                            <div
-                                                                class="modal-body"
-                                                            >
-                                                                <div
-                                                                    class="mt-2 text-center"
-                                                                >
-                                                                    <lord-icon
-                                                                        src="https://cdn.lordicon.com/gsqxdxog.json"
-                                                                        trigger="loop"
-                                                                        colors="primary:#f7b84b,secondary:#f06548"
-                                                                        style="width:100px;height:100px"
-                                                                    />
-                                                                    <div
-                                                                        class="mt-4 pt-2 fs-15 mx-4 mx-sm-5"
-                                                                    >
-                                                                        <h4>
-                                                                            Estás
-                                                                            seguro
-                                                                            ?
-                                                                        </h4>
-                                                                        <p
-                                                                            class="text-muted mx-4 mb-0"
-                                                                        >
-                                                                            Estás
-                                                                            seguro
-                                                                            de
-                                                                            eliminar
-                                                                            el
-                                                                            cliente?
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                                <div
-                                                                    class="d-flex gap-2 justify-content-center mt-4 mb-2"
-                                                                >
-                                                                    <button
-                                                                        type="button"
-                                                                        class="btn w-sm btn-light"
-                                                                        data-bs-dismiss="modal"
-                                                                        >Cerrar</button
-                                                                    >
-                                                                    <button
-                                                                        type="button"
-                                                                        class="btn w-sm btn-danger "
-                                                                        id="delete-record"
-                                                                        >Sí,
-                                                                        borrar
-                                                                        cliente!</button
-                                                                    >
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> -->
-                                                <!--end modal -->
                                             </div>
                                         </div>
                                         <!-- end card -->
