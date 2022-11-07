@@ -105,6 +105,7 @@
         email: '',
         password: '',
         phone_number: '',
+        is_suscribed: 0
     };
 
     async function getDataClientSelected(id) {
@@ -120,6 +121,7 @@
         dataClientSelected.lastname = clientInfo.lastname;
         dataClientSelected.email = clientInfo.email;
         dataClientSelected.phone_number = clientInfo.phone_number;
+        dataClientSelected.is_suscribed = clientInfo.is_suscribed;
     }
 
     async function getLevels() {
@@ -133,7 +135,7 @@
 
 
     async function reloadPage(e) {
-        e.preventDefault();
+        // e.preventDefault();
 
         Swal.fire({
             title: 'Recargara ventana',
@@ -514,7 +516,7 @@
                                                                                 >¿Está
                                                                                 suscrito?</label
                                                                             >
-                                                                            <input name="is_suscribed" type="text" placeholder="1.- SI  2.- NO">
+                                                                            <input name="is_suscribed" type="text" placeholder="1.- SI  2.- NO" value={dataClientSelected.is_suscribed == 1 ? 'SI' : 'NO'}>
                                                                         </div>
 
                                                                         <div
@@ -555,7 +557,7 @@
                                                                             <button
                                                                                 type="submit"
                                                                                 class="btn btn-success"
-                                                                                on:click={reloadPage}
+                                                                                on:click|once={reloadPage}
                                                                                 id="add-btn"
                                                                                 >Guardar
                                                                                 cambios</button
