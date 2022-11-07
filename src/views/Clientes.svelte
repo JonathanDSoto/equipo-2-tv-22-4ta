@@ -2,6 +2,8 @@
     import HeaderApp from '../components/HeaderApp.svelte';
     import Sidebar from '../components/Sidebar.svelte';
 
+    import Swal from 'sweetalert2';
+
     // Transiciones
     import { fly } from 'svelte/transition';
     import { fade } from 'svelte/transition';
@@ -129,6 +131,22 @@
         return data.data;
     }
 
+
+    async function reloadPage(e) {
+        e.preventDefault();
+
+        Swal.fire({
+            title: 'Recargara ventana',
+            text: 'Se recargara la pagina para ver los cambios realizados :)',
+            icon: 'info',
+            showCancelButton: false,
+            confirmButtonText: 'Aceptar',
+        }).then((result) => {
+            if (result.value) {
+                location.reload();
+            }
+        });
+    }
 
 </script>
 
@@ -537,6 +555,7 @@
                                                                             <button
                                                                                 type="submit"
                                                                                 class="btn btn-success"
+                                                                                on:click={reloadPage}
                                                                                 id="add-btn"
                                                                                 >Guardar
                                                                                 cambios</button
