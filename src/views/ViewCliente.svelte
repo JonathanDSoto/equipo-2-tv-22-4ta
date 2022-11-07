@@ -44,6 +44,20 @@
         const dataUser = await response.json();
         return dataUser.data;
     }
+
+    function reloadPage() {
+        Swal.fire({
+            title: 'Recargara ventana',
+            text: 'Se recargara la pagina para ver los cambios realizados :)',
+            icon: 'info',
+            showCancelButton: false,
+            confirmButtonText: 'Aceptar',
+        }).then((result) => {
+            if (result.value) {
+                location.reload();
+            }
+        });
+    }
 </script>
 
 <svelte:head>
@@ -497,6 +511,8 @@
                                                 </div>
                                                 <!-- end card -->
 
+                                                <!-- Modal añadir dir -->
+
                                                 <div
                                                     class="modal fade"
                                                     id="showModalEditar"
@@ -528,7 +544,10 @@
                                                                     id="close-modal"
                                                                 />
                                                             </div>
-                                                            <form>
+                                                            <form
+                                                                method="POST"
+                                                                action="http://localhost/app/AdressController.php"
+                                                            >
                                                                 <div
                                                                     class="modal-body"
                                                                 >
@@ -543,6 +562,7 @@
                                                                         <input
                                                                             type="text"
                                                                             id="name-field"
+                                                                            name="first_name"
                                                                             class="form-control"
                                                                             placeholder="Ingresar Nombre"
                                                                             required
@@ -558,9 +578,27 @@
                                                                         >
                                                                         <input
                                                                             type="text"
+                                                                            name="last_name"
                                                                             id="lastname-field"
                                                                             class="form-control"
                                                                             placeholder="Ingresar Apellido"
+                                                                            required
+                                                                        />
+                                                                    </div>
+                                                                    <div
+                                                                        class="mb-3"
+                                                                    >
+                                                                        <label
+                                                                            for="province-field"
+                                                                            class="form-label"
+                                                                            >Telefono</label
+                                                                        >
+                                                                        <input
+                                                                            type="text"
+                                                                            id="province-field"
+                                                                            class="form-control"
+                                                                            name="phone_number"
+                                                                            placeholder="Ingresar tu numero celular"
                                                                             required
                                                                         />
                                                                     </div>
@@ -578,6 +616,7 @@
                                                                             type="text"
                                                                             id="street-field"
                                                                             class="form-control"
+                                                                            name="street_and_use_number"
                                                                             placeholder="Ingresar Calle y número"
                                                                             required
                                                                         />
@@ -594,6 +633,7 @@
                                                                         <input
                                                                             type="text"
                                                                             id="code-field"
+                                                                            name="postal_code"
                                                                             class="form-control"
                                                                             placeholder="Ingresar Código Postal"
                                                                             required
@@ -611,6 +651,7 @@
                                                                             type="text"
                                                                             id="city-field"
                                                                             class="form-control"
+                                                                            name="city"
                                                                             placeholder="Ingresar Ciudad"
                                                                             required
                                                                         />
@@ -627,23 +668,8 @@
                                                                             type="text"
                                                                             id="province-field"
                                                                             class="form-control"
+                                                                            name="province"
                                                                             placeholder="Ingresar Providencia"
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div
-                                                                        class="mb-3"
-                                                                    >
-                                                                        <label
-                                                                            for="billing-field"
-                                                                            class="form-label"
-                                                                            >Factura</label
-                                                                        >
-                                                                        <input
-                                                                            type="text"
-                                                                            id="billing-field"
-                                                                            class="form-control"
-                                                                            placeholder="Cantidad de Factura"
                                                                             required
                                                                         />
                                                                     </div>
@@ -662,6 +688,7 @@
                                                                         >
                                                                         <button
                                                                             type="submit"
+                                                                            on:click|once={reloadPage}
                                                                             class="btn btn-success"
                                                                             id="add-btn"
                                                                             >Guardar
@@ -669,6 +696,18 @@
                                                                         >
                                                                     </div>
                                                                 </div>
+                                                                <input
+                                                                    type="text"
+                                                                    name="action"
+                                                                    value="create"
+                                                                    hidden
+                                                                />
+                                                                <input
+                                                                    type="text"
+                                                                    name="id"
+                                                                    value={data.id}
+                                                                    hidden
+                                                                />
                                                             </form>
                                                         </div>
                                                     </div>
@@ -705,7 +744,10 @@
                                                                     id="close-modal"
                                                                 />
                                                             </div>
-                                                            <form>
+                                                            <form
+                                                                method="POST"
+                                                                action="http://localhost/app/AdressController.php"
+                                                            >
                                                                 <div
                                                                     class="modal-body"
                                                                 >
@@ -720,6 +762,7 @@
                                                                         <input
                                                                             type="text"
                                                                             id="name-field"
+                                                                            name="first_name"
                                                                             class="form-control"
                                                                             placeholder="Ingresar Nombre"
                                                                             required
@@ -735,9 +778,27 @@
                                                                         >
                                                                         <input
                                                                             type="text"
+                                                                            name="last_name"
                                                                             id="lastname-field"
                                                                             class="form-control"
                                                                             placeholder="Ingresar Apellido"
+                                                                            required
+                                                                        />
+                                                                    </div>
+                                                                    <div
+                                                                        class="mb-3"
+                                                                    >
+                                                                        <label
+                                                                            for="province-field"
+                                                                            class="form-label"
+                                                                            >Telefono</label
+                                                                        >
+                                                                        <input
+                                                                            type="text"
+                                                                            id="province-field"
+                                                                            class="form-control"
+                                                                            name="phone_number"
+                                                                            placeholder="Ingresar tu numero celular"
                                                                             required
                                                                         />
                                                                     </div>
@@ -755,6 +816,7 @@
                                                                             type="text"
                                                                             id="street-field"
                                                                             class="form-control"
+                                                                            name="street_and_use_number"
                                                                             placeholder="Ingresar Calle y número"
                                                                             required
                                                                         />
@@ -771,6 +833,7 @@
                                                                         <input
                                                                             type="text"
                                                                             id="code-field"
+                                                                            name="postal_code"
                                                                             class="form-control"
                                                                             placeholder="Ingresar Código Postal"
                                                                             required
@@ -788,6 +851,7 @@
                                                                             type="text"
                                                                             id="city-field"
                                                                             class="form-control"
+                                                                            name="city"
                                                                             placeholder="Ingresar Ciudad"
                                                                             required
                                                                         />
@@ -804,23 +868,8 @@
                                                                             type="text"
                                                                             id="province-field"
                                                                             class="form-control"
+                                                                            name="province"
                                                                             placeholder="Ingresar Providencia"
-                                                                            required
-                                                                        />
-                                                                    </div>
-                                                                    <div
-                                                                        class="mb-3"
-                                                                    >
-                                                                        <label
-                                                                            for="phone-field"
-                                                                            class="form-label"
-                                                                            >Teléfono</label
-                                                                        >
-                                                                        <input
-                                                                            type="text"
-                                                                            id="phone-field"
-                                                                            class="form-control"
-                                                                            placeholder="Ingresar Teléfono"
                                                                             required
                                                                         />
                                                                     </div>
@@ -838,14 +887,27 @@
                                                                             >Cerrar</button
                                                                         >
                                                                         <button
-                                                                            type="button"
+                                                                            type="submit"
+                                                                            on:click|once={reloadPage}
                                                                             class="btn btn-success"
-                                                                            id="edit-btn"
-                                                                            >Añadir
-                                                                            Dirección</button
+                                                                            id="add-btn"
+                                                                            >Guardar
+                                                                            cambios</button
                                                                         >
                                                                     </div>
                                                                 </div>
+                                                                <input
+                                                                    type="text"
+                                                                    name="action"
+                                                                    value="create"
+                                                                    hidden
+                                                                />
+                                                                <input
+                                                                    type="text"
+                                                                    name="client_id"
+                                                                    value={data.id}
+                                                                    hidden
+                                                                />
                                                             </form>
                                                         </div>
                                                     </div>

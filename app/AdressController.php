@@ -101,7 +101,7 @@
 			$response = json_decode($response);
 
 			if (isset($response->code) && $response->code > 0) {
-				return true;
+				header('Location: ' . $_SERVER['HTTP_REFERER']);
        	 	}else{
 				return false;
 			}
