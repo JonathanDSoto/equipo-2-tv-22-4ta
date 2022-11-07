@@ -96,19 +96,28 @@
     }
 
     // Funcion para obtener los datos del cliente seleccionado
-
     const dataClientSelected = {
+        id: 0,
         name: '',
         lastname: '',
         email: '',
         password: '',
-        subscribe: 0,
+        phone_number: '',
     };
 
     async function getDataClientSelected(id) {
-        const resp = await fetch("https://crud.jonathansoto.mx/api/clients/"+id, requestOptions);
-        const data = resp.json();
-        console.log(data);
+        const resp = await fetch(
+            'https://crud.jonathansoto.mx/api/clients/' + id,
+            requestOptions
+        );
+        const data = await resp.json();
+        const clientInfo = data.data;
+        console.log(clientInfo);
+        dataClientSelected.id = clientInfo.id;
+        dataClientSelected.name = clientInfo.name;
+        dataClientSelected.lastname = clientInfo.lastname;
+        dataClientSelected.email = clientInfo.email;
+        dataClientSelected.phone_number = clientInfo.phone_number;
     }
 
     async function getLevels() {
@@ -119,6 +128,8 @@
         const data = await resp.json();
         return data.data;
     }
+
+
 </script>
 
 <svelte:head>
@@ -320,7 +331,12 @@
                                                                                     class="btn btn-sm btn-success edit-item-btn"
                                                                                     data-bs-toggle="modal"
                                                                                     data-bs-target="#showModalEditar"
-                                                                                    >Editar</button
+                                                                                    on:click={() =>
+                                                                                        getDataClientSelected(
+                                                                                            dataClients.id
+                                                                                        )}
+                                                                                >
+                                                                                    Editar</button
                                                                                 >
                                                                             </div>
                                                                             <div
@@ -409,7 +425,7 @@
                                                                         id="close-modal"
                                                                     />
                                                                 </div>
-                                                                <form>
+                                                                <form method="post" action="http://localhost/app/ClientsController.php">
                                                                     <div
                                                                         class="modal-body"
                                                                     >
@@ -427,6 +443,7 @@
                                                                                 id="name-field"
                                                                                 class="form-control"
                                                                                 placeholder="Ingresar Nombre"
+                                                                                name="name"
                                                                                 bind:value={dataClientSelected.name}
                                                                                 required
                                                                             />
@@ -443,6 +460,7 @@
                                                                             <input
                                                                                 type="email"
                                                                                 id="email-field"
+                                                                                name="email"
                                                                                 class="form-control"
                                                                                 placeholder="Ingresar Correo"
                                                                                 bind:value={dataClientSelected.email}
@@ -462,26 +480,9 @@
                                                                                 type="text"
                                                                                 id="phone-field"
                                                                                 class="form-control"
+                                                                                name="phone_number"
                                                                                 bind:value={dataClientSelected.phone_number}
                                                                                 placeholder="Ingresar Teléfono"
-                                                                                required
-                                                                            />
-                                                                        </div>
-
-                                                                        <div
-                                                                            class="mb-3"
-                                                                        >
-                                                                            <label
-                                                                                for="password-field"
-                                                                                class="form-label"
-                                                                                >Contraseña</label
-                                                                            >
-                                                                            <input
-                                                                                type="text"
-                                                                                id="password-field"
-                                                                                class="form-control"
-                                                                                bind:value={dataClientSelected.password}
-                                                                                placeholder="Ingresar Contraseña"
                                                                                 required
                                                                             />
                                                                         </div>
@@ -495,13 +496,7 @@
                                                                                 >¿Está
                                                                                 suscrito?</label
                                                                             >
-                                                                            <input
-                                                                                type="text"
-                                                                                id="suscribed-field"
-                                                                                class="form-control"
-                                                                                placeholder="Cantidad de suscripción"
-                                                                                required
-                                                                            />
+                                                                            <input name="is_suscribed" type="text" placeholder="1.- SI  2.- NO">
                                                                         </div>
 
                                                                         <div
@@ -512,9 +507,17 @@
                                                                                 class="form-label"
                                                                                 >Nivel</label
                                                                             >
-                                                                            <select name="">
+                                                                            <select
+                                                                                name="level_id"
+                                                                            >
                                                                                 {#each data as dataLevel}
-                                                                                     <option value={dataLevel.id}>{dataLevel.id} ( {dataLevel.name} )</option>
+                                                                                    <option
+                                                                                        value={dataLevel.id}
+                                                                                        >{dataLevel.id}
+                                                                                        (
+                                                                                        {dataLevel.name}
+                                                                                        )</option
+                                                                                    >
                                                                                 {/each}
                                                                             </select>
                                                                         </div>
@@ -527,7 +530,7 @@
                                                                         >
                                                                             <button
                                                                                 type="button"
-                                                                                class="btn btn-light"
+                                                                                class="btn btn-danger"
                                                                                 data-bs-dismiss="modal"
                                                                                 >Cerrar</button
                                                                             >
@@ -540,12 +543,14 @@
                                                                             >
                                                                         </div>
                                                                     </div>
+                                                                    <input name="action" value="update" hidden />
+                                                                    <input name="id" value={dataClientSelected.id} hidden/>
                                                                 </form>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 {:catch error}
-                                                    <!-- getLevels() was rejected -->
+                                                    {error}
                                                 {/await}
 
                                                 <div

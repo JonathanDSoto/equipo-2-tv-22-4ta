@@ -13,7 +13,7 @@
 				$level = strip_tags($_POST['level_id']);
 
 				$clientController = new ClientController();
-				echo json_encode($clientController->createcrete($name,$email,$password,$phone,$level));
+				echo json_encode($clientController->create($name,$email,$password,$phone,$level));
 			break;
 			case 'update':
 				$id = strip_tags($_POST['id']);
@@ -22,6 +22,15 @@
 				$password = strip_tags($_POST['password']);
 				$phone = strip_tags($_POST['phone_number']);
 				$suscription = strip_tags($_POST['is_suscribed']);
+
+				if($suscription == 'SI' || $suscription == 'si'){
+					$suscription = 1;
+				}
+
+				if($suscription == 'NO' || $suscription == 'no'){
+					$suscription = 0;
+				}
+
 				$level = strip_tags($_POST['level_id']);
 
 				$clientController = new ClientController();
@@ -38,55 +47,8 @@
 
 	Class ClientController{
 
-		//
-		public function getClient($id)
-		{	
-			$curl = curl_init();
-
-			curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients/'.$id,
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
-			),
-			));
-
-			$response = curl_exec($curl);
-			curl_close($curl);
-			$response = json_decode($response);
-
-		}
 		
-		public function getClientes()
-		{	
-			$curl = curl_init();
-
-			curl_setopt_array($curl, array(
-			CURLOPT_URL => 'https://crud.jonathansoto.mx/api/clients',
-			CURLOPT_RETURNTRANSFER => true,
-			CURLOPT_ENCODING => '',
-			CURLOPT_MAXREDIRS => 10,
-			CURLOPT_TIMEOUT => 0,
-			CURLOPT_FOLLOWLOCATION => true,
-			CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-			CURLOPT_CUSTOMREQUEST => 'GET',
-			CURLOPT_HTTPHEADER => array(
-				'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
-			),
-			));
-
-			$response = curl_exec($curl);
-			curl_close($curl);
-			$response = json_decode($response);
-		}
-		
-		public function crete($name,$email,$password,$phone,$level)
+		public function create($name,$email,$password,$phone,$level)
 		{	
 			$curl = curl_init();
 
