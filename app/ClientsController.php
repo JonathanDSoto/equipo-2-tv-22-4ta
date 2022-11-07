@@ -19,7 +19,11 @@
 				$id = strip_tags($_POST['id']);
 				$name = strip_tags($_POST['name']);
 				$email = strip_tags($_POST['email']);
-				$password = strip_tags($_POST['password']);
+				if(isset($_POST['password'])){
+					$password = strip_tags($_POST['password']);
+				}else{
+					$password = '';
+				}
 				$phone = strip_tags($_POST['phone_number']);
 				$suscription = strip_tags($_POST['is_suscribed']);
 
@@ -104,7 +108,7 @@
 			$response = json_decode($response);
 
 			if (isset($response->code) && $response->code > 0) {
-				return true;
+				header('Location: ' . $_SERVER['HTTP_REFERER']);
        	 	}else{
 				return false;
 			}
