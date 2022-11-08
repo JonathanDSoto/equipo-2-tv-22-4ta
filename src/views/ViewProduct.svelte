@@ -287,7 +287,7 @@
                                                       class="table-responsive">
                                                       <table class="table mb-0">
                                                          <tbody>
-                                                            <tr>
+                                                            <tr style="display: flex;">
                                                                <th
                                                                   scope="row"
                                                                   style="width: 200px;"
@@ -299,17 +299,17 @@
                                                                   </td>
                                                                {/each}
                                                             </tr>
-                                                            <tr>
-                                                               <th scope="row"
+                                                            <tr style="display: flex;">
+                                                               <th scope="row" style="width: 200px"
                                                                   >Marca</th>
-                                                               <td
-                                                                  >Tommy
-                                                                  Hilfiger</td>
+                                                               <td>{data.brand.name} ( {data.brand.description} )</td>
                                                             </tr>
-                                                            <tr>
-                                                               <th scope="row"
+                                                            <tr style="display: flex;">
+                                                               <th scope="row" style="width: 200px"
                                                                   >Etiquetas</th>
-                                                               <td>Tommy</td>
+                                                               {#each data.tags as tags}
+                                                                  <td><a href="">{tags.name}</a></td>
+                                                               {/each}
                                                             </tr>
                                                          </tbody>
                                                       </table>
@@ -351,23 +351,9 @@
                                                                   Añadir Presentación</button>
                                                             </div>
                                                          </div>
-                                                         <div class="col-sm">
-                                                            <div
-                                                               class="d-flex justify-content-sm-end">
-                                                               <div
-                                                                  class="search-box ms-2">
-                                                                  <input
-                                                                     type="text"
-                                                                     class="form-control search"
-                                                                     placeholder="Buscar Presentaciones..." />
-                                                                  <i
-                                                                     class="ri-search-line search-icon" />
-                                                               </div>
-                                                            </div>
-                                                         </div>
                                                       </div>
 
-                                                      <div
+                                                      <!-- <div
                                                          class="table-responsive table-card mt-3 mb-1">
                                                          <table
                                                             class="table align-middle table-nowrap"
@@ -453,7 +439,7 @@
                                                                </tr>
                                                             </tbody>
                                                          </table>
-                                                      </div>
+                                                      </div> -->
                                                       <div
                                                          class="noresult"
                                                          style="display: none">
@@ -481,24 +467,6 @@
                                                          </div>
                                                       </div>
 
-                                                      <div
-                                                         class="d-flex justify-content-end">
-                                                         <div
-                                                            class="pagination-wrap hstack gap-2">
-                                                            <a
-                                                               class="page-item pagination-prev disabled"
-                                                               href="#!">
-                                                               Anterior
-                                                            </a>
-                                                            <ul
-                                                               class="pagination listjs-pagination mb-0" />
-                                                            <a
-                                                               class="page-item pagination-next"
-                                                               href="#!">
-                                                               Siguiente
-                                                            </a>
-                                                         </div>
-                                                      </div>
                                                    </div>
 
                                                    <div
