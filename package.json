@@ -29,6 +29,7 @@
     "gridjs": "^5.1.0",
     "jquery": "^3.6.1",
     "sirv-cli": "^2.0.0",
+    "svelte-carousel": "^1.0.20",
     "svelte-environment-variables": "^1.0.4",
     "svelte-loading-spinners": "^0.3.4",
     "svelte-local-storage-store": "^0.3.1",

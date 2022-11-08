@@ -135,8 +135,6 @@
 
 
     async function reloadPage(e) {
-        // e.preventDefault();
-
         Swal.fire({
             title: 'Recargara ventana',
             text: 'Se recargara la pagina para ver los cambios realizados :)',

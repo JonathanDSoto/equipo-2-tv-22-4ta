@@ -54,7 +54,10 @@
             <ViewCliente id={params.id} />
         </Route>
 
-        <Route path="/viewProduct" component={ViewProduct} />
+        <Route path="/viewProduct/:id" let:params>
+            <ViewProduct id={params.id} />
+        </Route>
+
         <Route path="/viewPresentacion" component={ViewPresentacion} />
         <Route path="/viewOrder" component={ViewOrder} />
         <Route path="/viewDireccion" component={ViewDireccion} />

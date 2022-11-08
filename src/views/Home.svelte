@@ -204,7 +204,7 @@
                                                         style="display: flex;"
                                                     >
                                                         <a
-                                                            href="/"
+                                                            href="/viewProduct/{datas.id}"
                                                             type="button"
                                                             class="btn btn-primary"
                                                             >Ver detalles</a
