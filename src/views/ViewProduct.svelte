@@ -159,15 +159,17 @@
                                     <div class="col-xl-4 col-md-8 mx-auto">
                                        <div class="product-img">
                                           <img
-                                             src="http://localhost:8080/images/products/img-8.png"
-                                             alt=""
+                                             src={data.cover}
+                                             alt={data.name}
                                              class="img-fluid d-block" />
                                           <!-- end swiper thumbnail slide -->
                                        </div>
                                        <div class="row mt-5">
                                           <div class="col overflow-auto">
                                              <!-- Carousel de presentaciones -->
-                                             <h3 class="pt-4 text-center">Presentaciones</h3>
+                                             <h3 class="pt-4 text-center">
+                                                Presentaciones
+                                             </h3>
                                              <Carousel>
                                                 {#each data.presentations as presentation}
                                                    <a href="">
@@ -188,8 +190,7 @@
                                           <div class="d-flex">
                                              <div class="flex-grow-1">
                                                 <h4>
-                                                   Sudadera de Manga Completa
-                                                   para Hombre (Rosa)
+                                                   {data.name}
                                                 </h4>
                                              </div>
                                           </div>
@@ -214,33 +215,9 @@
                                                             Precio:
                                                          </p>
                                                          <h5 class="mb-0">
-                                                            $120.40
-                                                         </h5>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             </div>
-                                             <!-- end col -->
-                                             <div class="col-lg-3 col-sm-6">
-                                                <div
-                                                   class="p-2 border border-dashed rounded">
-                                                   <div
-                                                      class="d-flex align-items-center">
-                                                      <div
-                                                         class="avatar-sm me-2">
-                                                         <div
-                                                            class="avatar-title rounded bg-transparent text-success fs-24">
-                                                            <i
-                                                               class="ri-file-copy-2-fill" />
-                                                         </div>
-                                                      </div>
-                                                      <div class="flex-grow-1">
-                                                         <p
-                                                            class="text-muted mb-1">
-                                                            No. de Ordenes :
-                                                         </p>
-                                                         <h5 class="mb-0">
-                                                            2,234
+                                                            {data
+                                                               .presentations[0]
+                                                               .price[0].amount}
                                                          </h5>
                                                       </div>
                                                    </div>
@@ -251,7 +228,7 @@
                                           <div class="mt-4 text-muted">
                                              <h5 class="fs-14">Slug:</h5>
                                              <p>
-                                                Sudadera-de-Manga-Completa-para-Hombre-(Rosa)
+                                                {data.slug}
                                              </p>
                                           </div>
 
@@ -260,19 +237,7 @@
                                                 Descripción :
                                              </h5>
                                              <p>
-                                                Sudadera rosa de rayas de hombre
-                                                Tommy Hilfiger. Confeccionado
-                                                con algodón. La composición del
-                                                material es 100% algodón
-                                                orgánico. Esta es una de las
-                                                marcas de estilo de vida de
-                                                diseñadores líderes en el mundo
-                                                y es reconocida
-                                                internacionalmente por celebrar
-                                                la esencia del estilo cool
-                                                estadounidense clásico,
-                                                presentando diseños preppy con
-                                                un giro.
+                                                {data.description}
                                              </p>
                                           </div>
                                           <div class="mt-4 text-muted">
@@ -281,28 +246,9 @@
                                                    <h5 class="fs-14">
                                                       Características :
                                                    </h5>
-                                                   <ul class="list-unstyled">
-                                                      <li class="py-1">
-                                                         <i
-                                                            class="mdi mdi-circle-medium me-1 text-muted align-middle" />
-                                                         Full Sleeve
-                                                      </li>
-                                                      <li class="py-1">
-                                                         <i
-                                                            class="mdi mdi-circle-medium me-1 text-muted align-middle" />
-                                                         Cotton
-                                                      </li>
-                                                      <li class="py-1">
-                                                         <i
-                                                            class="mdi mdi-circle-medium me-1 text-muted align-middle" />
-                                                         All Sizes available
-                                                      </li>
-                                                      <li class="py-1">
-                                                         <i
-                                                            class="mdi mdi-circle-medium me-1 text-muted align-middle" />
-                                                         4 Different Color
-                                                      </li>
-                                                   </ul>
+                                                   <p>
+                                                      {data.features}
+                                                   </p>
                                                 </div>
                                              </div>
                                           </div>
@@ -346,7 +292,12 @@
                                                                   scope="row"
                                                                   style="width: 200px;"
                                                                   >Categoría</th>
-                                                               <td>T-Shirt</td>
+                                                               {#each data.categories as categorie}
+                                                                  <td>
+                                                                     <a href=""
+                                                                        >{categorie.name}</a>
+                                                                  </td>
+                                                               {/each}
                                                             </tr>
                                                             <tr>
                                                                <th scope="row"
