@@ -39,6 +39,8 @@
       return dataUser.data;
    }
 
+   //    Categorias calls
+
    async function getCategories() {
       const response = await fetch(
          "https://crud.jonathansoto.mx/api/categories",
@@ -47,6 +49,19 @@
       const data = await response.json();
       return data.data;
    }
+
+   async function getSingleCategorie(id) {
+      const response = await fetch(
+         `https://crud.jonathansoto.mx/api/categories/${id}`,
+         requestOptions
+      );
+      const data = await response.json();
+      return data.data;
+   }
+
+   // =================================================
+
+   //   Marcas calls
 
    async function getBrands() {
       const response = await fetch(
@@ -57,9 +72,31 @@
       return data.data;
    }
 
+   async function getSingleBrand(id) {
+      const response = await fetch(
+         `https://crud.jonathansoto.mx/api/brands/${id}`,
+         requestOptions
+      );
+      const data = await response.json();
+      return data.data;
+   }
+
+   // =================================================
+
+   //  Etiquetas calls
+
    async function getTags() {
       const response = await fetch(
          `https://crud.jonathansoto.mx/api/tags`,
+         requestOptions
+      );
+      const data = await response.json();
+      return data.data;
+   }
+
+   async function getSingleTag(id) {
+      const response = await fetch(
+         `https://crud.jonathansoto.mx/api/tags/${id}`,
          requestOptions
       );
       const data = await response.json();
@@ -206,6 +243,8 @@
                                                          <div class="edit">
                                                             <a
                                                                class="btn btn-sm btn-success edit-item-btn"
+                                                               data-bs-toggle="modal"
+                                                               data-bs-target="#showModalEditarCategoria"
                                                                >Editar</a>
                                                          </div>
                                                          <div
@@ -246,7 +285,7 @@
 
                                     <div
                                        class="modal fade"
-                                       id="showModalEditar"
+                                       id="showModalEditarCategoria"
                                        tabindex="-1"
                                        aria-labelledby="exampleModalLabel"
                                        aria-hidden="true">
@@ -258,7 +297,7 @@
                                                 <h5
                                                    class="modal-title"
                                                    id="exampleModalLabel">
-                                                   Editar Cliente
+                                                   Editar Categoria
                                                 </h5>
                                                 <button
                                                    type="button"
@@ -275,7 +314,7 @@
                                                       <label
                                                          for="name-field"
                                                          class="form-label"
-                                                         >Nombre Completo</label>
+                                                         >Nombre</label>
                                                       <input
                                                          type="text"
                                                          id="name-field"
@@ -287,85 +326,54 @@
 
                                                    <div class="mb-3">
                                                       <label
-                                                         for="email-field"
+                                                         for="description-field"
                                                          class="form-label"
-                                                         >Correo</label>
+                                                         >Descripcion</label>
                                                       <input
-                                                         type="email"
-                                                         id="email-field"
-                                                         name="email"
+                                                         type="text"
+                                                         id="description-field"
+                                                         name="description"
                                                          class="form-control"
-                                                         placeholder="Ingresar Correo"
+                                                         placeholder="Ingresar descripcion"
                                                          required />
                                                    </div>
 
                                                    <div class="mb-3">
                                                       <label
-                                                         for="phone-field"
+                                                         for="slug-field"
                                                          class="form-label"
-                                                         >Teléfono</label>
+                                                         >Slug</label>
                                                       <input
                                                          type="text"
-                                                         id="phone-field"
+                                                         id="slug-field"
                                                          class="form-control"
-                                                         name="phone_number"
+                                                         name="slug"
                                                          placeholder="Ingresar Teléfono"
                                                          required />
                                                    </div>
 
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="suscribed-field"
-                                                         class="form-label"
-                                                         >¿Está suscrito?</label>
-                                                      <input
-                                                         name="is_suscribed"
-                                                         type="text"
-                                                         placeholder="1.- SI  2.- NO"
-                                                         value="fuck" />
+                                                   <div class="modal-footer">
+                                                      <div
+                                                         class="hstack gap-2 justify-content-end">
+                                                         <button
+                                                            type="button"
+                                                            class="btn btn-danger"
+                                                            data-bs-dismiss="modal"
+                                                            >Cerrar</button>
+                                                         <button
+                                                            type="submit"
+                                                            class="btn btn-success"
+                                                            on:click|once={reloadPage}
+                                                            id="add-btn"
+                                                            >Guardar cambios</button>
+                                                      </div>
                                                    </div>
-
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="id-field"
-                                                         class="form-label"
-                                                         >Nivel</label>
-                                                      <select name="level_id">
-                                                         <!-- {#each data as dataLevel}
-                                                                <option
-                                                                   value={dataLevel.id}
-                                                                   >{dataLevel.id}
-                                                                   (
-                                                                   {dataLevel.name}
-                                                                   )</option>
-                                                             {/each} -->
-                                                      </select>
-                                                   </div>
+                                                   <input
+                                                      name="action"
+                                                      value="update"
+                                                      hidden />
+                                                   <input name="id" hidden />
                                                 </div>
-                                                <div class="modal-footer">
-                                                   <div
-                                                      class="hstack gap-2 justify-content-end">
-                                                      <button
-                                                         type="button"
-                                                         class="btn btn-danger"
-                                                         data-bs-dismiss="modal"
-                                                         >Cerrar</button>
-                                                      <button
-                                                         type="submit"
-                                                         class="btn btn-success"
-                                                         on:click|once={reloadPage}
-                                                         id="add-btn"
-                                                         >Guardar cambios</button>
-                                                   </div>
-                                                </div>
-                                                <input
-                                                   name="action"
-                                                   value="update"
-                                                   hidden />
-                                                <input
-                                                   name="id"
-                                                   value="wep"
-                                                   hidden />
                                              </form>
                                           </div>
                                        </div>
