@@ -15,8 +15,9 @@
 
     import Clientes from './views/Clientes.svelte';
     import Products from './views/Products.svelte';
-    import ViewUser from './views/ViewUser.svelte';
+    // import ViewUser from './views/ViewUser.svelte';
     import ViewCliente from './views/ViewCliente.svelte';
+    import ViewCatalogo from './views/ViewCategoria.svelte';
 
     import ViewProduct from './views/ViewProduct.svelte';
     import ViewPresentacion from './views/ViewPresentacion.svelte';
@@ -37,6 +38,7 @@
         <Route path="/profileSettings" component={ProfileSettings} />
 
         <Route path="/users" component={Users} />
+        <Route path="/catalogos" component={ViewCatalogo} />
 
         <Route path="/users/:id" let:params>
             <UsersView id={params.id} />

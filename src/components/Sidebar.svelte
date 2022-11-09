@@ -73,7 +73,7 @@
             <!-- end Dashboard Menu -->
 
             <li class="nav-item">
-                <a class="nav-link menu-link" href="#sidebarAuth">
+                <a class="nav-link menu-link" href="/catalogos">
                     <i class="mdi mdi-account-circle-outline" />
                     <span data-key="t-authentication">Catálogos</span>
                 </a>
