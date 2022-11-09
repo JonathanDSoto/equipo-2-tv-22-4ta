@@ -75,7 +75,7 @@
             .catch((resp) => console.log(resp));
     }
 
-    async function sendToLogin(e) {
+    async function sendToLogin() {
         // e.preventDefault();
         Swal.fire({
             title: 'Regresaras al login',
@@ -85,8 +85,7 @@
             confirmButtonText: 'Aceptar',
         }).then((result) => {
             if (result.value) {
-                // location.href = '/';
-                console.log("Hola")
+                location.href = '#';
             }
         });
     }

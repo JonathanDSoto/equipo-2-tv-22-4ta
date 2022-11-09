@@ -226,7 +226,7 @@
             curl_close($curl);
             $response = json_decode($response);
             if (isset($response->code) && $response->code > 0) {
-				// header("Location:".BASE_PATH."profileSettings");
+				header('Location: ' . $_SERVER['HTTP_REFERER']);
 			}else{
 				return false;
 			}
