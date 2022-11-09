@@ -16,7 +16,7 @@
 					$product_id = strip_tags($_POST['product_id']);
 					
 					$presentantionsController = new PresentantionsController();
-					echo json_encode($presentantionsController->Create($descripcion,$code,$peso,$status,$stock,$stock_min,$stock_max,$product_id));
+					$presentantionsController->Create($descripcion,$code,$peso,$status,$stock,$stock_min,$stock_max,$product_id);
 				break;
 				case 'updatePresentation':
 					$descripcion = strip_tags($_POST['description']);
@@ -50,60 +50,6 @@
 		}
     class PresentantionsController{
 
-        //Get presentacion de productos
-        public function GetPresentations()
-        {
-            $curl = curl_init();
-            //pendiente la url del proyecto.
-            curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://crud.jonathansoto.mx/api/presentations/product/1',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
-
-            ),
-            ));
-
-            $response = curl_exec($curl);
-            curl_close($curl);
-            $response = json_decode($response);
-            //pendiente
-
-        }
-
-        //Get presentacion de un producto especifico
-        public function GetPresentation($id)
-        {
-            $curl = curl_init();
-
-            curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://crud.jonathansoto.mx/api/presentations/'.$id,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'GET',
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
-
-            ),
-            ));
-
-            $response = curl_exec($curl);
-            curl_close($curl);
-            $response = json_decode($response);
-            //pendiente
-
-        }
-
         //Create Presentacion
         public function Create($descripcion,$code,$peso,$status,$stock,$stock_min,$stock_max,$product_id)
         {
@@ -121,7 +67,6 @@
             CURLOPT_POSTFIELDS => array('description' => $descripcion,'code' => $code,'weight_in_grams' => $peso,'status' => $status,'cover'=> new CURLFILE($_FILES['cover']['tmp_name']),'stock' => $stock,'stock_min' => $stock_min,'stock_max' => $stock_max,'product_id' => $product_id),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
-
             ),
             ));
 
@@ -130,7 +75,7 @@
             $response = json_decode($response);
 
             if (isset($response->code) && $response->code > 0) {
-				return true;
+				header('Location: ' . $_SERVER['HTTP_REFERER']);
         	}else{
 				return false;
 			}

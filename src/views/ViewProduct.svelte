@@ -46,7 +46,8 @@
       return resp.data;
    }
 
-   function reloadPage() {
+   function reloadPage(e) {
+      e.preventDefault();
       Swal.fire({
          title: "Recargara ventana",
          text: "Se recargara la pagina para ver los cambios realizados :)",
@@ -328,8 +329,7 @@
                                                                   >Categoría</th>
                                                                {#each data.categories as categorie}
                                                                   <td>
-                                                                     <a href=""
-                                                                        >{categorie.name}</a>
+                                                                     {categorie.name}
                                                                   </td>
                                                                {/each}
                                                             </tr>
@@ -353,10 +353,7 @@
                                                                   style="width: 200px"
                                                                   >Etiquetas</th>
                                                                {#each data.tags as tags}
-                                                                  <td
-                                                                     ><a href=""
-                                                                        >{tags.name}</a
-                                                                     ></td>
+                                                                  <td>{tags.name}</td>
                                                                {/each}
                                                             </tr>
                                                          </tbody>
@@ -665,7 +662,10 @@
                                                                   aria-label="Close"
                                                                   id="close-modal" />
                                                             </div>
-                                                            <form>
+                                                            <form
+                                                               method="post"
+                                                               action="http://localhost/app/PresentationsController.php"
+                                                               enctype="multipart/form-data">
                                                                <div
                                                                   class="modal-body">
                                                                   <div
@@ -677,14 +677,15 @@
                                                                            <div
                                                                               class="profile-user position-relative d-inline-block mx-auto  mb-4">
                                                                               <img
-                                                                                 src="http://localhost:8080/images/users/avatar-1.jpg"
+                                                                                 src="http://localhost:8080/images/users/user-dummy-img.jpg"
                                                                                  class="rounded-circle avatar-xl img-thumbnail user-profile-image  shadow"
-                                                                                 alt="user-profile-image" />
+                                                                                 alt="user-profile" />
                                                                               <div
                                                                                  class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                                                                  <input
                                                                                     id="profile-img-file-input"
                                                                                     type="file"
+                                                                                    name="cover"
                                                                                     class="profile-img-file-input" />
                                                                                  <label
                                                                                     for="profile-img-file-input"
@@ -706,9 +707,10 @@
                                                                      <label
                                                                         for="name-field"
                                                                         class="form-label"
-                                                                        >Nombre</label>
+                                                                        >Descripcion</label>
                                                                      <input
                                                                         type="text"
+                                                                        name="description"
                                                                         id="name-field"
                                                                         class="form-control"
                                                                         placeholder="Enter Name"
@@ -717,127 +719,136 @@
                                                                   <div
                                                                      class="mb-3">
                                                                      <label
-                                                                        for="slug-field"
+                                                                        for="Code-field"
                                                                         class="form-label"
-                                                                        >Slug</label>
+                                                                        >Code</label>
                                                                      <input
                                                                         type="text"
-                                                                        id="slug-field"
+                                                                        id="Code-field"
+                                                                        name="code"
                                                                         class="form-control"
-                                                                        placeholder="Ponga el slug aqui"
+                                                                        placeholder="Ponga el Code aqui"
                                                                         required />
                                                                   </div>
                                                                   <div
                                                                      class="mb-3">
                                                                      <label
-                                                                        for="description-field"
+                                                                        for="weight-field"
                                                                         class="form-label"
-                                                                        >Descripcion</label>
+                                                                        >Peso en
+                                                                        gramos</label>
                                                                      <input
                                                                         type="text"
-                                                                        id="description-field"
+                                                                        id="weight-field"
+                                                                        name="weight_in_grams"
                                                                         class="form-control"
-                                                                        placeholder="Ponga la descripcion aqui"
+                                                                        placeholder="Ponga el peso aqui"
                                                                         required />
                                                                   </div>
                                                                   <div
                                                                      class="mb-3">
                                                                      <label
-                                                                        for="features-field"
+                                                                        for="status-field"
                                                                         class="form-label"
-                                                                        >Características</label>
+                                                                        >Status</label>
                                                                      <input
                                                                         type="text"
-                                                                        id="features-field"
+                                                                        id="status-field"
+                                                                        name="status"
                                                                         class="form-control"
-                                                                        placeholder="Ponga las Características aqui"
+                                                                        placeholder="Ponga el Status aqui"
                                                                         required />
-                                                                  </div>
-                                                                  <div
-                                                                     class="mb-3 ml-3">
-                                                                     <label
-                                                                        for="brand-field"
-                                                                        class="form-label"
-                                                                        >Selecciona
-                                                                        la marca</label>
-                                                                     {#await getBrands()}
-                                                                        Loading...
-                                                                     {:then data}
-                                                                        <select
-                                                                           name="level_id">
-                                                                           {#each data as brand}
-                                                                              <option
-                                                                                 value={brand.id}
-                                                                                 >{brand.name}</option>
-                                                                           {/each}
-                                                                        </select>
-                                                                     {:catch error}
-                                                                        {error}
-                                                                     {/await}
                                                                   </div>
 
                                                                   <div
                                                                      class="mb-3">
                                                                      <label
-                                                                        for="monto-field"
+                                                                        for="stock-field"
                                                                         class="form-label"
-                                                                        >Seleccione
-                                                                        categoria</label>
-                                                                     {#await getCategories()}
-                                                                        Loading...
-                                                                     {:then data}
-                                                                        <select
-                                                                           name="level_id">
-                                                                           {#each data as categorie}
-                                                                              <option
-                                                                                 value={categorie.id}
-                                                                                 >{categorie.name}</option>
-                                                                           {/each}
-                                                                        </select>
-                                                                     {:catch error}
-                                                                        {error}
-                                                                     {/await}
+                                                                        >Stock</label>
+                                                                     <input
+                                                                        type="text"
+                                                                        id="stock-field"
+                                                                        name="stock"
+                                                                        class="form-control"
+                                                                        placeholder="Ponga el stock aqui"
+                                                                        required />
                                                                   </div>
+
                                                                   <div
                                                                      class="mb-3">
                                                                      <label
-                                                                        for="monto-field"
+                                                                        for="stock-field"
                                                                         class="form-label"
-                                                                        >Seleccione
-                                                                        etiqueta</label>
-                                                                     {#await getTags()}
-                                                                        Loading...
-                                                                     {:then data}
-                                                                        <select
-                                                                           name="level_id">
-                                                                           {#each data as tag}
-                                                                              <option
-                                                                                 value={tag.id}
-                                                                                 >{tag.name}</option>
-                                                                           {/each}
-                                                                        </select>
-                                                                     {:catch error}
-                                                                        {error}
-                                                                     {/await}
+                                                                        >Stock
+                                                                        min</label>
+                                                                     <input
+                                                                        type="text"
+                                                                        id="stock-field"
+                                                                        name="stock_min"
+                                                                        class="form-control"
+                                                                        placeholder="Ponga el stock minimo aqui"
+                                                                        required />
                                                                   </div>
-                                                               </div>
-                                                               <div
-                                                                  class="modal-footer">
+
                                                                   <div
-                                                                     class="hstack gap-2 justify-content-end">
-                                                                     <button
-                                                                        type="button"
-                                                                        class="btn btn-light"
-                                                                        data-bs-dismiss="modal"
-                                                                        >Cerrar</button>
-                                                                     <button
-                                                                        type="button"
-                                                                        class="btn btn-success"
-                                                                        id="edit-btn"
-                                                                        >Añadir
-                                                                        Presentación</button>
+                                                                     class="mb-3">
+                                                                     <label
+                                                                        for="stock-field"
+                                                                        class="form-label"
+                                                                        >Stock
+                                                                        max</label>
+                                                                     <input
+                                                                        type="text"
+                                                                        id="stock-field"
+                                                                        name="stock_max"
+                                                                        class="form-control"
+                                                                        placeholder="Ponga el stock maximo aqui"
+                                                                        required />
+                                                                  </div>
+
+                                                                  <div
+                                                                     class="mb-3">
+                                                                     <label
+                                                                        for="amount-field"
+                                                                        class="form-label"
+                                                                        >Cantidad</label>
+                                                                     <input
+                                                                        type="text"
+                                                                        id="amount-field"
+                                                                        name="amount"
+                                                                        class="form-control"
+                                                                        placeholder="Ponga la cantidad aqui"
+                                                                        required />
+                                                                  </div>
+
+                                                                  <div
+                                                                     class="modal-footer">
+                                                                     <div
+                                                                        class="hstack gap-2 justify-content-end">
+                                                                        <button
+                                                                           type="button"
+                                                                           class="btn btn-danger"
+                                                                           data-bs-dismiss="modal"
+                                                                           >Cerrar</button>
+                                                                        <button
+                                                                           type="submit"
+                                                                           class="btn btn-success"
+                                                                           id="edit-btn"
+                                                                           on:click={reloadPage}
+                                                                           >Añadir
+                                                                           Presentación</button>
+                                                                     </div>
                                                                   </div>
                                                                </div>
+                                                               <input
+                                                                  value="create"
+                                                                  name="action"
+                                                                  hidden />
+                                                               <input
+                                                                  value={id}
+                                                                  name="product_id"
+                                                                  hidden />
                                                             </form>
                                                          </div>
                                                       </div>
