@@ -115,7 +115,6 @@
       );
       const data = await resp.json();
       const clientInfo = data.data;
-      console.log(clientInfo);
       dataClientSelected.id = clientInfo.id;
       dataClientSelected.name = clientInfo.name;
       dataClientSelected.lastname = clientInfo.lastname;
