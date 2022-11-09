@@ -59,6 +59,39 @@
          }
       });
    }
+
+   // Traer todas las categorias
+   async function getCategories() {
+      const fetch_query = await fetch(
+         "https://crud.jonathansoto.mx/api/categories",
+         requestOptions
+      );
+
+      const resp = await fetch_query.json();
+      return resp.data;
+   }
+
+   // Traer todas las marcas
+   async function getBrands() {
+      const fetch_query = await fetch(
+         "https://crud.jonathansoto.mx/api/brands",
+         requestOptions
+      );
+
+      const resp = await fetch_query.json();
+      return resp.data;
+   }
+
+   // Traer todas las etiquetas
+   async function getTags() {
+      const fetch_query = await fetch(
+         "https://crud.jonathansoto.mx/api/tags",
+         requestOptions
+      );
+
+      const resp = await fetch_query.json();
+      return resp.data;
+   }
 </script>
 
 <svelte:head>
@@ -287,7 +320,8 @@
                                                       class="table-responsive">
                                                       <table class="table mb-0">
                                                          <tbody>
-                                                            <tr style="display: flex;">
+                                                            <tr
+                                                               style="display: flex;">
                                                                <th
                                                                   scope="row"
                                                                   style="width: 200px;"
@@ -299,16 +333,30 @@
                                                                   </td>
                                                                {/each}
                                                             </tr>
-                                                            <tr style="display: flex;">
-                                                               <th scope="row" style="width: 200px"
+                                                            <tr
+                                                               style="display: flex;">
+                                                               <th
+                                                                  scope="row"
+                                                                  style="width: 200px"
                                                                   >Marca</th>
-                                                               <td>{data.brand.name} ( {data.brand.description} )</td>
+                                                               <td
+                                                                  >{data.brand
+                                                                     .name} ( {data
+                                                                     .brand
+                                                                     .description}
+                                                                  )</td>
                                                             </tr>
-                                                            <tr style="display: flex;">
-                                                               <th scope="row" style="width: 200px"
+                                                            <tr
+                                                               style="display: flex;">
+                                                               <th
+                                                                  scope="row"
+                                                                  style="width: 200px"
                                                                   >Etiquetas</th>
                                                                {#each data.tags as tags}
-                                                                  <td><a href="">{tags.name}</a></td>
+                                                                  <td
+                                                                     ><a href=""
+                                                                        >{tags.name}</a
+                                                                     ></td>
                                                                {/each}
                                                             </tr>
                                                          </tbody>
@@ -466,7 +514,6 @@
                                                             </p>
                                                          </div>
                                                       </div>
-
                                                    </div>
 
                                                    <div
@@ -499,11 +546,6 @@
                                                                   class="modal-body">
                                                                   <div
                                                                      class="mb-3">
-                                                                     <label
-                                                                        for="foto-field"
-                                                                        class="form-label"
-                                                                        >Foto</label>
-
                                                                      <div
                                                                         class="card-body p-4">
                                                                         <div
@@ -628,11 +670,6 @@
                                                                   class="modal-body">
                                                                   <div
                                                                      class="mb-3">
-                                                                     <label
-                                                                        for="foto-field"
-                                                                        class="form-label"
-                                                                        >Foto</label>
-
                                                                      <div
                                                                         class="card-body p-4">
                                                                         <div
@@ -680,15 +717,63 @@
                                                                   <div
                                                                      class="mb-3">
                                                                      <label
-                                                                        for="status-field"
+                                                                        for="slug-field"
                                                                         class="form-label"
-                                                                        >Status</label>
+                                                                        >Slug</label>
                                                                      <input
                                                                         type="text"
-                                                                        id="status-field"
+                                                                        id="slug-field"
                                                                         class="form-control"
-                                                                        placeholder="Enter Status"
+                                                                        placeholder="Ponga el slug aqui"
                                                                         required />
+                                                                  </div>
+                                                                  <div
+                                                                     class="mb-3">
+                                                                     <label
+                                                                        for="description-field"
+                                                                        class="form-label"
+                                                                        >Descripcion</label>
+                                                                     <input
+                                                                        type="text"
+                                                                        id="description-field"
+                                                                        class="form-control"
+                                                                        placeholder="Ponga la descripcion aqui"
+                                                                        required />
+                                                                  </div>
+                                                                  <div
+                                                                     class="mb-3">
+                                                                     <label
+                                                                        for="features-field"
+                                                                        class="form-label"
+                                                                        >Características</label>
+                                                                     <input
+                                                                        type="text"
+                                                                        id="features-field"
+                                                                        class="form-control"
+                                                                        placeholder="Ponga las Características aqui"
+                                                                        required />
+                                                                  </div>
+                                                                  <div
+                                                                     class="mb-3 ml-3">
+                                                                     <label
+                                                                        for="brand-field"
+                                                                        class="form-label"
+                                                                        >Selecciona
+                                                                        la marca</label>
+                                                                     {#await getBrands()}
+                                                                        Loading...
+                                                                     {:then data}
+                                                                        <select
+                                                                           name="level_id">
+                                                                           {#each data as brand}
+                                                                              <option
+                                                                                 value={brand.id}
+                                                                                 >{brand.name}</option>
+                                                                           {/each}
+                                                                        </select>
+                                                                     {:catch error}
+                                                                        {error}
+                                                                     {/await}
                                                                   </div>
 
                                                                   <div
@@ -696,13 +781,44 @@
                                                                      <label
                                                                         for="monto-field"
                                                                         class="form-label"
-                                                                        >Monto</label>
-                                                                     <input
-                                                                        type="text"
-                                                                        id="monto-field"
-                                                                        class="form-control"
-                                                                        placeholder="Enter Monto"
-                                                                        required />
+                                                                        >Seleccione
+                                                                        categoria</label>
+                                                                     {#await getCategories()}
+                                                                        Loading...
+                                                                     {:then data}
+                                                                        <select
+                                                                           name="level_id">
+                                                                           {#each data as categorie}
+                                                                              <option
+                                                                                 value={categorie.id}
+                                                                                 >{categorie.name}</option>
+                                                                           {/each}
+                                                                        </select>
+                                                                     {:catch error}
+                                                                        {error}
+                                                                     {/await}
+                                                                  </div>
+                                                                  <div
+                                                                     class="mb-3">
+                                                                     <label
+                                                                        for="monto-field"
+                                                                        class="form-label"
+                                                                        >Seleccione
+                                                                        etiqueta</label>
+                                                                     {#await getTags()}
+                                                                        Loading...
+                                                                     {:then data}
+                                                                        <select
+                                                                           name="level_id">
+                                                                           {#each data as tag}
+                                                                              <option
+                                                                                 value={tag.id}
+                                                                                 >{tag.name}</option>
+                                                                           {/each}
+                                                                        </select>
+                                                                     {:catch error}
+                                                                        {error}
+                                                                     {/await}
                                                                   </div>
                                                                </div>
                                                                <div
