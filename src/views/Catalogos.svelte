@@ -267,7 +267,7 @@
                                                                data-bs-target="#showModalEditarCategoria"
                                                                on:click={() =>
                                                                   getSingleCategorie(
-                                                                    categorie.id
+                                                                     categorie.id
                                                                   )}
                                                                >Editar</button>
                                                          </div>
@@ -600,9 +600,9 @@
                                                                data-bs-toggle="modal"
                                                                data-bs-target="#showModalEditarMarca"
                                                                on:click={() =>
-                                                                getSingleBrand(
-                                                                    brand.id
-                                                                )}
+                                                                  getSingleBrand(
+                                                                     brand.id
+                                                                  )}
                                                                >Editar</button>
                                                          </div>
                                                          <div
@@ -877,7 +877,7 @@
                      <div class="col-lg-12">
                         <div class="card">
                            <div class="card-header">
-                              <h4 class="card-title mb-0">Marcas</h4>
+                              <h4 class="card-title mb-0">Etiquetas</h4>
                            </div>
                            <!-- end card header -->
 
@@ -894,7 +894,7 @@
                                              data-bs-target="#showModalAñadirCliente"
                                              ><i
                                                 class="ri-add-line align-bottom me-1" />
-                                             Añadir Marca</button>
+                                             Añadir Etiquetas</button>
                                        </div>
                                     </div>
                                  </div>
@@ -927,9 +927,11 @@
                                                    <td>
                                                       <div class="d-flex gap-2">
                                                          <div class="edit">
-                                                            <a
+                                                            <button
                                                                class="btn btn-sm btn-success edit-item-btn"
-                                                               >Editar</a>
+                                                               data-bs-toggle="modal"
+                                                               data-bs-target="#showModalEditarEtiqueta"
+                                                               >Editar</button>
                                                          </div>
                                                          <div
                                                             class="remove"
@@ -948,28 +950,9 @@
                                        </tbody>
                                     </table>
 
-                                    <div class="noresult" style="display: none">
-                                       <div class="text-center">
-                                          <lord-icon
-                                             src="https://cdn.lordicon.com/msoeawqm.json"
-                                             trigger="loop"
-                                             colors="primary:#121331,secondary:#08a88a"
-                                             style="width:75px;height:75px" />
-                                          <h5 class="mt-2">
-                                             Lo sentimos! No se encontraron
-                                             resultados
-                                          </h5>
-                                          <p class="text-muted mb-0">
-                                             Hemos buscado en todos los
-                                             clientes. No encontramos ningún
-                                             cliente para tu busqueda.
-                                          </p>
-                                       </div>
-                                    </div>
-
                                     <div
                                        class="modal fade"
-                                       id="showModalEditar"
+                                       id="showModalEditarEtiqueta"
                                        tabindex="-1"
                                        aria-labelledby="exampleModalLabel"
                                        aria-hidden="true">
@@ -981,7 +964,7 @@
                                                 <h5
                                                    class="modal-title"
                                                    id="exampleModalLabel">
-                                                   Editar Cliente
+                                                   Editar Categoria
                                                 </h5>
                                                 <button
                                                    type="button"
@@ -998,96 +981,68 @@
                                                       <label
                                                          for="name-field"
                                                          class="form-label"
-                                                         >Nombre Completo</label>
+                                                         >Nombre</label>
                                                       <input
                                                          type="text"
                                                          id="name-field"
                                                          class="form-control"
                                                          placeholder="Ingresar Nombre"
+                                                         bind:value={dataSingleSelected.name}
                                                          name="name"
                                                          required />
                                                    </div>
 
                                                    <div class="mb-3">
                                                       <label
-                                                         for="email-field"
+                                                         for="description-field"
                                                          class="form-label"
-                                                         >Correo</label>
+                                                         >Descripcion</label>
                                                       <input
-                                                         type="email"
-                                                         id="email-field"
-                                                         name="email"
+                                                         type="text"
+                                                         id="description-field"
+                                                         name="description"
                                                          class="form-control"
-                                                         placeholder="Ingresar Correo"
+                                                         bind:value={dataSingleSelected.description}
+                                                         placeholder="Ingresar descripcion"
                                                          required />
                                                    </div>
 
                                                    <div class="mb-3">
                                                       <label
-                                                         for="phone-field"
+                                                         for="slug-field"
                                                          class="form-label"
-                                                         >Teléfono</label>
+                                                         >Slug</label>
                                                       <input
                                                          type="text"
-                                                         id="phone-field"
+                                                         id="slug-field"
                                                          class="form-control"
-                                                         name="phone_number"
+                                                         name="slug"
+                                                         bind:value={dataSingleSelected.slug}
                                                          placeholder="Ingresar Teléfono"
                                                          required />
                                                    </div>
 
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="suscribed-field"
-                                                         class="form-label"
-                                                         >¿Está suscrito?</label>
-                                                      <input
-                                                         name="is_suscribed"
-                                                         type="text"
-                                                         placeholder="1.- SI  2.- NO"
-                                                         value="fuck" />
+                                                   <div class="modal-footer">
+                                                      <div
+                                                         class="hstack gap-2 justify-content-end">
+                                                         <button
+                                                            type="button"
+                                                            class="btn btn-danger"
+                                                            data-bs-dismiss="modal"
+                                                            >Cerrar</button>
+                                                         <button
+                                                            type="submit"
+                                                            class="btn btn-success"
+                                                            id="add-btn"
+                                                            >Guardar cambios</button>
+                                                      </div>
                                                    </div>
-
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="id-field"
-                                                         class="form-label"
-                                                         >Nivel</label>
-                                                      <select name="level_id">
-                                                         <!-- {#each data as dataLevel}
-                                                              <option
-                                                                 value={dataLevel.id}
-                                                                 >{dataLevel.id}
-                                                                 (
-                                                                 {dataLevel.name}
-                                                                 )</option>
-                                                           {/each} -->
-                                                      </select>
-                                                   </div>
+                                                   <input
+                                                      name="action"
+                                                      value="update"
+                                                      hidden />
+                                                   <input name="id" hidden />
                                                 </div>
-                                                <div class="modal-footer">
-                                                   <div
-                                                      class="hstack gap-2 justify-content-end">
-                                                      <button
-                                                         type="button"
-                                                         class="btn btn-danger"
-                                                         data-bs-dismiss="modal"
-                                                         >Cerrar</button>
-                                                      <button
-                                                         type="submit"
-                                                         class="btn btn-success"
-                                                         id="add-btn"
-                                                         >Guardar cambios</button>
-                                                   </div>
-                                                </div>
-                                                <input
-                                                   name="action"
-                                                   value="update"
-                                                   hidden />
-                                                <input
-                                                   name="id"
-                                                   value="wep"
-                                                   hidden />
                                              </form>
                                           </div>
                                        </div>
