@@ -132,7 +132,7 @@
       return data.data;
    }
 
-   async function reloadPage(e) {
+   function reloadPage(e) {
       Swal.fire({
          title: "Recargara ventana",
          text: "Se recargara la pagina para ver los cambios realizados :)",

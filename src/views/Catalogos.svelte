@@ -3,10 +3,7 @@
    import Sidebar from "../components/Sidebar.svelte";
 
    import Swal from "sweetalert2";
-
-   // Transiciones
-   import { fly } from "svelte/transition";
-   import { fade } from "svelte/transition";
+   import axios from "axios";
 
    // Traer la id del usuario loggeado
    import { get } from "svelte/store";
@@ -51,6 +48,7 @@
    }
 
    const dataSingleSelected = {
+      action: "update",
       id: 0,
       name: "",
       description: "",
@@ -121,6 +119,97 @@
       dataSingleSelected.description = data.data.description;
       dataSingleSelected.slug = data.data.slug;
       return data.data;
+   }
+
+   async function sendDataUpdateCategorias() {
+      const bodyForm = new FormData();
+      bodyForm.append("action", dataSingleSelected.action);
+      bodyForm.append("name", dataSingleSelected.name);
+      bodyForm.append("description", dataSingleSelected.description);
+      bodyForm.append("slug", dataSingleSelected.slug);
+      bodyForm.append("id", dataSingleSelected.id);
+
+      axios
+         .post("http://localhost/app/CategoriesController.php", bodyForm)
+         .then(function (response) {
+            if (response) {
+               console.log(response);
+               Swal.fire({
+                  title: "Edicion completada",
+                  text: "Se recargara la pagina para reflejar los cambios",
+                  icon: "info",
+                  showCancelButton: false,
+                  confirmButtonText: "Aceptar",
+               }).then((result) => {
+                  if (result.value) {
+                     location.href = "/catalogos";
+                  }
+               });
+            } else {
+               console.log("Nel");
+            }
+         })
+         .catch((resp) => console.log(resp));
+   }
+   async function sendDataUpdateMarcas() {
+      const bodyForm = new FormData();
+      bodyForm.append("action", dataSingleSelected.action);
+      bodyForm.append("name", dataSingleSelected.name);
+      bodyForm.append("description", dataSingleSelected.description);
+      bodyForm.append("slug", dataSingleSelected.slug);
+      bodyForm.append("id", dataSingleSelected.id);
+
+      axios
+         .post("http://localhost/app/BrandsController.php", bodyForm)
+         .then(function (response) {
+            if (response) {
+               console.log(response);
+               Swal.fire({
+                  title: "Edicion completada",
+                  text: "Se recargara la pagina para reflejar los cambios",
+                  icon: "info",
+                  showCancelButton: false,
+                  confirmButtonText: "Aceptar",
+               }).then((result) => {
+                  if (result.value) {
+                     location.href = "/catalogos";
+                  }
+               });
+            } else {
+               console.log("Nel");
+            }
+         })
+         .catch((resp) => console.log(resp));
+   }
+   async function sendDataUpdateEtiquetas() {
+      const bodyForm = new FormData();
+      bodyForm.append("action", dataSingleSelected.action);
+      bodyForm.append("name", dataSingleSelected.name);
+      bodyForm.append("description", dataSingleSelected.description);
+      bodyForm.append("slug", dataSingleSelected.slug);
+      bodyForm.append("id", dataSingleSelected.id);
+
+      axios
+         .post("http://localhost/app/TagsController.php", bodyForm)
+         .then(function (response) {
+            if (response) {
+               console.log(response);
+               Swal.fire({
+                  title: "Edicion completada",
+                  text: "Se recargara la pagina para reflejar los cambios",
+                  icon: "info",
+                  showCancelButton: false,
+                  confirmButtonText: "Aceptar",
+               }).then((result) => {
+                  if (result.value) {
+                     location.href = "/catalogos";
+                  }
+               });
+            } else {
+               console.log("Nel");
+            }
+         })
+         .catch((resp) => console.log(resp));
    }
 </script>
 
@@ -287,26 +376,7 @@
                                           {/await}
                                        </tbody>
                                     </table>
-
-                                    <div class="noresult" style="display: none">
-                                       <div class="text-center">
-                                          <lord-icon
-                                             src="https://cdn.lordicon.com/msoeawqm.json"
-                                             trigger="loop"
-                                             colors="primary:#121331,secondary:#08a88a"
-                                             style="width:75px;height:75px" />
-                                          <h5 class="mt-2">
-                                             Lo sentimos! No se encontraron
-                                             resultados
-                                          </h5>
-                                          <p class="text-muted mb-0">
-                                             Hemos buscado en todos los
-                                             clientes. No encontramos ningún
-                                             cliente para tu busqueda.
-                                          </p>
-                                       </div>
-                                    </div>
-
+                                    
                                     <!-- Modal editar categoria -->
                                     <div
                                        class="modal fade"
@@ -331,9 +401,7 @@
                                                    aria-label="Close"
                                                    id="close-modal" />
                                              </div>
-                                             <form
-                                                method="post"
-                                                action="http://localhost/app/ClientsController.php">
+                                             <form>
                                                 <div class="modal-body">
                                                    <div class="mb-3">
                                                       <label
@@ -392,6 +460,7 @@
                                                             type="submit"
                                                             class="btn btn-success"
                                                             id="add-btn"
+                                                            on:click|preventDefault={sendDataUpdateCategorias}
                                                             >Guardar cambios</button>
                                                       </div>
                                                    </div>
@@ -399,7 +468,10 @@
                                                       name="action"
                                                       value="update"
                                                       hidden />
-                                                   <input name="id" hidden />
+                                                   <input
+                                                      name="id"
+                                                      value={dataSingleSelected.id}
+                                                      hidden />
                                                 </div>
                                              </form>
                                           </div>
@@ -529,6 +601,7 @@
                                           </div>
                                        </div>
                                     </div>
+
                                  </div>
                               </div>
                               <!-- end card -->
@@ -622,25 +695,7 @@
                                        </tbody>
                                     </table>
 
-                                    <div class="noresult" style="display: none">
-                                       <div class="text-center">
-                                          <lord-icon
-                                             src="https://cdn.lordicon.com/msoeawqm.json"
-                                             trigger="loop"
-                                             colors="primary:#121331,secondary:#08a88a"
-                                             style="width:75px;height:75px" />
-                                          <h5 class="mt-2">
-                                             Lo sentimos! No se encontraron
-                                             resultados
-                                          </h5>
-                                          <p class="text-muted mb-0">
-                                             Hemos buscado en todos los
-                                             clientes. No encontramos ningún
-                                             cliente para tu busqueda.
-                                          </p>
-                                       </div>
-                                    </div>
-
+                                    <!-- Editar marca modal -->
                                     <div
                                        class="modal fade"
                                        id="showModalEditarMarca"
@@ -725,20 +780,17 @@
                                                             type="submit"
                                                             class="btn btn-success"
                                                             id="add-btn"
+                                                            on:click|preventDefault={sendDataUpdateMarcas}
                                                             >Guardar cambios</button>
                                                       </div>
                                                    </div>
-                                                   <input
-                                                      name="action"
-                                                      value="update"
-                                                      hidden />
-                                                   <input name="id" hidden />
                                                 </div>
                                              </form>
                                           </div>
                                        </div>
                                     </div>
 
+                                    <!-- Agrega marca modal -->
                                     <div
                                        class="modal fade"
                                        id="showModalAñadirCliente"
@@ -872,7 +924,7 @@
                      <!-- end row -->
                   </div>
 
-                  <!-- Tabla Tags -->
+                  <!-- Tabla Etiquetas -->
                   <div class="row">
                      <div class="col-lg-12">
                         <div class="card">
@@ -894,7 +946,7 @@
                                              data-bs-target="#showModalAñadirCliente"
                                              ><i
                                                 class="ri-add-line align-bottom me-1" />
-                                             Añadir Etiquetas</button>
+                                             Añadir Marca</button>
                                        </div>
                                     </div>
                                  </div>
@@ -902,7 +954,7 @@
                                  <div
                                     class="table-responsive table-card mt-3 mb-1"
                                     style="height: 200px;
-                                  overflow: scroll;">
+                                   overflow: scroll;">
                                     <table
                                        class="table align-middle table-nowrap"
                                        id="customerTable">
@@ -931,6 +983,10 @@
                                                                class="btn btn-sm btn-success edit-item-btn"
                                                                data-bs-toggle="modal"
                                                                data-bs-target="#showModalEditarEtiqueta"
+                                                               on:click={() =>
+                                                                  getSingleTag(
+                                                                     tag.id
+                                                                  )}
                                                                >Editar</button>
                                                          </div>
                                                          <div
@@ -950,6 +1006,7 @@
                                        </tbody>
                                     </table>
 
+                                    <!-- Editar etiqueta modal -->
                                     <div
                                        class="modal fade"
                                        id="showModalEditarEtiqueta"
@@ -964,7 +1021,7 @@
                                                 <h5
                                                    class="modal-title"
                                                    id="exampleModalLabel">
-                                                   Editar Categoria
+                                                   Editar Etiqueta
                                                 </h5>
                                                 <button
                                                    type="button"
@@ -973,9 +1030,7 @@
                                                    aria-label="Close"
                                                    id="close-modal" />
                                              </div>
-                                             <form
-                                                method="post"
-                                                action="http://localhost/app/ClientsController.php">
+                                             <form>
                                                 <div class="modal-body">
                                                    <div class="mb-3">
                                                       <label
@@ -1034,20 +1089,17 @@
                                                             type="submit"
                                                             class="btn btn-success"
                                                             id="add-btn"
+                                                            on:click|preventDefault={sendDataUpdateEtiquetas}
                                                             >Guardar cambios</button>
                                                       </div>
                                                    </div>
-                                                   <input
-                                                      name="action"
-                                                      value="update"
-                                                      hidden />
-                                                   <input name="id" hidden />
                                                 </div>
                                              </form>
                                           </div>
                                        </div>
                                     </div>
 
+                                    <!-- Añadir etiqueta modal -->
                                     <div
                                        class="modal fade"
                                        id="showModalAñadirCliente"
@@ -1170,6 +1222,8 @@
                                           </div>
                                        </div>
                                     </div>
+
+
                                  </div>
                               </div>
                               <!-- end card -->
@@ -1185,10 +1239,6 @@
                </div>
                <!-- container-fluid -->
             </div>
-            <!-- End Page-content -->
-
-            <!-- end main content-->
-
             <div>
                <!-- ============================================ -->
                <!-- Js tempalte -->
