@@ -1,3 +1,4 @@
+//verificado
 <script>
     import Sidebar from '../components/Sidebar.svelte';
     import { get } from 'svelte/store';
