@@ -9,10 +9,9 @@
 				$name = strip_tags($_POST['name']);
                 $description = strip_tags($_POST['description']);
                 $slug = strip_tags($_POST['slug']);
-                $category_id = strip_tags($_POST['category_id']);
 
 				$categoriesController = new CategoriesController();
-				echo json_encode($categoriesController->create($name,$description,$slug,$category_id));
+				echo json_encode($categoriesController->create($name,$description,$slug));
 			break;
             case 'update':
 				$id = strip_tags($_POST['id']);
@@ -89,7 +88,7 @@
 		}
 
         //Create a categoria
-		public function create($name,$description,$slug,$category_id)
+		public function create($name,$description,$slug)
 		{	
             $curl = curl_init();
 
@@ -102,7 +101,7 @@
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => array('name' => $name,'description' => $description,'slug' => $slug,'category_id' => $category_id),
+            CURLOPT_POSTFIELDS => array('name' => $name,'description' => $description,'slug' => $slug),
             CURLOPT_HTTPHEADER => array(
                 'Authorization: Bearer 1652|z3WkoTqsJHB5Mm5KM7kKtzpDPNzpamfptMyPKXFf'
             ),

@@ -123,108 +123,110 @@
    // ======================================================================
    // Creacion  de Categorias - Marcas - Etiquetas
    // ======================================================================
-   // async function sendDataCreateCategorias() {
-   //    const bodyForm = new FormData();
-   //    bodyForm.append("action", "create");
-   //    bodyForm.append("name", dataSingleSelected.name);
-   //    bodyForm.append("description", dataSingleSelected.description);
-   //    bodyForm.append("slug", dataSingleSelected.slug);
 
-   //    axios
-   //       .post("http://localhost/app/CategoriesController.php", bodyForm)
-   //       .then(function (response) {
-   //          if (response) {
-   //             console.log(response);
-   //             Swal.fire({
-   //                title: "Se añadio correctamente",
-   //                text: "Se recargara la pagina para reflejar los cambios",
-   //                icon: "info",
-   //                showCancelButton: false,
-   //                confirmButtonText: "Aceptar",
-   //             }).then((result) => {
-   //                if (result.value) {
-   //                   location.href = "/catalogos";
-   //                }
-   //             });
-   //          } else {
-   //             console.log("Nel");
-   //          }
-   //       })
-   //       .catch((resp) => console.log(resp));
-   // }
+   const dataCreate = {
+      name: "",
+      description: "",
+      slug: "",
+   };
 
-   // async function sendDataCreateMarcas() {
-   //    const bodyForm = new FormData();
-   //    bodyForm.append("action", "create");
-   //    bodyForm.append("name", dataSingleSelected.name);
-   //    bodyForm.append("description", dataSingleSelected.description);
-   //    bodyForm.append("slug", dataSingleSelected.slug);
+   async function sendDataCreateCategorias() {
+      const bodyForm = new FormData();
+      bodyForm.append("action", "create");
+      bodyForm.append("name", dataCreate.name);
+      bodyForm.append("description", dataCreate.description);
+      bodyForm.append("slug", dataCreate.slug);
 
-   //    axios
-   //       .post("http://localhost/app/BrandsController.php", bodyForm)
-   //       .then(function (response) {
-   //          if (response) {
-   //             console.log(response);
-   //             Swal.fire({
-   //                title: "Creacion completada",
-   //                text: "Se recargara la pagina para reflejar los cambios",
-   //                icon: "info",
-   //                showCancelButton: false,
-   //                confirmButtonText: "Aceptar",
-   //             }).then((result) => {
-   //                if (result.value) {
-   //                   location.href = "/catalogos";
-   //                }
-   //             });
-   //          } else {
-   //             console.log("Nel");
-   //          }
-   //       })
-   //       .catch((resp) => console.log(resp));
-   // }
+      axios
+         .post("http://localhost/app/CategoriesController.php", bodyForm)
+         .then(function (response) {
+            if (response) {
+               console.log(response);
+               Swal.fire({
+                  title: "Se añadio correctamente",
+                  text: "Se recargara la pagina para reflejar los cambios",
+                  icon: "info",
+                  showCancelButton: false,
+                  confirmButtonText: "Aceptar",
+               }).then((result) => {
+                  if (result.value) {
+                     dataCreate.name = "";
+                     dataCreate.description = "";
+                     dataCreate.slug = "";
+                     location.href = "/catalogos";
+                  }
+               });
+            } else {
+               console.log("Nel");
+            }
+         })
+         .catch((resp) => console.log(resp));
+   }
 
-   // async function sendDataCreateEtiquetas() {
-   //    const bodyForm = new FormData();
-   //    bodyForm.append("action", "create");
-   //    bodyForm.append("name", dataSingleSelected.name);
-   //    bodyForm.append("description", dataSingleSelected.description);
-   //    bodyForm.append("slug", dataSingleSelected.slug);
+   async function sendDataCreateMarcas() {
+      const bodyForm = new FormData();
+      bodyForm.append("action", "create");
+      bodyForm.append("name", dataCreate.name);
+      bodyForm.append("description", dataCreate.description);
+      bodyForm.append("slug", dataCreate.slug);
 
-   //    axios
-   //       .post("http://localhost/app/TagsController.php", bodyForm)
-   //       .then(function (response) {
-   //          if (response) {
-   //             console.log(response);
-   //             Swal.fire({
-   //                title: "Creacion completada",
-   //                text: "Se recargara la pagina para reflejar los cambios",
-   //                icon: "info",
-   //                showCancelButton: false,
-   //                confirmButtonText: "Aceptar",
-   //             }).then((result) => {
-   //                if (result.value) {
-   //                   location.href = "/catalogos";
-   //                }
-   //             });
-   //          } else {
-   //             console.log("Nel");
-   //          }
-   //       })
-   //       .catch((resp) => console.log(resp));
-   // }
+      axios
+         .post("http://localhost/app/BrandsController.php", bodyForm)
+         .then(function (response) {
+            if (response) {
+               console.log(response);
+               Swal.fire({
+                  title: "Creacion completada",
+                  text: "Se recargara la pagina para reflejar los cambios",
+                  icon: "info",
+                  showCancelButton: false,
+                  confirmButtonText: "Aceptar",
+               }).then((result) => {
+                  if (result.value) {
+                     dataCreate.name = "";
+                     dataCreate.description = "";
+                     dataCreate.slug = "";
+                     location.href = "/catalogos";
+                  }
+               });
+            } else {
+               console.log("Nel");
+            }
+         })
+         .catch((resp) => console.log(resp));
+   }
 
-   function reloadPage() {
-      Swal.fire({
-         title: "Recargara ventana",
-         text: "Se recargara la pagina para ver los cambios realizados :)",
-         icon: "info",
-         showCancelButton: false,
-         confirmButtonText: "Aceptar",
-      }).then((result) => {
-         if (result.value) {
-            location.reload();
-         }
-      });
+   async function sendDataCreateEtiquetas() {
+      const bodyForm = new FormData();
+      bodyForm.append("action", "create");
+      bodyForm.append("name", dataCreate.name);
+      bodyForm.append("description", dataCreate.description);
+      bodyForm.append("slug", dataCreate.slug);
+
+      axios
+         .post("http://localhost/app/TagsController.php", bodyForm)
+         .then(function (response) {
+            if (response) {
+               console.log(response);
+               Swal.fire({
+                  title: "Creacion completada",
+                  text: "Se recargara la pagina para reflejar los cambios",
+                  icon: "info",
+                  showCancelButton: false,
+                  confirmButtonText: "Aceptar",
+               }).then((result) => {
+                  if (result.value) {
+                     dataCreate.name = "";
+                     dataCreate.description = "";
+                     dataCreate.slug = "";
+                     location.href = "/catalogos";
+                  }
+               });
+            } else {
+               console.log("Nel");
+            }
+         })
+         .catch((resp) => console.log(resp));
    }
 
    // ======================================================================
@@ -717,8 +719,7 @@
                                                          id="name-field"
                                                          class="form-control"
                                                          placeholder="Ingresar Nombre"
-                                                         bind:value={dataSingleSelected.name}
-                                                         name="name"
+                                                         bind:value={dataCreate.name}
                                                          required />
                                                    </div>
 
@@ -730,9 +731,8 @@
                                                       <input
                                                          type="text"
                                                          id="description-field"
-                                                         name="description"
                                                          class="form-control"
-                                                         bind:value={dataSingleSelected.description}
+                                                         bind:value={dataCreate.description}
                                                          placeholder="Ingresar descripcion"
                                                          required />
                                                    </div>
@@ -746,8 +746,7 @@
                                                          type="text"
                                                          id="slug-field"
                                                          class="form-control"
-                                                         name="slug"
-                                                         bind:value={dataSingleSelected.slug}
+                                                         bind:value={dataCreate.slug}
                                                          placeholder="Ingresar Teléfono"
                                                          required />
                                                    </div>
@@ -764,7 +763,7 @@
                                                             type="submit"
                                                             class="btn btn-success"
                                                             id="add-btn"
-                                                            on:click|preventDefault={sendDataUpdateCategorias}
+                                                            on:click={sendDataCreateCategorias}
                                                             >Guardar cambios</button>
                                                       </div>
                                                    </div>
@@ -989,9 +988,7 @@
                                                    aria-label="Close"
                                                    id="close-modal" />
                                              </div>
-                                             <form
-                                                action="http://localhost/app/BrandsController.php"
-                                                method="post">
+                                             <form>
                                                 <div class="modal-body">
                                                    <div class="mb-3">
                                                       <label
@@ -1003,7 +1000,7 @@
                                                          id="name-field"
                                                          class="form-control"
                                                          placeholder="Ingresar Nombre"
-                                                         name="name"
+                                                         bind:value={dataCreate.name}
                                                          required />
                                                    </div>
 
@@ -1015,7 +1012,7 @@
                                                       <input
                                                          type="text"
                                                          id="description-field"
-                                                         name="description"
+                                                         bind:value={dataCreate.description}
                                                          class="form-control"
                                                          placeholder="Ingresar descripcion"
                                                          required />
@@ -1030,7 +1027,7 @@
                                                          type="text"
                                                          id="slug-field"
                                                          class="form-control"
-                                                         name="slug"
+                                                         bind:value={dataCreate.slug}
                                                          placeholder="Ingresar Teléfono"
                                                          required />
                                                    </div>
@@ -1047,7 +1044,7 @@
                                                             type="submit"
                                                             class="btn btn-success"
                                                             id="add-btn"
-                                                            on:click={reloadPage}
+                                                            on:click={sendDataCreateMarcas}
                                                             >Guardar cambios</button>
                                                       </div>
                                                    </div>
@@ -1091,10 +1088,10 @@
                                              class="btn btn-success add-btn"
                                              data-bs-toggle="modal"
                                              id="create-btn"
-                                             data-bs-target="#showModalAñadirCliente"
+                                             data-bs-target="#showModalAñadirEtiqueta"
                                              ><i
                                                 class="ri-add-line align-bottom me-1" />
-                                             Añadir Marca</button>
+                                             Añadir Etiqueta</button>
                                        </div>
                                     </div>
                                  </div>
@@ -1254,7 +1251,7 @@
                                     <!-- Añadir etiqueta modal -->
                                     <div
                                        class="modal fade"
-                                       id="showModalAñadirCliente"
+                                       id="showModalAñadirEtiqueta"
                                        tabindex="-1"
                                        aria-labelledby="exampleModalLabel"
                                        aria-hidden="true">
@@ -1266,7 +1263,7 @@
                                                 <h5
                                                    class="modal-title"
                                                    id="exampleModalLabel">
-                                                   Añadir Cliente
+                                                   Editar Etiqueta
                                                 </h5>
                                                 <button
                                                    type="button"
@@ -1281,94 +1278,65 @@
                                                       <label
                                                          for="name-field"
                                                          class="form-label"
-                                                         >Nombre Completo</label>
+                                                         >Nombre</label>
                                                       <input
                                                          type="text"
                                                          id="name-field"
                                                          class="form-control"
                                                          placeholder="Ingresar Nombre"
+                                                         bind:value={dataCreate.name}
                                                          required />
                                                    </div>
 
                                                    <div class="mb-3">
                                                       <label
-                                                         for="email-field"
+                                                         for="description-field"
                                                          class="form-label"
-                                                         >Correo</label>
-                                                      <input
-                                                         type="email"
-                                                         id="email-field"
-                                                         class="form-control"
-                                                         placeholder="Ingresar Correo"
-                                                         required />
-                                                   </div>
-
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="phone-field"
-                                                         class="form-label"
-                                                         >Teléfono</label>
+                                                         >Descripcion</label>
                                                       <input
                                                          type="text"
-                                                         id="phone-field"
+                                                         id="description-field"
+                                                         bind:value={dataCreate.description}
                                                          class="form-control"
+                                                         placeholder="Ingresar descripcion"
+                                                         required />
+                                                   </div>
+
+                                                   <div class="mb-3">
+                                                      <label
+                                                         for="slug-field"
+                                                         class="form-label"
+                                                         >Slug</label>
+                                                      <input
+                                                         type="text"
+                                                         id="slug-field"
+                                                         class="form-control"
+                                                         bind:value={dataCreate.slug}
                                                          placeholder="Ingresar Teléfono"
                                                          required />
                                                    </div>
 
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="password-field"
-                                                         class="form-label"
-                                                         >Contraseña</label>
-                                                      <input
-                                                         type="text"
-                                                         id="password-field"
-                                                         class="form-control"
-                                                         placeholder="Ingresar Contraseña"
-                                                         required />
+                                                   <div class="modal-footer">
+                                                      <div
+                                                         class="hstack gap-2 justify-content-end">
+                                                         <button
+                                                            type="button"
+                                                            class="btn btn-danger"
+                                                            data-bs-dismiss="modal"
+                                                            >Cerrar</button>
+                                                         <button
+                                                            type="submit"
+                                                            class="btn btn-success"
+                                                            id="add-btn"
+                                                            on:click={sendDataCreateEtiquetas}
+                                                            >Guardar cambios</button>
+                                                      </div>
                                                    </div>
-
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="suscribed-field"
-                                                         class="form-label"
-                                                         >¿Está suscrito?</label>
-                                                      <input
-                                                         type="text"
-                                                         id="suscribed-field"
-                                                         class="form-control"
-                                                         placeholder="Cantidad de suscripción"
-                                                         required />
-                                                   </div>
-
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="id-field"
-                                                         class="form-label"
-                                                         >Nivel ID</label>
-                                                      <input
-                                                         type="text"
-                                                         id="id-field"
-                                                         class="form-control"
-                                                         placeholder="Cantidad de suscripción"
-                                                         required />
-                                                   </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                   <div
-                                                      class="hstack gap-2 justify-content-end">
-                                                      <button
-                                                         type="button"
-                                                         class="btn btn-danger"
-                                                         data-bs-dismiss="modal"
-                                                         >Cerrar</button>
-                                                      <button
-                                                         type="button"
-                                                         class="btn btn-success"
-                                                         id="edit-btn"
-                                                         >Añadir Cliente</button>
-                                                   </div>
+                                                   <input
+                                                      type="text"
+                                                      value="create"
+                                                      name="action"
+                                                      hidden />
                                                 </div>
                                              </form>
                                           </div>
