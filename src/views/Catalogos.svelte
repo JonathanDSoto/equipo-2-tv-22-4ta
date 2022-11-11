@@ -96,7 +96,6 @@
    }
 
    // =================================================
-
    //  Etiquetas calls
 
    async function getTags() {
@@ -121,6 +120,116 @@
       return data.data;
    }
 
+   // ======================================================================
+   // Creacion  de Categorias - Marcas - Etiquetas
+   // ======================================================================
+   // async function sendDataCreateCategorias() {
+   //    const bodyForm = new FormData();
+   //    bodyForm.append("action", "create");
+   //    bodyForm.append("name", dataSingleSelected.name);
+   //    bodyForm.append("description", dataSingleSelected.description);
+   //    bodyForm.append("slug", dataSingleSelected.slug);
+
+   //    axios
+   //       .post("http://localhost/app/CategoriesController.php", bodyForm)
+   //       .then(function (response) {
+   //          if (response) {
+   //             console.log(response);
+   //             Swal.fire({
+   //                title: "Se añadio correctamente",
+   //                text: "Se recargara la pagina para reflejar los cambios",
+   //                icon: "info",
+   //                showCancelButton: false,
+   //                confirmButtonText: "Aceptar",
+   //             }).then((result) => {
+   //                if (result.value) {
+   //                   location.href = "/catalogos";
+   //                }
+   //             });
+   //          } else {
+   //             console.log("Nel");
+   //          }
+   //       })
+   //       .catch((resp) => console.log(resp));
+   // }
+
+   // async function sendDataCreateMarcas() {
+   //    const bodyForm = new FormData();
+   //    bodyForm.append("action", "create");
+   //    bodyForm.append("name", dataSingleSelected.name);
+   //    bodyForm.append("description", dataSingleSelected.description);
+   //    bodyForm.append("slug", dataSingleSelected.slug);
+
+   //    axios
+   //       .post("http://localhost/app/BrandsController.php", bodyForm)
+   //       .then(function (response) {
+   //          if (response) {
+   //             console.log(response);
+   //             Swal.fire({
+   //                title: "Creacion completada",
+   //                text: "Se recargara la pagina para reflejar los cambios",
+   //                icon: "info",
+   //                showCancelButton: false,
+   //                confirmButtonText: "Aceptar",
+   //             }).then((result) => {
+   //                if (result.value) {
+   //                   location.href = "/catalogos";
+   //                }
+   //             });
+   //          } else {
+   //             console.log("Nel");
+   //          }
+   //       })
+   //       .catch((resp) => console.log(resp));
+   // }
+
+   // async function sendDataCreateEtiquetas() {
+   //    const bodyForm = new FormData();
+   //    bodyForm.append("action", "create");
+   //    bodyForm.append("name", dataSingleSelected.name);
+   //    bodyForm.append("description", dataSingleSelected.description);
+   //    bodyForm.append("slug", dataSingleSelected.slug);
+
+   //    axios
+   //       .post("http://localhost/app/TagsController.php", bodyForm)
+   //       .then(function (response) {
+   //          if (response) {
+   //             console.log(response);
+   //             Swal.fire({
+   //                title: "Creacion completada",
+   //                text: "Se recargara la pagina para reflejar los cambios",
+   //                icon: "info",
+   //                showCancelButton: false,
+   //                confirmButtonText: "Aceptar",
+   //             }).then((result) => {
+   //                if (result.value) {
+   //                   location.href = "/catalogos";
+   //                }
+   //             });
+   //          } else {
+   //             console.log("Nel");
+   //          }
+   //       })
+   //       .catch((resp) => console.log(resp));
+   // }
+
+   function reloadPage() {
+      Swal.fire({
+         title: "Recargara ventana",
+         text: "Se recargara la pagina para ver los cambios realizados :)",
+         icon: "info",
+         showCancelButton: false,
+         confirmButtonText: "Aceptar",
+      }).then((result) => {
+         if (result.value) {
+            location.reload();
+         }
+      });
+   }
+
+   // ======================================================================
+   // Edicion de Categorias - Marcas - Etiquetas
+   // ======================================================================
    async function sendDataUpdateCategorias() {
       const bodyForm = new FormData();
       bodyForm.append("action", dataSingleSelected.action);
@@ -151,6 +260,7 @@
          })
          .catch((resp) => console.log(resp));
    }
+
    async function sendDataUpdateMarcas() {
       const bodyForm = new FormData();
       bodyForm.append("action", dataSingleSelected.action);
@@ -181,6 +291,7 @@
          })
          .catch((resp) => console.log(resp));
    }
+
    async function sendDataUpdateEtiquetas() {
       const bodyForm = new FormData();
       bodyForm.append("action", dataSingleSelected.action);
@@ -198,6 +309,94 @@
                   title: "Edicion completada",
                   text: "Se recargara la pagina para reflejar los cambios",
                   icon: "info",
+                  showCancelButton: false,
+                  confirmButtonText: "Aceptar",
+               }).then((result) => {
+                  if (result.value) {
+                     location.href = "/catalogos";
+                  }
+               });
+            } else {
+               console.log("Nel");
+            }
+         })
+         .catch((resp) => console.log(resp));
+   }
+
+   // ====================================================================
+   // Eliminaacion de Categorias - Marcas - Etiquetas
+   // ====================================================================
+
+   async function deleteCategoria(id) {
+      const bodyForm = new FormData();
+      bodyForm.append("action", "delete");
+      bodyForm.append("id", id);
+
+      axios
+         .post("http://localhost/app/CategoriesController.php", bodyForm)
+         .then(function (response) {
+            if (response) {
+               console.log(response);
+               Swal.fire({
+                  title: "Se elimino la categoria",
+                  text: "Se recargara la pagina para reflejar los cambios",
+                  icon: "error",
+                  showCancelButton: false,
+                  confirmButtonText: "Aceptar",
+               }).then((result) => {
+                  if (result.value) {
+                     location.href = "/catalogos";
+                  }
+               });
+            } else {
+               console.log("Nel");
+            }
+         })
+         .catch((resp) => console.log(resp));
+   }
+
+   async function deleteMarca(id) {
+      const bodyForm = new FormData();
+      bodyForm.append("action", "delete");
+      bodyForm.append("id", id);
+
+      axios
+         .post("http://localhost/app/BrandsController.php", bodyForm)
+         .then(function (response) {
+            if (response) {
+               console.log(response);
+               Swal.fire({
+                  title: "Se elimino la marca",
+                  text: "Se recargara la pagina para reflejar los cambios",
+                  icon: "error",
+                  showCancelButton: false,
+                  confirmButtonText: "Aceptar",
+               }).then((result) => {
+                  if (result.value) {
+                     location.href = "/catalogos";
+                  }
+               });
+            } else {
+               console.log("Nel");
+            }
+         })
+         .catch((resp) => console.log(resp));
+   }
+
+   async function deleteEtiqueta(id) {
+      const bodyForm = new FormData();
+      bodyForm.append("action", "delete");
+      bodyForm.append("id", id);
+
+      axios
+         .post("http://localhost/app/TagsController.php", bodyForm)
+         .then(function (response) {
+            if (response) {
+               console.log(response);
+               Swal.fire({
+                  title: "Se elimino la etiqueta",
+                  text: "Se recargara la pagina para reflejar los cambios",
+                  icon: "error",
                   showCancelButton: false,
                   confirmButtonText: "Aceptar",
                }).then((result) => {
@@ -365,6 +564,10 @@
                                                             id="removeItemModal">
                                                             <button
                                                                class="btn btn-sm btn-danger remove-item-btn"
+                                                               on:click={() =>
+                                                                  deleteCategoria(
+                                                                     categorie.id
+                                                                  )}
                                                                >Borrar</button>
                                                          </div>
                                                       </div>
@@ -376,7 +579,7 @@
                                           {/await}
                                        </tbody>
                                     </table>
-                                    
+
                                     <!-- Modal editar categoria -->
                                     <div
                                        class="modal fade"
@@ -478,7 +681,7 @@
                                        </div>
                                     </div>
 
-                                    <!-- Modal añadir categoria -->
+                                    <!-- Modal agregar categoria -->
                                     <div
                                        class="modal fade"
                                        id="showModalAñadirCliente"
@@ -493,7 +696,7 @@
                                                 <h5
                                                    class="modal-title"
                                                    id="exampleModalLabel">
-                                                   Añadir Cliente
+                                                   Agregar Categoria
                                                 </h5>
                                                 <button
                                                    type="button"
@@ -508,100 +711,68 @@
                                                       <label
                                                          for="name-field"
                                                          class="form-label"
-                                                         >Nombre Completo</label>
+                                                         >Nombre</label>
                                                       <input
                                                          type="text"
                                                          id="name-field"
                                                          class="form-control"
                                                          placeholder="Ingresar Nombre"
+                                                         bind:value={dataSingleSelected.name}
+                                                         name="name"
                                                          required />
                                                    </div>
 
                                                    <div class="mb-3">
                                                       <label
-                                                         for="email-field"
+                                                         for="description-field"
                                                          class="form-label"
-                                                         >Correo</label>
-                                                      <input
-                                                         type="email"
-                                                         id="email-field"
-                                                         class="form-control"
-                                                         placeholder="Ingresar Correo"
-                                                         required />
-                                                   </div>
-
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="phone-field"
-                                                         class="form-label"
-                                                         >Teléfono</label>
+                                                         >Descripcion</label>
                                                       <input
                                                          type="text"
-                                                         id="phone-field"
+                                                         id="description-field"
+                                                         name="description"
                                                          class="form-control"
+                                                         bind:value={dataSingleSelected.description}
+                                                         placeholder="Ingresar descripcion"
+                                                         required />
+                                                   </div>
+
+                                                   <div class="mb-3">
+                                                      <label
+                                                         for="slug-field"
+                                                         class="form-label"
+                                                         >Slug</label>
+                                                      <input
+                                                         type="text"
+                                                         id="slug-field"
+                                                         class="form-control"
+                                                         name="slug"
+                                                         bind:value={dataSingleSelected.slug}
                                                          placeholder="Ingresar Teléfono"
                                                          required />
                                                    </div>
 
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="password-field"
-                                                         class="form-label"
-                                                         >Contraseña</label>
-                                                      <input
-                                                         type="text"
-                                                         id="password-field"
-                                                         class="form-control"
-                                                         placeholder="Ingresar Contraseña"
-                                                         required />
-                                                   </div>
-
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="suscribed-field"
-                                                         class="form-label"
-                                                         >¿Está suscrito?</label>
-                                                      <input
-                                                         type="text"
-                                                         id="suscribed-field"
-                                                         class="form-control"
-                                                         placeholder="Cantidad de suscripción"
-                                                         required />
-                                                   </div>
-
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="id-field"
-                                                         class="form-label"
-                                                         >Nivel ID</label>
-                                                      <input
-                                                         type="text"
-                                                         id="id-field"
-                                                         class="form-control"
-                                                         placeholder="Cantidad de suscripción"
-                                                         required />
-                                                   </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                   <div
-                                                      class="hstack gap-2 justify-content-end">
-                                                      <button
-                                                         type="button"
-                                                         class="btn btn-danger"
-                                                         data-bs-dismiss="modal"
-                                                         >Cerrar</button>
-                                                      <button
-                                                         type="button"
-                                                         class="btn btn-success"
-                                                         id="edit-btn"
-                                                         >Añadir Cliente</button>
+                                                   <div class="modal-footer">
+                                                      <div
+                                                         class="hstack gap-2 justify-content-end">
+                                                         <button
+                                                            type="button"
+                                                            class="btn btn-danger"
+                                                            data-bs-dismiss="modal"
+                                                            >Cerrar</button>
+                                                         <button
+                                                            type="submit"
+                                                            class="btn btn-success"
+                                                            id="add-btn"
+                                                            on:click|preventDefault={sendDataUpdateCategorias}
+                                                            >Guardar cambios</button>
+                                                      </div>
                                                    </div>
                                                 </div>
                                              </form>
                                           </div>
                                        </div>
                                     </div>
-
                                  </div>
                               </div>
                               <!-- end card -->
@@ -632,7 +803,7 @@
                                              class="btn btn-success add-btn"
                                              data-bs-toggle="modal"
                                              id="create-btn"
-                                             data-bs-target="#showModalAñadirCliente"
+                                             data-bs-target="#showModalAñadirMarca"
                                              ><i
                                                 class="ri-add-line align-bottom me-1" />
                                              Añadir Marca</button>
@@ -683,6 +854,10 @@
                                                             id="removeItemModal">
                                                             <button
                                                                class="btn btn-sm btn-danger remove-item-btn"
+                                                               on:click={() =>
+                                                                  deleteMarca(
+                                                                     brand.id
+                                                                  )}
                                                                >Borrar</button>
                                                          </div>
                                                       </div>
@@ -793,7 +968,7 @@
                                     <!-- Agrega marca modal -->
                                     <div
                                        class="modal fade"
-                                       id="showModalAñadirCliente"
+                                       id="showModalAñadirMarca"
                                        tabindex="-1"
                                        aria-labelledby="exampleModalLabel"
                                        aria-hidden="true">
@@ -805,7 +980,7 @@
                                                 <h5
                                                    class="modal-title"
                                                    id="exampleModalLabel">
-                                                   Añadir Cliente
+                                                   Editar Marca
                                                 </h5>
                                                 <button
                                                    type="button"
@@ -814,100 +989,73 @@
                                                    aria-label="Close"
                                                    id="close-modal" />
                                              </div>
-                                             <form>
+                                             <form
+                                                action="http://localhost/app/BrandsController.php"
+                                                method="post">
                                                 <div class="modal-body">
                                                    <div class="mb-3">
                                                       <label
                                                          for="name-field"
                                                          class="form-label"
-                                                         >Nombre Completo</label>
+                                                         >Nombre</label>
                                                       <input
                                                          type="text"
                                                          id="name-field"
                                                          class="form-control"
                                                          placeholder="Ingresar Nombre"
+                                                         name="name"
                                                          required />
                                                    </div>
 
                                                    <div class="mb-3">
                                                       <label
-                                                         for="email-field"
+                                                         for="description-field"
                                                          class="form-label"
-                                                         >Correo</label>
-                                                      <input
-                                                         type="email"
-                                                         id="email-field"
-                                                         class="form-control"
-                                                         placeholder="Ingresar Correo"
-                                                         required />
-                                                   </div>
-
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="phone-field"
-                                                         class="form-label"
-                                                         >Teléfono</label>
+                                                         >Descripcion</label>
                                                       <input
                                                          type="text"
-                                                         id="phone-field"
+                                                         id="description-field"
+                                                         name="description"
                                                          class="form-control"
+                                                         placeholder="Ingresar descripcion"
+                                                         required />
+                                                   </div>
+
+                                                   <div class="mb-3">
+                                                      <label
+                                                         for="slug-field"
+                                                         class="form-label"
+                                                         >Slug</label>
+                                                      <input
+                                                         type="text"
+                                                         id="slug-field"
+                                                         class="form-control"
+                                                         name="slug"
                                                          placeholder="Ingresar Teléfono"
                                                          required />
                                                    </div>
 
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="password-field"
-                                                         class="form-label"
-                                                         >Contraseña</label>
-                                                      <input
-                                                         type="text"
-                                                         id="password-field"
-                                                         class="form-control"
-                                                         placeholder="Ingresar Contraseña"
-                                                         required />
+                                                   <div class="modal-footer">
+                                                      <div
+                                                         class="hstack gap-2 justify-content-end">
+                                                         <button
+                                                            type="button"
+                                                            class="btn btn-danger"
+                                                            data-bs-dismiss="modal"
+                                                            >Cerrar</button>
+                                                         <button
+                                                            type="submit"
+                                                            class="btn btn-success"
+                                                            id="add-btn"
+                                                            on:click={reloadPage}
+                                                            >Guardar cambios</button>
+                                                      </div>
                                                    </div>
-
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="suscribed-field"
-                                                         class="form-label"
-                                                         >¿Está suscrito?</label>
-                                                      <input
-                                                         type="text"
-                                                         id="suscribed-field"
-                                                         class="form-control"
-                                                         placeholder="Cantidad de suscripción"
-                                                         required />
-                                                   </div>
-
-                                                   <div class="mb-3">
-                                                      <label
-                                                         for="id-field"
-                                                         class="form-label"
-                                                         >Nivel ID</label>
-                                                      <input
-                                                         type="text"
-                                                         id="id-field"
-                                                         class="form-control"
-                                                         placeholder="Cantidad de suscripción"
-                                                         required />
-                                                   </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                   <div
-                                                      class="hstack gap-2 justify-content-end">
-                                                      <button
-                                                         type="button"
-                                                         class="btn btn-danger"
-                                                         data-bs-dismiss="modal"
-                                                         >Cerrar</button>
-                                                      <button
-                                                         type="button"
-                                                         class="btn btn-success"
-                                                         id="edit-btn"
-                                                         >Añadir Cliente</button>
-                                                   </div>
+                                                   <input
+                                                      type="text"
+                                                      value="create"
+                                                      name="action"
+                                                      hidden />
                                                 </div>
                                              </form>
                                           </div>
@@ -994,6 +1142,10 @@
                                                             id="removeItemModal">
                                                             <button
                                                                class="btn btn-sm btn-danger remove-item-btn"
+                                                               on:click={() =>
+                                                                  deleteEtiqueta(
+                                                                     tag.id
+                                                                  )}
                                                                >Borrar</button>
                                                          </div>
                                                       </div>
@@ -1222,8 +1374,6 @@
                                           </div>
                                        </div>
                                     </div>
-
-
                                  </div>
                               </div>
                               <!-- end card -->
