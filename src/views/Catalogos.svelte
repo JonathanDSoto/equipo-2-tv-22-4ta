@@ -964,7 +964,7 @@
                                        </div>
                                     </div>
 
-                                    <!-- Agrega marca modal -->
+                                    <!-- Agregar marca modal -->
                                     <div
                                        class="modal fade"
                                        id="showModalAñadirMarca"

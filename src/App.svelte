@@ -14,6 +14,7 @@
     import UserSettings from './views/UserSettings.svelte';
 
     import Clientes from './views/Clientes.svelte';
+    import Cupones from './views/Cupones.svelte';
     import Products from './views/Products.svelte';
     // import ViewUser from './views/ViewUser.svelte';
     import ViewCliente from './views/ViewCliente.svelte';
@@ -23,6 +24,7 @@
     import ViewPresentacion from './views/ViewPresentacion.svelte';
     import ViewOrder from './views/ViewOrder.svelte';
     import ViewDireccion from './views/ViewDireccion.svelte';
+    import ViewCupones from './views/ViewCupones.svelte';
 </script>
 
 <Router>
@@ -49,6 +51,13 @@
         </Route>
 
         <Route path="/clientes" component={Clientes} />
+
+
+        <Route path="/cupones/:id" let:params>
+            <ViewCupones id={params.id} />
+        </Route>
+
+        <Route path="/cupones" component={Cupones} />
         
         <Route path="/products" component={Products} />
 
