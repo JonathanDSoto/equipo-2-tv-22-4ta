@@ -44,6 +44,41 @@
       const dataCoupons = await response.json();
       return dataCoupons.data;
    }
+
+   // Agregar cupon
+
+   const datosCupon = {
+      
+   }
+
+   // Eliminar cupon
+   async function deleteCupon(id) {
+      const bodyForm = new FormData();
+      bodyForm.append("action", "delete");
+      bodyForm.append("id", id);
+
+      axios
+         .post("http://localhost/app/CouponsController.php", bodyForm)
+         .then(function (response) {
+            if (response) {
+               console.log(response);
+               Swal.fire({
+                  title: "Se elimino la categoria",
+                  text: "Se recargara la pagina para reflejar los cambios",
+                  icon: "error",
+                  showCancelButton: false,
+                  confirmButtonText: "Aceptar",
+               }).then((result) => {
+                  if (result.value) {
+                     location.href = "/catalogos";
+                  }
+               });
+            } else {
+               console.log("Nel");
+            }
+         })
+         .catch((resp) => console.log(resp));
+   }
 </script>
 
 <svelte:head>
@@ -213,16 +248,17 @@
                                                          <span
                                                             class="badge badge-soft-primary fs-20"
                                                             ><i
-                                                               class="ri-arrow-down-s-line fs-20 align-middle me-1" />{coupon.percentage_discount ?? ''}%<span /></span>
+                                                               class="ri-arrow-down-s-line fs-20 align-middle me-1" />{coupon.percentage_discount ??
+                                                               ""}%<span /></span>
                                                       </div>
                                                    </div>
                                                    <div
                                                       class="d-flex gap-2 pt-3">
                                                       <div class="edit">
-                                                         <button
+                                                         <a
                                                             class="btn btn-sm btn-success edit-item-btn"
-                                                            href="#!"
-                                                            >Ver Detalles</button>
+                                                            href="/cupones/{coupon.id}"
+                                                            >Ver Detalles</a>
                                                       </div>
                                                       <div class="edit">
                                                          <button
@@ -236,6 +272,7 @@
                                                             class="btn btn-sm btn-danger remove-item-btn"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#deleteRecordModal"
+                                                            on:click={() => deleteCupon(coupon.id)}
                                                             >Borrar</button>
                                                       </div>
                                                    </div>

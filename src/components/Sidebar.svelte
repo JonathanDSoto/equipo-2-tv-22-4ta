@@ -80,7 +80,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-link" href="#sidebarPages">
+                <a class="nav-link menu-link" href="/cupones">
                     <i class="mdi mdi-sticker-text-outline" />
                     <span data-key="t-pages">Cupones</span>
                 </a>
