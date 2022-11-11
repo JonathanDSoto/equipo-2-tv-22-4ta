@@ -1,3 +1,4 @@
+//verificado 
 <script>
     import { fade } from 'svelte/transition';
     import { get } from 'svelte/store';
