@@ -48,8 +48,57 @@
    // Agregar cupon
 
    const datosCupon = {
-      
+      name: '',
+      code: '',
+      percentage_discount: '',
+      min_amount_required: '',
+      min_product_required: '',
+      start_date: '',
+      end_date: '',
+      max_uses: '',
+      count_uses: '',
+      valid_only_first_purchase: "1",
+      status: "1",
    }
+
+   async function sendDataCreateCoupon() {
+      const bodyForm = new FormData();
+      bodyForm.append("action", "create");
+      bodyForm.append("name", datosCupon.name);
+      bodyForm.append("code", datosCupon.code);
+      bodyForm.append("percentage_discount", datosCupon.percentage_discount);
+      bodyForm.append("min_amount_required", datosCupon.min_amount_required);
+      bodyForm.append("min_product_required", datosCupon.min_amount_required);
+      bodyForm.append("start_date", datosCupon.start_date);
+      bodyForm.append("end_date", datosCupon.end_date);
+      bodyForm.append("max_uses", datosCupon.max_uses);
+      bodyForm.append("count_uses", datosCupon.count_uses);
+      bodyForm.append("valid_only_first_purchase", datosCupon.valid_only_first_purchase);
+      bodyForm.append("status", datosCupon.status);
+
+      axios
+         .post("http://localhost/app/CouponsController.php", bodyForm)
+         .then(function (response) {
+            if (response) {
+               console.log(response);
+               Swal.fire({
+                  title: "Se añadio correctamente",
+                  text: "Se recargara la pagina para reflejar los cambios",
+                  icon: "info",
+                  showCancelButton: false,
+                  confirmButtonText: "Aceptar",
+               }).then((result) => {
+                  if (result.value) {
+                     location.href = "/cupones";
+                  }
+               });
+            } else {
+               console.log("Nel");
+            }
+         })
+         .catch((resp) => console.log(resp));
+   }
+
 
    // Eliminar cupon
    async function deleteCupon(id) {
@@ -288,6 +337,8 @@
                                     <!-- end col-->
                                  </div>
 
+
+                                 <!-- Editar modal -->
                                  <div
                                     class="modal fade"
                                     id="showModalEditar"
@@ -459,6 +510,8 @@
                                     </div>
                                  </div>
 
+                                 <!-- Añadir modal -->
+
                                  <div
                                     class="modal fade"
                                     id="showModalAñadir"
@@ -493,6 +546,7 @@
                                                       type="text"
                                                       id="name-field"
                                                       class="form-control"
+                                                      bind:value={datosCupon.name}
                                                       placeholder="Ingresar Nombre cupón"
                                                       required />
                                                 </div>
@@ -505,6 +559,7 @@
                                                       type="text"
                                                       id="code-field"
                                                       class="form-control"
+                                                      bind:value={datosCupon.code}
                                                       placeholder="Ingresar Código del cupón"
                                                       required />
                                                 </div>
@@ -515,8 +570,10 @@
                                                       class="form-label"
                                                       >Porcentaje de descuento</label>
                                                    <input
-                                                      type="email"
+                                                      type="text"
                                                       id="desc-field"
+                                                      pattern="[0-9]{2}"
+                                                      bind:value={datosCupon.percentage_discount}
                                                       class="form-control"
                                                       placeholder="Ingresar Porcentaje de descuento"
                                                       required />
@@ -530,6 +587,8 @@
                                                       type="text"
                                                       id="monto-field"
                                                       class="form-control"
+                                                      pattern="[0-9]+"
+                                                      bind:value={datosCupon.min_amount_required}
                                                       placeholder="Ingresar Monto mínimo solicitado"
                                                       required />
                                                 </div>
@@ -543,6 +602,8 @@
                                                    <input
                                                       type="text"
                                                       id="montoP-field"
+                                                      pattern="[0-9]+"
+                                                      bind:value={datosCupon.min_product_required}
                                                       class="form-control"
                                                       placeholder="Ingresar Monto mínimo de producto"
                                                       required />
@@ -554,9 +615,11 @@
                                                       >Fecha de inicio del cupón</label>
                                                    <input
                                                       type="text"
+                                                      pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
+                                                      bind:value={datosCupon.start_date}
                                                       id="fecha-field"
                                                       class="form-control"
-                                                      placeholder="Ingresar Fecha inicio del cupón"
+                                                      placeholder="Ingresar Fecha inicio del cupón (DD/MM/YYYY)"
                                                       required />
                                                 </div>
 
@@ -568,18 +631,9 @@
                                                    <input
                                                       type="text"
                                                       class="form-control"
-                                                      data-provider="flatpickr"
-                                                      data-date-format="d M, Y"
-                                                      data-disable-date="15 12,2021" />
-                                                </div>
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="fechaC-field"
-                                                      class="form-label"
-                                                      >Fecha caducidad del cupón</label>
-                                                   <input
-                                                      type="text"
-                                                      class="form-control"
+                                                      pattern="^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$"
+                                                      placeholder="DD/MM/YYYY"
+                                                      bind:value={datosCupon.end_date}
                                                       data-provider="flatpickr"
                                                       data-date-format="d M, Y"
                                                       data-disable-date="15 12,2021" />
@@ -593,6 +647,8 @@
                                                       type="text"
                                                       id="fecha-field"
                                                       class="form-control"
+                                                      pattern="[0-9]+"
+                                                      bind:value={datosCupon.count_uses}
                                                       placeholder="Ingresar Cantidad de usos"
                                                       required />
                                                 </div>
@@ -606,7 +662,8 @@
                                                       type="text"
                                                       id="fecha-field"
                                                       class="form-control"
-                                                      placeholder="Ingresar Número de disponibilidad para usar en compras"
+                                                      bind:value={datosCupon.valid_only_first_purchase}
+                                                      placeholder="1 (si) , 2 (no) "
                                                       required />
                                                 </div>
                                              </div>
@@ -622,6 +679,7 @@
                                                       type="button"
                                                       class="btn btn-success"
                                                       id="edit-btn"
+                                                      on:click={sendDataCreateCoupon}
                                                       >Añadir Cupón</button>
                                                 </div>
                                              </div>
