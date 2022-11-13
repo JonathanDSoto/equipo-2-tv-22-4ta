@@ -16,6 +16,7 @@
     import Clientes from './views/Clientes.svelte';
     import Cupones from './views/Cupones.svelte';
     import Products from './views/Products.svelte';
+    import Ordenes from './views/Ordenes.svelte';
     // import ViewUser from './views/ViewUser.svelte';
     import ViewCliente from './views/ViewCliente.svelte';
     import Catalogos from './views/Catalogos.svelte';
@@ -71,11 +72,10 @@
 
         <Route path="/viewPresentacion" component={ViewPresentacion} />
         <Route path="/viewOrder" component={ViewOrder} />
+        <Route path="/ordenes" component={Ordenes} />
         <Route path="/viewDireccion" component={ViewDireccion} />
 
-        <Route path="/test/:id" let:params>
-            <Test id={params.id} />
-        </Route>
+
 
         <!-- 404 -->
         <Route path="/*" component={NotFound} />

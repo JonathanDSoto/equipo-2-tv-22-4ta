@@ -87,7 +87,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-link" href="#sidebarLanding">
+                <a class="nav-link menu-link" href="/ordenes">
                     <i class="ri-rocket-line" />
                     <span data-key="t-landing">Ordenes</span>
                 </a>
