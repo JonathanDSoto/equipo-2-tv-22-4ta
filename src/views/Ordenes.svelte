@@ -38,6 +38,28 @@
       const dataUser = await response.json();
       return dataUser.data;
    }
+
+   async function getAllOrders() {
+      const response = await fetch(
+         `https://crud.jonathansoto.mx/api/orders`,
+         requestOptions
+      );
+      const dataOrders = await response.json();
+      return dataOrders.data;
+   }
+
+   let dataClientsArray = [];
+
+   async function getAllClients() {
+      const response = await fetch(
+         `https://crud.jonathansoto.mx/api/clients`,
+         requestOptions
+      );
+      const dataClients = await response.json();
+      dataClientsArray.push(dataClients.data);
+      console.log(dataClientsArray);
+      return dataClients.data;
+   }
 </script>
 
 <svelte:head>
@@ -97,628 +119,593 @@
          <!-- ============================================================== -->
          <!-- Start right Content here -->
          <!-- ============================================================== -->
-         <div class="main-content">
-            <div class="page-content">
-               <div class="container-fluid">
-                  <!-- start page title -->
-                  <div class="row">
-                     <div class="col-12">
-                        <div
-                           class="page-title-box d-sm-flex align-items-center justify-content-between">
-                           <h4 class="mb-sm-0">Ordenes</h4>
+         {#await getAllClients()}
+            Loading...
+         {:then data}
+            <div class="main-content">
+               <div class="page-content">
+                  <div class="container-fluid">
+                     <!-- start page title -->
+                     <div class="row">
+                        <div class="col-12">
+                           <div
+                              class="page-title-box d-sm-flex align-items-center justify-content-between">
+                              <h4 class="mb-sm-0">Ordenes</h4>
 
-                           <div class="page-title-right">
-                              <ol class="breadcrumb m-0">
-                                 <li class="breadcrumb-item">
-                                    <a href="#!">Home</a>
-                                 </li>
-                                 <li class="breadcrumb-item active">Ordenes</li>
-                              </ol>
+                              <div class="page-title-right">
+                                 <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item">
+                                       <a href="/home">Home</a>
+                                    </li>
+                                    <li class="breadcrumb-item active">
+                                       Ordenes
+                                    </li>
+                                 </ol>
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-                  <!-- end page title -->
+                     <!-- end page title -->
 
-                  <div class="row" id="contactList">
-                     <div class="col-lg-12">
-                        <div class="card">
-                           <div
-                              class="card-header d-flex align-items-center border-0">
-                              <h5 class="card-title mb-0 flex-grow-1">
-                                 Lista de Ordenes
-                              </h5>
-                              <div class="flex-shrink-0">
-                                 <div class="flax-shrink-0 hstack gap-2">
-                                    <button
-                                       class="btn btn-primary"
-                                       data-bs-toggle="modal"
-                                       data-bs-target="#showModalAñadirO"
-                                       >Crear una Orden</button>
+                     <div class="row" id="contactList">
+                        <div class="col-lg-12">
+                           <div class="card">
+                              <div
+                                 class="card-header d-flex align-items-center border-0">
+                                 <h5 class="card-title mb-0 flex-grow-1">
+                                    Lista de Ordenes
+                                 </h5>
+                                 <div class="flex-shrink-0">
+                                    <div class="flax-shrink-0 hstack gap-2">
+                                       <button
+                                          class="btn btn-primary"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#showModalAñadirO"
+                                          >Crear una Orden</button>
+                                    </div>
                                  </div>
                               </div>
-                           </div>
-                           <div
-                              class="card-body border border-dashed border-end-0 border-start-0">
-                              <div class="row g-2">
-                                 <div class="col-xl-4 col-md-6">
-                                    <div class="search-box">
-                                       <input
-                                          type="text"
-                                          class="form-control search"
-                                          placeholder="Buscar ordenes..." />
-                                       <i class="ri-search-line search-icon" />
-                                    </div>
-                                 </div>
-                                 <!--end col-->
-                                 <div class="col-xl-3 col-md-6">
-                                    <div class="input-group">
-                                       <span
-                                          class="input-group-text"
-                                          id="basic-addon1"
-                                          ><i
-                                             class="ri-calendar-2-line" /></span>
-                                       <input
-                                          type="text"
-                                          class="form-control"
-                                          data-provider="flatpickr"
-                                          data-date-format="d M, Y"
-                                          data-range-date="true"
-                                          placeholder="Seleccionar Fecha"
-                                          aria-describedby="basic-addon1" />
-                                    </div>
-                                 </div>
-                                 <!--end col-->
-                              </div>
-                              <!--end row-->
-                           </div>
-                           <div class="card-body">
-                              <div class="table-responsive table-card">
-                                 <table
-                                    class="table align-middle table-nowrap"
-                                    id="customerTable">
-                                    <thead class="table-light text-muted">
-                                       <tr>
-                                          <th
-                                             class="sort"
-                                             data-sort="folio_date"
-                                             scope="col">Número de Folio</th>
-                                          <th
-                                             class="sort"
-                                             data-sort="customer"
-                                             scope="col">Cliente</th>
-                                          <th
-                                             class="sort"
-                                             data-sort="typeBuy"
-                                             scope="col">Tipo de pago</th>
 
-                                          <th
-                                             class="sort"
-                                             data-sort="price"
-                                             scope="col">Monto</th>
-                                          <th
-                                             class="sort"
-                                             data-sort="status"
-                                             scope="col">Estado de la Orden</th>
-                                          <th
-                                             class="sort"
-                                             data-sort="accion"
-                                             scope="col">Acción</th>
-                                       </tr>
-                                    </thead>
-                                    <!--end thead-->
-                                    <tbody class="list form-check-all">
-                                       <tr>
-                                          <td class="folio_date">8271</td>
-                                          <td class="customer">Mary Cousar</td>
-                                          <td class="typeBuy text-success"
-                                             >Efectivo</td>
-                                          <td class="monto">$46,335.40</td>
-                                          <td class="status"
-                                             ><span
-                                                class="badge badge-soft-success text-uppercase"
-                                                >Efectuado Correctamente</span
-                                             ></td>
-                                          <td class="action">
-                                             <div class="d-flex gap-2">
-                                                <div class="edit">
-                                                   <button
-                                                      class="btn btn-sm btn-success edit-item-btn"
-                                                      href=""
-                                                      >Ver Detalles</button>
-                                                </div>
-                                                <div class="edit">
-                                                   <button
-                                                      class="btn btn-sm btn-success edit-item-btn"
-                                                      data-bs-toggle="modal"
-                                                      data-bs-target="#showModalEditarO"
-                                                      >Editar</button>
-                                                </div>
-                                                <div
-                                                   class="remove"
-                                                   id="removeItemModal">
-                                                   <button
-                                                      class="btn btn-sm btn-danger remove-item-btn"
-                                                      data-bs-toggle="modal"
-                                                      data-bs-target="#deleteRecordModalO"
-                                                      >Borrar</button>
-                                                </div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <!--end tr-->
-                                       <tr>
-                                          <td class="folio_date">8272</td>
-                                          <td class="customer">Mary Cousar</td>
-                                          <td class="typeBuy text-success"
-                                             >Tarjeta</td>
-                                          <td class="monto">$3,744.48</td>
-                                          <td class="status"
-                                             ><span
-                                                class="badge badge-soft-danger text-uppercase"
-                                                >Cancelado</span
-                                             ></td>
-                                          <td class="action">
-                                             <div class="d-flex gap-2">
-                                                <div class="edit">
-                                                   <button
-                                                      class="btn btn-sm btn-success edit-item-btn"
-                                                      href=""
-                                                      >Ver Detalles</button>
-                                                </div>
-                                                <div class="edit">
-                                                   <button
-                                                      class="btn btn-sm btn-success edit-item-btn"
-                                                      data-bs-toggle="modal"
-                                                      data-bs-target="#showModalEditarO"
-                                                      >Editar</button>
-                                                </div>
-                                                <div
-                                                   class="remove"
-                                                   id="removeItemModal">
-                                                   <button
-                                                      class="btn btn-sm btn-danger remove-item-btn"
-                                                      data-bs-toggle="modal"
-                                                      data-bs-target="#deleteRecordModalO"
-                                                      >Borrar</button>
-                                                </div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <!--end tr-->
-                                       <tr>
-                                          <td class="folio_date">8273</td>
-                                          <td class="customer">Mary Cousar</td>
-                                          <td class="typeBuy text-success"
-                                             >Transferencia</td>
-                                          <td class="monto">$3,744.48</td>
-                                          <td class="status"
-                                             ><span
-                                                class="badge badge-soft-warning text-uppercase"
-                                                >Pendiente</span
-                                             ></td>
+                              {#await getAllOrders()}
+                                 <!-- promise is pending -->
+                              {:then data}
+                                 <div class="card-body">
+                                    <div class="table-responsive table-card">
+                                       <table
+                                          class="table align-middle table-nowrap"
+                                          id="customerTable">
+                                          <thead class="table-light text-muted">
+                                             <tr>
+                                                <th scope="col"
+                                                   >Número de Folio</th>
+                                                <th scope="col">Cliente</th>
+                                                <th scope="col"
+                                                   >Tipo de pago</th>
 
-                                          <td class="action">
-                                             <div class="d-flex gap-2">
-                                                <div class="edit">
-                                                   <button
-                                                      class="btn btn-sm btn-success edit-item-btn"
-                                                      href=""
-                                                      >Ver Detalles</button>
-                                                </div>
-                                                <div class="edit">
-                                                   <button
-                                                      class="btn btn-sm btn-success edit-item-btn"
-                                                      data-bs-toggle="modal"
-                                                      data-bs-target="#showModalEditarO"
-                                                      >Editar</button>
-                                                </div>
-                                                <div
-                                                   class="remove"
-                                                   id="removeItemModal">
-                                                   <button
-                                                      class="btn btn-sm btn-danger remove-item-btn"
-                                                      data-bs-toggle="modal"
-                                                      data-bs-target="#deleteRecordModalO"
-                                                      >Borrar</button>
-                                                </div>
-                                             </div>
-                                          </td>
-                                       </tr>
-                                       <!--end tr-->
+                                                <th scope="col">Monto</th>
+                                                <th scope="col"
+                                                   >Estado de la Orden</th>
+                                                <th scope="col">Acción</th>
+                                             </tr>
+                                          </thead>
+                                          <!--end thead-->
+                                          <tbody class="list form-check-all">
+                                             {#each data as order, i}
+                                                <tr>
+                                                   <td class="folio_date"
+                                                      >{order.folio}</td>
+                                                   <!-- <td class="customer"
+                                                      >{dataClientsArray[0][i].name}</td> -->
+                                                      <td>{dataClientsArray[0][i].name}</td>
+                                                   <td
+                                                      class="typeBuy text-success"
+                                                      >Efectivo</td>
+                                                   <td class="monto"
+                                                      >$46,335.40</td>
+                                                   <td class="status"
+                                                      ><span
+                                                         class="badge badge-soft-success text-uppercase"
+                                                         >Efectuado
+                                                         Correctamente</span
+                                                      ></td>
+                                                   <td class="action">
+                                                      <div class="d-flex gap-2">
+                                                         <div class="edit">
+                                                            <button
+                                                               class="btn btn-sm btn-success edit-item-btn"
+                                                               href=""
+                                                               >Ver Detalles</button>
+                                                         </div>
+                                                         <div class="edit">
+                                                            <button
+                                                               class="btn btn-sm btn-success edit-item-btn"
+                                                               data-bs-toggle="modal"
+                                                               data-bs-target="#showModalEditarO"
+                                                               >Editar</button>
+                                                         </div>
+                                                         <div
+                                                            class="remove"
+                                                            id="removeItemModal">
+                                                            <button
+                                                               class="btn btn-sm btn-danger remove-item-btn"
+                                                               data-bs-toggle="modal"
+                                                               data-bs-target="#deleteRecordModalO"
+                                                               >Borrar</button>
+                                                         </div>
+                                                      </div>
+                                                   </td>
+                                                </tr>
+                                             {/each}
 
-                                       <!--end tr-->
-                                    </tbody>
-                                 </table>
-                                 <!--end table-->
+                                             <!--end tr-->
+                                             <tr>
+                                                <td class="folio_date">8272</td>
+                                                <td class="customer"
+                                                   >Mary Cousar</td>
+                                                <td class="typeBuy text-success"
+                                                   >Tarjeta</td>
+                                                <td class="monto">$3,744.48</td>
+                                                <td class="status"
+                                                   ><span
+                                                      class="badge badge-soft-danger text-uppercase"
+                                                      >Cancelado</span
+                                                   ></td>
+                                                <td class="action">
+                                                   <div class="d-flex gap-2">
+                                                      <div class="edit">
+                                                         <button
+                                                            class="btn btn-sm btn-success edit-item-btn"
+                                                            href=""
+                                                            >Ver Detalles</button>
+                                                      </div>
+                                                      <div class="edit">
+                                                         <button
+                                                            class="btn btn-sm btn-success edit-item-btn"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#showModalEditarO"
+                                                            >Editar</button>
+                                                      </div>
+                                                      <div
+                                                         class="remove"
+                                                         id="removeItemModal">
+                                                         <button
+                                                            class="btn btn-sm btn-danger remove-item-btn"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#deleteRecordModalO"
+                                                            >Borrar</button>
+                                                      </div>
+                                                   </div>
+                                                </td>
+                                             </tr>
+                                             <!--end tr-->
+                                             <tr>
+                                                <td class="folio_date">8273</td>
+                                                <td class="customer"
+                                                   >Mary Cousar</td>
+                                                <td class="typeBuy text-success"
+                                                   >Transferencia</td>
+                                                <td class="monto">$3,744.48</td>
+                                                <td class="status"
+                                                   ><span
+                                                      class="badge badge-soft-warning text-uppercase"
+                                                      >Pendiente</span
+                                                   ></td>
 
-                                 <!--end row-->
-                                 <div class="noresult" style="display: none">
-                                    <div class="text-center">
-                                       <lord-icon
-                                          src="https://cdn.lordicon.com/msoeawqm.json"
-                                          trigger="loop"
-                                          colors="primary:#121331,secondary:#08a88a"
-                                          style="width:75px;height:75px" />
-                                       <h5 class="mt-2">
-                                          Lo sentimos! No se encontraron
-                                          resultados
-                                       </h5>
-                                       <p class="text-muted mb-0">
-                                          Hemos buscado en todas las etiquetas.
-                                          No encontramos ningúna etiqueta para
-                                          su búsqueda.
-                                       </p>
-                                    </div>
-                                 </div>
+                                                <td class="action">
+                                                   <div class="d-flex gap-2">
+                                                      <div class="edit">
+                                                         <button
+                                                            class="btn btn-sm btn-success edit-item-btn"
+                                                            href=""
+                                                            >Ver Detalles</button>
+                                                      </div>
+                                                      <div class="edit">
+                                                         <button
+                                                            class="btn btn-sm btn-success edit-item-btn"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#showModalEditarO"
+                                                            >Editar</button>
+                                                      </div>
+                                                      <div
+                                                         class="remove"
+                                                         id="removeItemModal">
+                                                         <button
+                                                            class="btn btn-sm btn-danger remove-item-btn"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#deleteRecordModalO"
+                                                            >Borrar</button>
+                                                      </div>
+                                                   </div>
+                                                </td>
+                                             </tr>
+                                             <!--end tr-->
 
-                                 <div class="d-flex justify-content-end">
-                                    <div class="pagination-wrap hstack gap-2">
-                                       <a
-                                          class="page-item pagination-prev disabled"
-                                          href="#!">
-                                          Anterior
-                                       </a>
-                                       <ul
-                                          class="pagination listjs-pagination mb-0" />
-                                       <a
-                                          class="page-item pagination-next"
-                                          href="#!">
-                                          Siguiente
-                                       </a>
-                                    </div>
-                                 </div>
+                                             <!--end tr-->
+                                          </tbody>
+                                       </table>
+                                       <!--end table-->
 
-                                 <div
-                                    class="modal fade"
-                                    id="showModalEditarO"
-                                    tabindex="-1"
-                                    aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div
-                                       class="modal-dialog modal-dialog-centered">
-                                       <div class="modal-content">
-                                          <div
-                                             class="modal-header bg-light p-3">
-                                             <h5
-                                                class="modal-title"
-                                                id="exampleModalLabel">
-                                                Editar Orden
+                                       <!--end row-->
+                                       <div
+                                          class="noresult"
+                                          style="display: none">
+                                          <div class="text-center">
+                                             <lord-icon
+                                                src="https://cdn.lordicon.com/msoeawqm.json"
+                                                trigger="loop"
+                                                colors="primary:#121331,secondary:#08a88a"
+                                                style="width:75px;height:75px" />
+                                             <h5 class="mt-2">
+                                                Lo sentimos! No se encontraron
+                                                resultados
                                              </h5>
-                                             <button
-                                                type="button"
-                                                class="btn-close"
-                                                data-bs-dismiss="modal"
-                                                aria-label="Close"
-                                                id="close-modal" />
+                                             <p class="text-muted mb-0">
+                                                Hemos buscado en todas las
+                                                etiquetas. No encontramos
+                                                ningúna etiqueta para su
+                                                búsqueda.
+                                             </p>
                                           </div>
-                                          <form>
-                                             <div class="modal-body">
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="estatus-field"
-                                                      class="form-label"
-                                                      >Estado de la Orden</label>
-                                                   <input
-                                                      type="text"
-                                                      id="estatus-field"
-                                                      class="form-control"
-                                                      placeholder="Estado de la Orden"
-                                                      required />
-                                                </div>
-                                             </div>
-                                             <div class="modal-footer">
-                                                <div
-                                                   class="hstack gap-2 justify-content-end">
-                                                   <button
-                                                      type="button"
-                                                      class="btn btn-light"
-                                                      data-bs-dismiss="modal"
-                                                      >Cerrar</button>
-                                                   <button
-                                                      type="submit"
-                                                      class="btn btn-success"
-                                                      id="add-btn"
-                                                      >Guardar cambios</button>
-                                                </div>
-                                             </div>
-                                          </form>
                                        </div>
-                                    </div>
-                                 </div>
 
-                                 <div
-                                    class="modal fade"
-                                    id="showModalAñadirO"
-                                    tabindex="-1"
-                                    aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
-                                    <div
-                                       class="modal-dialog modal-dialog-centered">
-                                       <div class="modal-content">
+                                       <div
+                                          class="modal fade"
+                                          id="showModalEditarO"
+                                          tabindex="-1"
+                                          aria-labelledby="exampleModalLabel"
+                                          aria-hidden="true">
                                           <div
-                                             class="modal-header bg-light p-3">
-                                             <h5
-                                                class="modal-title"
-                                                id="exampleModalLabel">
-                                                Crear Orden
-                                             </h5>
-                                             <button
-                                                type="button"
-                                                class="btn-close"
-                                                data-bs-dismiss="modal"
-                                                aria-label="Close"
-                                                id="close-modal" />
-                                          </div>
-                                          <form>
-                                             <div class="modal-body">
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="folio-field"
-                                                      class="form-label"
-                                                      >Folio</label>
-                                                   <input
-                                                      type="text"
-                                                      id="folio-field"
-                                                      class="form-control"
-                                                      placeholder="Ingresar Folio"
-                                                      required />
-                                                </div>
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="ForminputState1"
-                                                      class="form-label"
-                                                      >Cliente</label>
-                                                   <select
-                                                      id="ForminputState1"
-                                                      class="form-select"
-                                                      data-choices
-                                                      data-choices-sorting="true">
-                                                      <option selected
-                                                         >Mary Cousar</option>
-                                                      <option>...</option>
-                                                   </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="ForminputState2"
-                                                      class="form-label"
-                                                      >Producto</label>
-                                                   <select
-                                                      id="ForminputState2"
-                                                      class="form-select"
-                                                      data-choices
-                                                      data-choices-sorting="true">
-                                                      <option selected
-                                                         >Escurridor</option>
-                                                      <option>...</option>
-                                                   </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="monto-field"
-                                                      class="form-label"
-                                                      >Cantidad</label>
-                                                   <input
-                                                      type="text"
-                                                      id="monto-field"
-                                                      class="form-control"
-                                                      placeholder="Ingresar Cantidad"
-                                                      required />
-                                                </div>
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="ForminputState3"
-                                                      class="form-label"
-                                                      >Tipo de Pago</label>
-                                                   <select
-                                                      id="ForminputState3"
-                                                      class="form-select"
-                                                      data-choices
-                                                      data-choices-sorting="true">
-                                                      <option selected
-                                                         >Efectivo</option>
-                                                      <option>...</option>
-                                                   </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="status-field"
-                                                      class="form-label"
-                                                      >Estado de la Orden</label>
-                                                   <input
-                                                      type="text"
-                                                      id="status-field"
-                                                      class="form-control "
-                                                      placeholder="Ingresar Pendiente/Pagada/Enviada/Cancelada"
-                                                      required />
-                                                </div>
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="ForminputState4"
-                                                      class="form-label"
-                                                      >Dirección</label>
-                                                   <select
-                                                      id="ForminputState4"
-                                                      class="form-select"
-                                                      data-choices
-                                                      data-choices-sorting="true">
-                                                      <option selected
-                                                         >Street 4</option>
-                                                      <option>...</option>
-                                                   </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="ForminputState5"
-                                                      class="form-label"
-                                                      >Cupón</label>
-                                                   <select
-                                                      id="ForminputState5"
-                                                      class="form-select"
-                                                      data-choices
-                                                      data-choices-sorting="true">
-                                                      <option selected
-                                                         >Descuento 50%</option>
-                                                      <option>...</option>
-                                                   </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="ForminputState6"
-                                                      class="form-label"
-                                                      >Pago de la Orden</label>
-                                                   <select
-                                                      id="ForminputState6"
-                                                      class="form-select"
-                                                      data-choices
-                                                      data-choices-sorting="true">
-                                                      <option selected
-                                                         >Sí/No</option>
-                                                      <option>...</option>
-                                                   </select>
-                                                </div>
-
-                                                <div class="mb-3">
-                                                   <label
-                                                      for="total-field"
-                                                      class="form-label"
-                                                      >Total</label>
-                                                   <input
-                                                      type="text"
-                                                      id="total-field"
-                                                      class="form-control "
-                                                      placeholder="Ingresar Total"
-                                                      required />
-                                                </div>
-                                             </div>
-                                             <div class="modal-footer">
+                                             class="modal-dialog modal-dialog-centered">
+                                             <div class="modal-content">
                                                 <div
-                                                   class="hstack gap-2 justify-content-end">
+                                                   class="modal-header bg-light p-3">
+                                                   <h5
+                                                      class="modal-title"
+                                                      id="exampleModalLabel">
+                                                      Editar Orden
+                                                   </h5>
                                                    <button
                                                       type="button"
-                                                      class="btn btn-light"
+                                                      class="btn-close"
                                                       data-bs-dismiss="modal"
-                                                      >Cerrar</button>
+                                                      aria-label="Close"
+                                                      id="close-modal" />
+                                                </div>
+                                                <form>
+                                                   <div class="modal-body">
+                                                      <div class="mb-3">
+                                                         <label
+                                                            for="estatus-field"
+                                                            class="form-label"
+                                                            >Estado de la Orden</label>
+                                                         <input
+                                                            type="text"
+                                                            id="estatus-field"
+                                                            class="form-control"
+                                                            placeholder="Estado de la Orden"
+                                                            required />
+                                                      </div>
+                                                   </div>
+                                                   <div class="modal-footer">
+                                                      <div
+                                                         class="hstack gap-2 justify-content-end">
+                                                         <button
+                                                            type="button"
+                                                            class="btn btn-light"
+                                                            data-bs-dismiss="modal"
+                                                            >Cerrar</button>
+                                                         <button
+                                                            type="submit"
+                                                            class="btn btn-success"
+                                                            id="add-btn"
+                                                            >Guardar cambios</button>
+                                                      </div>
+                                                   </div>
+                                                </form>
+                                             </div>
+                                          </div>
+                                       </div>
+
+                                       <div
+                                          class="modal fade"
+                                          id="showModalAñadirO"
+                                          tabindex="-1"
+                                          aria-labelledby="exampleModalLabel"
+                                          aria-hidden="true">
+                                          <div
+                                             class="modal-dialog modal-dialog-centered">
+                                             <div class="modal-content">
+                                                <div
+                                                   class="modal-header bg-light p-3">
+                                                   <h5
+                                                      class="modal-title"
+                                                      id="exampleModalLabel">
+                                                      Crear Orden
+                                                   </h5>
                                                    <button
                                                       type="button"
-                                                      class="btn btn-success"
-                                                      id="edit-btn"
-                                                      >Añadir Orden</button>
+                                                      class="btn-close"
+                                                      data-bs-dismiss="modal"
+                                                      aria-label="Close"
+                                                      id="close-modal" />
                                                 </div>
-                                             </div>
-                                          </form>
-                                       </div>
-                                    </div>
-                                 </div>
+                                                <form>
+                                                   <div class="modal-body">
+                                                      <div class="mb-3">
+                                                         <label
+                                                            for="folio-field"
+                                                            class="form-label"
+                                                            >Folio</label>
+                                                         <input
+                                                            type="text"
+                                                            id="folio-field"
+                                                            class="form-control"
+                                                            placeholder="Ingresar Folio"
+                                                            required />
+                                                      </div>
+                                                      <div class="mb-3">
+                                                         <label
+                                                            for="ForminputState1"
+                                                            class="form-label"
+                                                            >Cliente</label>
+                                                         <select
+                                                            id="ForminputState1"
+                                                            class="form-select"
+                                                            data-choices
+                                                            data-choices-sorting="true">
+                                                            <option selected
+                                                               >Mary Cousar</option>
+                                                            <option>...</option>
+                                                         </select>
+                                                      </div>
+                                                      <div class="mb-3">
+                                                         <label
+                                                            for="ForminputState2"
+                                                            class="form-label"
+                                                            >Producto</label>
+                                                         <select
+                                                            id="ForminputState2"
+                                                            class="form-select"
+                                                            data-choices
+                                                            data-choices-sorting="true">
+                                                            <option selected
+                                                               >Escurridor</option>
+                                                            <option>...</option>
+                                                         </select>
+                                                      </div>
+                                                      <div class="mb-3">
+                                                         <label
+                                                            for="monto-field"
+                                                            class="form-label"
+                                                            >Cantidad</label>
+                                                         <input
+                                                            type="text"
+                                                            id="monto-field"
+                                                            class="form-control"
+                                                            placeholder="Ingresar Cantidad"
+                                                            required />
+                                                      </div>
+                                                      <div class="mb-3">
+                                                         <label
+                                                            for="ForminputState3"
+                                                            class="form-label"
+                                                            >Tipo de Pago</label>
+                                                         <select
+                                                            id="ForminputState3"
+                                                            class="form-select"
+                                                            data-choices
+                                                            data-choices-sorting="true">
+                                                            <option selected
+                                                               >Efectivo</option>
+                                                            <option>...</option>
+                                                         </select>
+                                                      </div>
+                                                      <div class="mb-3">
+                                                         <label
+                                                            for="status-field"
+                                                            class="form-label"
+                                                            >Estado de la Orden</label>
+                                                         <input
+                                                            type="text"
+                                                            id="status-field"
+                                                            class="form-control "
+                                                            placeholder="Ingresar Pendiente/Pagada/Enviada/Cancelada"
+                                                            required />
+                                                      </div>
+                                                      <div class="mb-3">
+                                                         <label
+                                                            for="ForminputState4"
+                                                            class="form-label"
+                                                            >Dirección</label>
+                                                         <select
+                                                            id="ForminputState4"
+                                                            class="form-select"
+                                                            data-choices
+                                                            data-choices-sorting="true">
+                                                            <option selected
+                                                               >Street 4</option>
+                                                            <option>...</option>
+                                                         </select>
+                                                      </div>
+                                                      <div class="mb-3">
+                                                         <label
+                                                            for="ForminputState5"
+                                                            class="form-label"
+                                                            >Cupón</label>
+                                                         <select
+                                                            id="ForminputState5"
+                                                            class="form-select"
+                                                            data-choices
+                                                            data-choices-sorting="true">
+                                                            <option selected
+                                                               >Descuento 50%</option>
+                                                            <option>...</option>
+                                                         </select>
+                                                      </div>
+                                                      <div class="mb-3">
+                                                         <label
+                                                            for="ForminputState6"
+                                                            class="form-label"
+                                                            >Pago de la Orden</label>
+                                                         <select
+                                                            id="ForminputState6"
+                                                            class="form-select"
+                                                            data-choices
+                                                            data-choices-sorting="true">
+                                                            <option selected
+                                                               >Sí/No</option>
+                                                            <option>...</option>
+                                                         </select>
+                                                      </div>
 
-                                 <!-- Modal -->
-                                 <div
-                                    class="modal fade zoomIn"
-                                    id="deleteRecordModalO"
-                                    tabindex="-1"
-                                    aria-hidden="true">
-                                    <div
-                                       class="modal-dialog modal-dialog-centered">
-                                       <div class="modal-content">
-                                          <div class="modal-header">
-                                             <button
-                                                type="button"
-                                                class="btn-close"
-                                                data-bs-dismiss="modal"
-                                                aria-label="Close"
-                                                id="btn-close" />
-                                          </div>
-                                          <div class="modal-body">
-                                             <div class="mt-2 text-center">
-                                                <lord-icon
-                                                   src="https://cdn.lordicon.com/gsqxdxog.json"
-                                                   trigger="loop"
-                                                   colors="primary:#f7b84b,secondary:#f06548"
-                                                   style="width:100px;height:100px" />
-                                                <div
-                                                   class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
-                                                   <h4>Estás seguro ?</h4>
-                                                   <p
-                                                      class="text-muted mx-4 mb-0">
-                                                      ¿Estás seguro de eliminar
-                                                      esta orden?
-                                                   </p>
-                                                </div>
-                                             </div>
-                                             <div
-                                                class="d-flex gap-2 justify-content-center mt-4 mb-2">
-                                                <button
-                                                   type="button"
-                                                   class="btn w-sm btn-light"
-                                                   data-bs-dismiss="modal"
-                                                   >Cerrar</button>
-                                                <button
-                                                   type="button"
-                                                   class="btn w-sm btn-danger "
-                                                   id="delete-record"
-                                                   >Sí, borrar orden!</button>
+                                                      <div class="mb-3">
+                                                         <label
+                                                            for="total-field"
+                                                            class="form-label"
+                                                            >Total</label>
+                                                         <input
+                                                            type="text"
+                                                            id="total-field"
+                                                            class="form-control "
+                                                            placeholder="Ingresar Total"
+                                                            required />
+                                                      </div>
+                                                   </div>
+                                                   <div class="modal-footer">
+                                                      <div
+                                                         class="hstack gap-2 justify-content-end">
+                                                         <button
+                                                            type="button"
+                                                            class="btn btn-light"
+                                                            data-bs-dismiss="modal"
+                                                            >Cerrar</button>
+                                                         <button
+                                                            type="button"
+                                                            class="btn btn-success"
+                                                            id="edit-btn"
+                                                            >Añadir Orden</button>
+                                                      </div>
+                                                   </div>
+                                                </form>
                                              </div>
                                           </div>
                                        </div>
+
+                                       <!-- Modal -->
+                                       <div
+                                          class="modal fade zoomIn"
+                                          id="deleteRecordModalO"
+                                          tabindex="-1"
+                                          aria-hidden="true">
+                                          <div
+                                             class="modal-dialog modal-dialog-centered">
+                                             <div class="modal-content">
+                                                <div class="modal-header">
+                                                   <button
+                                                      type="button"
+                                                      class="btn-close"
+                                                      data-bs-dismiss="modal"
+                                                      aria-label="Close"
+                                                      id="btn-close" />
+                                                </div>
+                                                <div class="modal-body">
+                                                   <div
+                                                      class="mt-2 text-center">
+                                                      <lord-icon
+                                                         src="https://cdn.lordicon.com/gsqxdxog.json"
+                                                         trigger="loop"
+                                                         colors="primary:#f7b84b,secondary:#f06548"
+                                                         style="width:100px;height:100px" />
+                                                      <div
+                                                         class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                                                         <h4>Estás seguro ?</h4>
+                                                         <p
+                                                            class="text-muted mx-4 mb-0">
+                                                            ¿Estás seguro de
+                                                            eliminar esta orden?
+                                                         </p>
+                                                      </div>
+                                                   </div>
+                                                   <div
+                                                      class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                                                      <button
+                                                         type="button"
+                                                         class="btn w-sm btn-light"
+                                                         data-bs-dismiss="modal"
+                                                         >Cerrar</button>
+                                                      <button
+                                                         type="button"
+                                                         class="btn w-sm btn-danger "
+                                                         id="delete-record"
+                                                         >Sí, borrar orden!</button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <!--end modal -->
                                     </div>
+                                    <!-- end row -->
                                  </div>
-                                 <!--end modal -->
-                              </div>
-                              <!-- end row -->
+                              {:catch error}
+                                 {error}
+                              {/await}
+
+                              <!-- container-fluid -->
                            </div>
-                           <!-- container-fluid -->
-                        </div>
-                        <!-- End Page-content -->
+                           <!-- End Page-content -->
 
-                        <!-- end main content-->
+                           <!-- end main content-->
 
-                        <div>
-                           <!-- ============================================ -->
-                           <!-- Js tempalte -->
-                           <!-- ============================================ -->
-                           <!-- JAVASCRIPT -->
-                           <script
-                              src="http://localhost:8080/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-                           <script
-                              src="http://localhost:8080/libs/simplebar/simplebar.min.js"></script>
-                           <script
-                              src="http://localhost:8080/libs/node-waves/waves.min.js"></script>
-                           <script
-                              src="http://localhost:8080/libs/feather-icons/feather.min.js"></script>
-                           <script
-                              src="http://localhost:8080/js/pages/plugins/lord-icon-2.1.0.js"></script>
-                           <script
-                              src="http://localhost:8080/js/plugins.js"></script>
-                           <!-- prismjs plugin -->
-                           <script
-                              src="http://localhost:8080/libs/prismjs/prism.js"></script>
-                           <script
-                              src="http://localhost:8080/libs/list.js/list.min.js"></script>
-                           <script
-                              src="http://localhost:8080/libs/list.pagination.js/list.pagination.min.js"></script>
+                           <div>
+                              <!-- ============================================ -->
+                              <!-- Js tempalte -->
+                              <!-- ============================================ -->
+                              <!-- JAVASCRIPT -->
+                              <script
+                                 src="http://localhost:8080/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+                              <script
+                                 src="http://localhost:8080/libs/simplebar/simplebar.min.js"></script>
+                              <script
+                                 src="http://localhost:8080/libs/node-waves/waves.min.js"></script>
+                              <script
+                                 src="http://localhost:8080/libs/feather-icons/feather.min.js"></script>
+                              <script
+                                 src="http://localhost:8080/js/pages/plugins/lord-icon-2.1.0.js"></script>
+                              <script
+                                 src="http://localhost:8080/js/plugins.js"></script>
+                              <!-- prismjs plugin -->
+                              <script
+                                 src="http://localhost:8080/libs/prismjs/prism.js"></script>
+                              <script
+                                 src="http://localhost:8080/libs/list.js/list.min.js"></script>
+                              <script
+                                 src="http://localhost:8080/libs/list.pagination.js/list.pagination.min.js"></script>
 
-                           <!-- listjs init -->
-                           <script
-                              src="http://localhost:8080/js/pages/listjs.init.js"></script>
+                              <!-- listjs init -->
+                              <script
+                                 src="http://localhost:8080/js/pages/listjs.init.js"></script>
 
-                           <!-- Sweet Alerts js -->
-                           <script
-                              src="http://localhost:8080/libs/sweetalert2/sweetalert2.min.js"></script>
+                              <!-- Sweet Alerts js -->
+                              <script
+                                 src="http://localhost:8080/libs/sweetalert2/sweetalert2.min.js"></script>
 
-                           <!--crypto-orders init-->
-                           <script
-                              src="http://localhost:8080/js/pages/crypto-orders.init.js"></script>
+                              <!--crypto-orders init-->
+                              <script
+                                 src="http://localhost:8080/js/pages/crypto-orders.init.js"></script>
 
-                           <!-- App js -->
-                           <script
-                              src="http://localhost:8080/js/app.js"></script>
+                              <!-- App js -->
+                              <script
+                                 src="http://localhost:8080/js/app.js"></script>
+                           </div>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-         </div>
+         {:catch error}
+            {error}
+         {/await}
       </div>
    </main>
 {:catch error}
