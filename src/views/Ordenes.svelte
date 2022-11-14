@@ -56,8 +56,10 @@
          requestOptions
       );
       const dataClients = await response.json();
-      dataClientsArray.push(dataClients.data);
-      console.log(dataClientsArray);
+      // console.log(dataClients.data);
+      // dataClientsArray.push(dataClients.data);
+      // console.log(dataClientsArray);
+      console.log(dataClients.data);
       return dataClients.data;
    }
 </script>
@@ -121,7 +123,7 @@
          <!-- ============================================================== -->
          {#await getAllClients()}
             Loading...
-         {:then data}
+         {:then client}
             <div class="main-content">
                <div class="page-content">
                   <div class="container-fluid">
@@ -167,8 +169,8 @@
                               </div>
 
                               {#await getAllOrders()}
-                                 <!-- promise is pending -->
-                              {:then data}
+                                 Loading...
+                              {:then dataOrders}
                                  <div class="card-body">
                                     <div class="table-responsive table-card">
                                        <table
@@ -190,13 +192,16 @@
                                           </thead>
                                           <!--end thead-->
                                           <tbody class="list form-check-all">
-                                             {#each data as order, i}
+                                             {#each dataOrders as order, i}
+                                                {@const arr = client.find(
+                                                   (c) => c.id == order.id
+                                                )}
                                                 <tr>
                                                    <td class="folio_date"
                                                       >{order.folio}</td>
-                                                   <!-- <td class="customer"
-                                                      >{dataClientsArray[0][i].name}</td> -->
-                                                      <td>{dataClientsArray[0][i].name}</td>
+                                                   <td>
+                                                      {arr?.name ?? "No client"}
+                                                   </td>
                                                    <td
                                                       class="typeBuy text-success"
                                                       >Efectivo</td>
