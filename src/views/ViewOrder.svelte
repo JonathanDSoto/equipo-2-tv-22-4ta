@@ -1,3 +1,4 @@
+//verificado
 <script>
     import App from "../App.svelte";
 
