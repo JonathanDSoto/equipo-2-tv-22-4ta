@@ -1,3 +1,4 @@
+//verificado
 <script>
     export let id;
 

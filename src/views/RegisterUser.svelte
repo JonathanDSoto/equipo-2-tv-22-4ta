@@ -1,3 +1,4 @@
+//verificado
 <script>
 import axios from "axios";
 import { fade } from 'svelte/transition';

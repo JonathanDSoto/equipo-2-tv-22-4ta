@@ -1,3 +1,4 @@
+//vefirificado
 <script>
     import { Jumper } from 'svelte-loading-spinners';
     import axios from 'axios';

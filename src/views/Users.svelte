@@ -1,3 +1,4 @@
+//verificado
 <script>
     // Components
     import HeaderApp from '../components/HeaderApp.svelte';
