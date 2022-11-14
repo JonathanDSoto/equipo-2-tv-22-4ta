@@ -1,3 +1,4 @@
+//verificado
 <script>
     export let id;
     import Sidebar from '../components/Sidebar.svelte';
