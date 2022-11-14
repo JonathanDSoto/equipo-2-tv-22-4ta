@@ -1,3 +1,4 @@
+//verificado
 <script>
    import HeaderApp from "../components/HeaderApp.svelte";
    import Sidebar from "../components/Sidebar.svelte";
