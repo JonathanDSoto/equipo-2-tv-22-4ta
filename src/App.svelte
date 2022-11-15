@@ -71,8 +71,13 @@
         </Route>
 
         <Route path="/viewPresentacion" component={ViewPresentacion} />
-        <Route path="/viewOrder" component={ViewOrder} />
+
         <Route path="/ordenes" component={Ordenes} />
+        
+        <Route path="/viewOrder/:id" let:params>
+            <ViewOrder id={params.id}/>
+        </Route>
+
         <Route path="/viewDireccion" component={ViewDireccion} />
 
 

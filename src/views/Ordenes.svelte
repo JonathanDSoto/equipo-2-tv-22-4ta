@@ -1,4 +1,3 @@
-//verificado
 <script>
    import HeaderApp from "../components/HeaderApp.svelte";
    import Sidebar from "../components/Sidebar.svelte";
@@ -57,14 +56,60 @@
          requestOptions
       );
       const dataClients = await response.json();
-      // console.log(dataClients.data);
-      // dataClientsArray.push(dataClients.data);
-      // console.log(dataClientsArray);
-      console.log(dataClients.data);
       return dataClients.data;
+   }
+
+   async function deleteOrder(idOrder) {
+      const swalWithBootstrapButtons = Swal.mixin({
+         customClass: {
+            confirmButton: "btn btn-success",
+            cancelButton: "btn btn-danger",
+         },
+         buttonsStyling: false,
+      });
+      let requestOptionsDelete = {
+         method: "DELETE",
+         headers: myHeaders,
+         redirect: "follow",
+      };
+
+      swalWithBootstrapButtons
+         .fire({
+            title: "Seguro que quieres eliminar el usuario?",
+            text: "No podras revertir los cambios",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Si, eliminalo!",
+            cancelButtonText: "No, cancelar!",
+            reverseButtons: true,
+         })
+         .then(async (result) => {
+            if (result.isConfirmed) {
+               const res = await fetch(
+                  `https://crud.jonathansoto.mx/api/orders/${idOrder}`,
+                  requestOptionsDelete
+               );
+               const data = await res.json();
+               if (data.code > 0) {
+                  location.reload();
+                  swalWithBootstrapButtons.fire(
+                     "Eliminado!",
+                     "El usuario ha sido eliminado.",
+                     "success"
+                  );
+               }
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+               swalWithBootstrapButtons.fire(
+                  "Cancelado",
+                  "Tu usuario esta a salvo :)",
+                  "error"
+               );
+            }
+         });
    }
 </script>
 
+<!-- verificado -->
 <svelte:head>
    <title>DevEcommerce | Ordenes</title>
    <!-- ============================================ -->
@@ -203,11 +248,27 @@
                                                    <td>
                                                       {arr?.name ?? "No client"}
                                                    </td>
-                                                   <td
-                                                      class="typeBuy text-success"
-                                                      >Efectivo</td>
+
+                                                   {#if order.payment_type_id == 1}
+                                                      <td
+                                                         class="typeBuy text-success"
+                                                         >Efectivo</td>
+                                                   {:else if order.payment_type_id == 2}
+                                                      <td
+                                                         class="typeBuy text-success"
+                                                         >Tarjeta</td>
+                                                   {:else if order.payment_type_id == 3}
+                                                      <td
+                                                         class="typeBuy text-success"
+                                                         >Transferencia</td>
+                                                   {:else}
+                                                      <td
+                                                         class="typeBuy text-success"
+                                                         >Sin metodo de pago</td>
+                                                   {/if}
+
                                                    <td class="monto"
-                                                      >$46,335.40</td>
+                                                      >${order.total}</td>
                                                    <td class="status"
                                                       ><span
                                                          class="badge badge-soft-success text-uppercase"
@@ -217,116 +278,30 @@
                                                    <td class="action">
                                                       <div class="d-flex gap-2">
                                                          <div class="edit">
-                                                            <button
+                                                            <a
                                                                class="btn btn-sm btn-success edit-item-btn"
-                                                               href=""
-                                                               >Ver Detalles</button>
+                                                               href="/viewOrder/{order.id}"
+                                                               >Ver Detalles</a>
                                                          </div>
                                                          <div class="edit">
-                                                            <button
+                                                            <a
                                                                class="btn btn-sm btn-success edit-item-btn"
                                                                data-bs-toggle="modal"
                                                                data-bs-target="#showModalEditarO"
-                                                               >Editar</button>
+                                                               >Editar</a>
                                                          </div>
                                                          <div
                                                             class="remove"
                                                             id="removeItemModal">
                                                             <button
                                                                class="btn btn-sm btn-danger remove-item-btn"
-                                                               data-bs-toggle="modal"
-                                                               data-bs-target="#deleteRecordModalO"
+                                                               on:click={() => deleteOrder(order.id)} 
                                                                >Borrar</button>
                                                          </div>
                                                       </div>
                                                    </td>
                                                 </tr>
                                              {/each}
-
-                                             <!--end tr-->
-                                             <tr>
-                                                <td class="folio_date">8272</td>
-                                                <td class="customer"
-                                                   >Mary Cousar</td>
-                                                <td class="typeBuy text-success"
-                                                   >Tarjeta</td>
-                                                <td class="monto">$3,744.48</td>
-                                                <td class="status"
-                                                   ><span
-                                                      class="badge badge-soft-danger text-uppercase"
-                                                      >Cancelado</span
-                                                   ></td>
-                                                <td class="action">
-                                                   <div class="d-flex gap-2">
-                                                      <div class="edit">
-                                                         <button
-                                                            class="btn btn-sm btn-success edit-item-btn"
-                                                            href=""
-                                                            >Ver Detalles</button>
-                                                      </div>
-                                                      <div class="edit">
-                                                         <button
-                                                            class="btn btn-sm btn-success edit-item-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#showModalEditarO"
-                                                            >Editar</button>
-                                                      </div>
-                                                      <div
-                                                         class="remove"
-                                                         id="removeItemModal">
-                                                         <button
-                                                            class="btn btn-sm btn-danger remove-item-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#deleteRecordModalO"
-                                                            >Borrar</button>
-                                                      </div>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                             <!--end tr-->
-                                             <tr>
-                                                <td class="folio_date">8273</td>
-                                                <td class="customer"
-                                                   >Mary Cousar</td>
-                                                <td class="typeBuy text-success"
-                                                   >Transferencia</td>
-                                                <td class="monto">$3,744.48</td>
-                                                <td class="status"
-                                                   ><span
-                                                      class="badge badge-soft-warning text-uppercase"
-                                                      >Pendiente</span
-                                                   ></td>
-
-                                                <td class="action">
-                                                   <div class="d-flex gap-2">
-                                                      <div class="edit">
-                                                         <button
-                                                            class="btn btn-sm btn-success edit-item-btn"
-                                                            href=""
-                                                            >Ver Detalles</button>
-                                                      </div>
-                                                      <div class="edit">
-                                                         <button
-                                                            class="btn btn-sm btn-success edit-item-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#showModalEditarO"
-                                                            >Editar</button>
-                                                      </div>
-                                                      <div
-                                                         class="remove"
-                                                         id="removeItemModal">
-                                                         <button
-                                                            class="btn btn-sm btn-danger remove-item-btn"
-                                                            data-bs-toggle="modal"
-                                                            data-bs-target="#deleteRecordModalO"
-                                                            >Borrar</button>
-                                                      </div>
-                                                   </div>
-                                                </td>
-                                             </tr>
-                                             <!--end tr-->
-
-                                             <!--end tr-->
                                           </tbody>
                                        </table>
                                        <!--end table-->

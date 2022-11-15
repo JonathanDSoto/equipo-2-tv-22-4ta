@@ -1,4 +1,4 @@
-//verificado
+<!-- verificado -->
 <script>
    import HeaderApp from "../components/HeaderApp.svelte";
    import Sidebar from "../components/Sidebar.svelte";
@@ -6,8 +6,6 @@
    import Swal from "sweetalert2";
 
    // Transiciones
-   import { fly } from "svelte/transition";
-   import { fade } from "svelte/transition";
 
    // Traer la id del usuario loggeado
    import { get } from "svelte/store";
